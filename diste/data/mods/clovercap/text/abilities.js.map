@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../data/mods/clovercap/text/abilities.ts"],
+  "sourcesContent": ["export const AbilitiesText: {[k: string]: ModdedAbilityText} = {\n\tbattlearmor: {\n\t\tinherit: true,\n\t\tdesc: \"This Pokemon cannot be struck by a critical hit and does not take recoil damage besides Struggle/Life Orb/crash damage.\",\n\t\tshortDesc: \"This Pokemon cannot be struck by a critical hit and does not take recoil damage.\",\n\t},\n\tshellarmor: {\n\t\tinherit: true,\n\t\tdesc: \"This Pokemon cannot be struck by a critical hit and does not take recoil damage besides Struggle/Life Orb/crash damage.\",\n\t\tshortDesc: \"This Pokemon cannot be struck by a critical hit and does not take recoil damage.\",\n\t},\n\tunnerve: {\n\t\tinherit: true,\n\t\tdesc: \"Foes cannot use Berries, Berry Juice, Leftovers, Milk Drink, Focus Munch, Soft-Boiled or Fruit Juice.\",\n\t\tshortDesc: \"Foes cannot use Berries, Berry Juice, Leftovers, Milk Drink, Focus Munch, Soft-Boiled or Fruit Juice.\",\n\t},\n};\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,MAAM,gBAAkD;AAAA,EAC9D,aAAa;AAAA,IACZ,SAAS;AAAA,IACT,MAAM;AAAA,IACN,WAAW;AAAA,EACZ;AAAA,EACA,YAAY;AAAA,IACX,SAAS;AAAA,IACT,MAAM;AAAA,IACN,WAAW;AAAA,EACZ;AAAA,EACA,SAAS;AAAA,IACR,SAAS;AAAA,IACT,MAAM;AAAA,IACN,WAAW;AAAA,EACZ;AACD;",
+  "names": []
+}

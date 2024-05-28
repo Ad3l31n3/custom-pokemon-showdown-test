@@ -1,0 +1,296 @@
+"use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var pokedex_exports = {};
+__export(pokedex_exports, {
+  Pokedex: () => Pokedex
+});
+module.exports = __toCommonJS(pokedex_exports);
+const Pokedex = {
+  blobbosadventurer: {
+    inherit: true,
+    baseStats: {
+      hp: 85,
+      atk: 85,
+      def: 85,
+      spa: 85,
+      spd: 85,
+      spe: 85
+    }
+  },
+  blobbosadventurerlegendary: {
+    inherit: true,
+    baseStats: {
+      hp: 110,
+      atk: 130,
+      def: 110,
+      spa: 130,
+      spd: 110,
+      spe: 130
+    }
+  },
+  autumn: {
+    inherit: true,
+    baseStats: {
+      hp: 91,
+      atk: 79,
+      def: 91,
+      spa: 79,
+      spd: 93,
+      spe: 104
+    }
+  },
+  smellsumo: {
+    inherit: true,
+    baseStats: {
+      hp: 110,
+      atk: 110,
+      def: 95,
+      spa: 63,
+      spd: 71,
+      spe: 71
+    }
+  },
+  fusjahl: {
+    inherit: true,
+    baseStats: {
+      hp: 99,
+      atk: 111,
+      def: 99,
+      spa: 11,
+      spd: 111,
+      spe: 13
+    }
+  },
+  pengas: {
+    inherit: true,
+    evos: ["Oengas"]
+  },
+  oengas: {
+    inherit: true,
+    prevo: "Pengas",
+    evoType: "other",
+    evoCondition: "Win the race."
+  },
+  zangoose: {
+    inherit: true,
+    evos: ["Zangursed"]
+  },
+  zangursed: {
+    inherit: true,
+    prevo: "Zangoose",
+    evoType: "other",
+    evoCondition: "Die from the Poison status after getting mortally wounded by a Seviper."
+  },
+  pinsir: {
+    inherit: true,
+    evos: ["Purakkusu"]
+  },
+  purakkusu: {
+    inherit: true,
+    prevo: "Pinsir",
+    evoType: "other",
+    evoCondition: "Prove your might by OHKOing a Buzzwole."
+  },
+  motherfuck: {
+    inherit: true,
+    evos: ["Fatherfuck"]
+  },
+  fatherfuck: {
+    inherit: true,
+    prevo: "Motherfuck",
+    evoType: "other",
+    evoCondition: "Kill Samuel L. Jackson."
+  },
+  hofucno: {
+    inherit: true,
+    evos: ["Hofucyea"]
+  },
+  honrade: {
+    inherit: true,
+    evos: ["Devante", "Vergilion"]
+  },
+  devante: {
+    inherit: true,
+    prevo: "Honrade",
+    evoType: "useItem",
+    evoItem: "Sun Stone"
+  },
+  vergilion: {
+    inherit: true,
+    prevo: "Honrade",
+    evoType: "useItem",
+    evoItem: "Moon Stone"
+  },
+  blobboscell: {
+    inherit: true,
+    abilities: {
+      0: "Cell Shield",
+      1: "Filter",
+      H: "Receiver",
+      S: "Regenerator"
+    },
+    color: "Black"
+  },
+  blobbosforbidden: {
+    inherit: true,
+    baseStats: {
+      hp: 89,
+      atk: 131,
+      def: 90,
+      spa: 133,
+      spd: 80,
+      spe: 142
+    },
+    abilities: {
+      0: "Competitive",
+      1: "Metagaming",
+      H: "Good as Gold",
+      S: "Cursed Body"
+    }
+  },
+  blobbosplok: {
+    inherit: true,
+    baseStats: {
+      hp: 80,
+      atk: 120,
+      def: 70,
+      spa: 65,
+      spd: 70,
+      spe: 110
+    }
+  },
+  regigigas: {
+    inherit: true,
+    abilities: {
+      0: "Slow Start",
+      S: "Big Guy"
+    }
+  },
+  regigigone: {
+    inherit: true,
+    abilities: {
+      0: "Defeatist",
+      S: "Flame Body"
+    }
+  },
+  slaking: {
+    inherit: true,
+    abilities: {
+      0: "Truant",
+      S: "Stall"
+    }
+  },
+  gigalith: {
+    inherit: true,
+    baseStats: {
+      hp: 100,
+      atk: 135,
+      def: 130,
+      spa: 60,
+      spd: 95,
+      spe: 25
+    },
+    abilities: {
+      0: "Sturdy",
+      1: "Sand Stream",
+      H: "Sand Force",
+      S: "Solid Rock"
+    }
+  },
+  alakazam: {
+    inherit: true,
+    abilities: {
+      0: "Synchronize",
+      1: "Inner Focus",
+      H: "Magic Guard"
+    }
+  },
+  junkgeist: {
+    inherit: true,
+    baseStats: {
+      hp: 115,
+      atk: 128,
+      def: 80,
+      spa: 90,
+      spd: 80,
+      spe: 38
+    },
+    abilities: {
+      0: "Stench",
+      1: "Tetanus",
+      H: "Pollution",
+      S: "Technician"
+    }
+  },
+  audinomega: {
+    inherit: true,
+    abilities: {
+      0: "Regenerator"
+    }
+  },
+  tauros: {
+    // i'm not a genwunner i just think tauros got shit on too hard from gen 1 to gen 2 -rex
+    inherit: true,
+    baseStats: {
+      hp: 75,
+      atk: 100,
+      def: 95,
+      spa: 100,
+      spd: 100,
+      spe: 110
+    },
+    abilities: {
+      0: "Intimidate",
+      1: "Anger Point",
+      H: "Sheer Force",
+      S: "Rampage"
+    }
+  },
+  towhorse: {
+    inherit: true,
+    types: ["???", "Fighting"]
+  },
+  sherifuego: {
+    inherit: true,
+    abilities: { 0: "Chlorophyll", 1: "Levitate", H: "Solar Power", S: "Flash Fire" }
+  },
+  sableven: {
+    num: -42151,
+    name: "Sableven",
+    types: ["Steel", "Ghost"],
+    gender: "N",
+    baseStats: { hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100 },
+    abilities: { 0: "Stall", 1: "Admin Abuse", H: "Flare Heal", S: "Prankster" },
+    heightm: 8,
+    weightkg: 911,
+    color: "Purple",
+    eggGroups: ["Undiscovered"],
+    gen: 8
+  },
+  golisopod: {
+    inherit: true,
+    abilities: { 0: "Emergency Exit", H: "Tough Claws", S: "Intimidate" }
+  },
+  dusknoir: {
+    inherit: true,
+    baseStats: { hp: 80, atk: 120, def: 135, spa: 55, spd: 135, spe: 25 },
+    abilities: { 0: "Pressure", 1: "Iron Fist", H: "Frisk", S: "Leech" }
+  }
+};
+//# sourceMappingURL=pokedex.js.map
