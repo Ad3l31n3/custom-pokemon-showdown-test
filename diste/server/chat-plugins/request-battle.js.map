@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../server/chat-plugins/request-battle.ts"],
+  "sourcesContent": ["const getFormatButton = (format: Format) => {\n\treturn `<button name=\"send\" value=\"/requestbattle ${format.id}\" class=\"button\">Request ${format.name} battle</button>`;\n};\n\nexport const commands: Chat.ChatCommands = {\n\trequestbattle(target, room, user) {\n\t\troom = this.requireRoom('lobby' as RoomID);\n\t\tthis.checkChat();\n\n\t\tif (!target) {\n\t\t\tconst formats = Dex.formats.all();\n\t\t\treturn this.sendReplyBox(formats.map(getFormatButton).join(', '));\n\t \t}\n\t\tconst format = Dex.formats.get(target);\n\t\tif (!format || !format.exists) {\n\t\t\tthrow new Chat.ErrorMessage(`${target} is not a valid format.`);\n\t\t}\n\n\t\treturn `/html <button class=\"button\" name=\"openChallenge\" value=\"${user.id},${format.id}\">Challenge me to ${format.name}</button>`;\n\t},\n};\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,MAAM,kBAAkB,CAAC,WAAmB;AAC3C,SAAO,6CAA6C,OAAO,8BAA8B,OAAO;AACjG;AAEO,MAAM,WAA8B;AAAA,EAC1C,cAAc,QAAQ,MAAM,MAAM;AACjC,WAAO,KAAK,YAAY,OAAiB;AACzC,SAAK,UAAU;AAEf,QAAI,CAAC,QAAQ;AACZ,YAAM,UAAU,IAAI,QAAQ,IAAI;AAChC,aAAO,KAAK,aAAa,QAAQ,IAAI,eAAe,EAAE,KAAK,IAAI,CAAC;AAAA,IAChE;AACD,UAAM,SAAS,IAAI,QAAQ,IAAI,MAAM;AACrC,QAAI,CAAC,UAAU,CAAC,OAAO,QAAQ;AAC9B,YAAM,IAAI,KAAK,aAAa,GAAG,+BAA+B;AAAA,IAC/D;AAEA,WAAO,4DAA4D,KAAK,MAAM,OAAO,uBAAuB,OAAO;AAAA,EACpH;AACD;",
+  "names": []
+}
