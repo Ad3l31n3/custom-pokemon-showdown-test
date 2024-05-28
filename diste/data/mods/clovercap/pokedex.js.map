@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../data/mods/clovercap/pokedex.ts"],
-  "sourcesContent": ["export const Pokedex: {[k: string]: ModdedSpeciesData} = {\n\tribbizap: {\n\t\tinherit: true,\n\t\tevos: [\"Bulbfrog\"],\n\t},\n\tbulbfrog: {\n\t\tinherit: true,\n\t\tprevo: \"Ribbizap\",\n\t\tevoType: \"useItem\",\n\t\tevoItem: \"Thunder Stone\",\n\t},\n\tanaconduke: {\n\t\tinherit: true,\n\t\tevos: [\"Ballboa\"],\n\t},\n\tballboa: {\n\t\tinherit: true,\n\t\tprevo: \"Anaconduke\",\n\t\tevoLevel: 50,\n\t},\n\thonrade: {\n\t\tinherit: true,\n\t\tevos: [\"Devante\", \"Vergilion\"],\n\t},\n\tdevante: {\n\t\tinherit: true,\n\t\tprevo: \"Honrade\",\n\t\tevoType: \"useItem\",\n\t\tevoItem: \"Sun Stone\",\n\t},\n\tvergilion: {\n\t\tinherit: true,\n\t\tprevo: \"Honrade\",\n\t\tevoType: \"useItem\",\n\t\tevoItem: \"Moon Stone\",\n\t},\n};\n\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,MAAM,UAA4C;AAAA,EACxD,UAAU;AAAA,IACT,SAAS;AAAA,IACT,MAAM,CAAC,UAAU;AAAA,EAClB;AAAA,EACA,UAAU;AAAA,IACT,SAAS;AAAA,IACT,OAAO;AAAA,IACP,SAAS;AAAA,IACT,SAAS;AAAA,EACV;AAAA,EACA,YAAY;AAAA,IACX,SAAS;AAAA,IACT,MAAM,CAAC,SAAS;AAAA,EACjB;AAAA,EACA,SAAS;AAAA,IACR,SAAS;AAAA,IACT,OAAO;AAAA,IACP,UAAU;AAAA,EACX;AAAA,EACA,SAAS;AAAA,IACR,SAAS;AAAA,IACT,MAAM,CAAC,WAAW,WAAW;AAAA,EAC9B;AAAA,EACA,SAAS;AAAA,IACR,SAAS;AAAA,IACT,OAAO;AAAA,IACP,SAAS;AAAA,IACT,SAAS;AAAA,EACV;AAAA,EACA,WAAW;AAAA,IACV,SAAS;AAAA,IACT,OAAO;AAAA,IACP,SAAS;AAAA,IACT,SAAS;AAAA,EACV;AACD;",
-  "names": []
-}
