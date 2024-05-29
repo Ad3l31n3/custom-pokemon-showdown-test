@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../server/discord.ts"],
-  "sourcesContent": ["import Discord, {Events} from 'discord.js';\n\nexport class DiscordClient {\n\tprivate discordClient?: Discord.Client;\n\n\tprivate getToken(): string | undefined {\n\t\treturn Config.discordtoken || '';\n\t}\n\n\tprivate async initializeClient(): Promise<Discord.Client> {\n\t\tconst discordClient = new Discord.Client({intents: []});\n\n\t\treturn new Promise((resolve, reject) => {\n\t\t\tdiscordClient.on(Events.ClientReady, resolve);\n\t\t\tdiscordClient.login(this.getToken()).catch(() => reject());\n\t\t\tsetTimeout(() => reject(), 5000);\n\t\t});\n\t}\n\n\tasync getClient(): Promise<Discord.Client> {\n\t\tif (this.discordClient && this.discordClient.isReady()) {\n\t\t\treturn this.discordClient;\n\t\t}\n\n\t\treturn this.initializeClient();\n\t}\n}\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,qBAA8B;AAEvB,MAAM,cAAc;AAAA,EAGlB,WAA+B;AACtC,WAAO,OAAO,gBAAgB;AAAA,EAC/B;AAAA,EAEA,MAAc,mBAA4C;AACzD,UAAM,gBAAgB,IAAI,eAAAA,QAAQ,OAAO,EAAC,SAAS,CAAC,EAAC,CAAC;AAEtD,WAAO,IAAI,QAAQ,CAAC,SAAS,WAAW;AACvC,oBAAc,GAAG,sBAAO,aAAa,OAAO;AAC5C,oBAAc,MAAM,KAAK,SAAS,CAAC,EAAE,MAAM,MAAM,OAAO,CAAC;AACzD,iBAAW,MAAM,OAAO,GAAG,GAAI;AAAA,IAChC,CAAC;AAAA,EACF;AAAA,EAEA,MAAM,YAAqC;AAC1C,QAAI,KAAK,iBAAiB,KAAK,cAAc,QAAQ,GAAG;AACvD,aAAO,KAAK;AAAA,IACb;AAEA,WAAO,KAAK,iBAAiB;AAAA,EAC9B;AACD;",
-  "names": ["Discord"]
-}

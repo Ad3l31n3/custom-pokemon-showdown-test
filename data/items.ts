@@ -8615,4 +8615,10560 @@ export const Items: {[itemid: string]: ItemData} = {
 		gen: 8,
 		isNonstandard: "CAP",
 	},
+/* Clover Exclusive Items */
+baconstrip: {
+	name: "Bacon Strip",
+	spritenum: 749,
+	onModifySpDPriority: 2,
+	onModifySpD(spd, pokemon) {
+	  if (pokemon.baseSpecies.baseSpecies === "Urswine") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Urswine"],
+	isNonstandard: "Future",
+ },
+ bible: {
+	name: "Bible",
+	spritenum: 748,
+	onModifyCritRatio(critRatio, pokemon) {
+	  if (pokemon.baseSpecies.baseSpecies === "Caroline") {
+		 return critRatio + 2;
+	  }
+	},
+	itemUser: ["Caroline"],
+	isNonstandard: "Future",
+ },
+ bigfaggot: {
+	name: "Big Faggot",
+	spritenum: 741,
+	onModifySpAPriority: 1,
+	onModifySpA(spa, pokemon) {
+	  if (pokemon.baseSpecies.baseSpecies === "Flameboyan") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Flameboyan"],
+	isNonstandard: "Future",
+ },
+ cutebow: {
+	name: "Cute Bow",
+	spritenum: 742,
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Fairy") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ katana: {
+	name: "Katana",
+	spritenum: 743,
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Steel") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ manifesto: {
+	name: "Manifesto",
+	spritenum: 744,
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && user.baseSpecies.baseSpecies === "Walruskie" && (move.type === "Steel" || move.type === "Ice")) {
+		 return this.chainModify(1.5);
+	  }
+	},
+	itemUser: ["Walruskie"],
+	isNonstandard: "Future",
+ },
+ piratesjug: {
+	name: "Pirate's Jug",
+	spritenum: 745,
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && user.baseSpecies.baseSpecies === "Octai" && move.id === "lactoseshot") {
+		 return this.chainModify([2, 1]);
+	  }
+	},
+	itemUser: ["Octai"],
+	isNonstandard: "Future",
+ },
+ suedeshoes: {
+	name: "Suede Shoes",
+	spritenum: 746,
+	onModifySpe(spe, pokemon) {
+	  if (pokemon.baseSpecies.baseSpecies === "Pretzely") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Pretzely"],
+	isNonstandard: "Future",
+ },
+ taco: {
+	name: "Taco",
+	spritenum: 747,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 2) {
+		 if (this.runEvent("TryHeal", pokemon) && pokemon.useItem()) {
+			this.heal(50);
+		 }
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ thiccbone: {
+	name: "Thicc Bone",
+	spritenum: 379,
+	onModifyAtkPriority: 1,
+	onModifyAtk(atk, pokemon) {
+	  if (pokemon.baseSpecies.baseSpecies === "Masdawg" || pokemon.baseSpecies.baseSpecies === "Pasdawg-Gambino" || pokemon.baseSpecies.baseSpecies === "Pasdawg-Toadagi" || pokemon.baseSpecies.baseSpecies === "Pasdawg-Whiteout" || pokemon.baseSpecies.baseSpecies === "Pasdawg-Swoldier" || pokemon.baseSpecies.baseSpecies === "Pasdawg-Mr. Toad" || pokemon.baseSpecies.baseSpecies === "Pasdawg-Staypuft" || pokemon.baseSpecies.baseSpecies === "Pasdawg" || pokemon.baseSpecies.baseSpecies === "Naughtycoot") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Masdawg", "Pasdawg", "Naughtycoot", "Blobbos-Skeleton", "Pasdawg-Gambino", "Pasdawg-Toadagi", "Pasdawg-Whiteout", "Pasdawg-Swoldier", "Pasdawg-Mr. Toad", "Pasdawg-Staypuft"],
+	isNonstandard: "Future",
+ },
+ berserkmeme: {
+	name: "Berserk Meme",
+	spritenum: 388,
+	onTakeItem: false,
+	onStart(pokemon) {
+	  pokemon.setType("???", false);
+	  this.add("-start", pokemon, "typechange", "???");
+	},
+	onModifyMove(move, pokemon) {
+	  if (pokemon.species.name !== "Memenace")
+		 return;
+	  if (move.id === "meme") {
+		 move.basePower = 90;
+	  }
+	},
+	itemUser: ["Memenace"],
+	isNonstandard: "Future"
+ },
+ anitem: {
+	name: "An Item",
+	spritenum: 750,
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "???") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ aberry: {
+	name: "A Berry",
+	spritenum: 124,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Normal"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "???" && (!target.volatiles["substitute"] || move.flags["bypasssub"] || move.infiltrates && this.gen >= 6)) {
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 200,
+	gen: 4,
+	isNonstandard: "Future"
+ },
+ firering: {
+	name: "Fire Ring",
+	spritenum: 410,
+	onSetStatus(status, target, source, effect) {
+	  if (status.id !== "brn")
+		 return;
+	  this.add("-immune", target, "[from] ability: Comatose");
+	  return false;
+	},
+	isNonstandard: "Future"
+ },
+ /* Clover CAP Exclusive Items */
+ moluganion: {
+	name: "Moluganion",
+	spritenum: 751,
+	fling: {
+	  basePower: 20
+	},
+	onAfterSetStatusPriority: -1,
+	onAfterSetStatus(status, pokemon) {
+	  if (pokemon.baseSpecies.baseSpecies === "Noxilium") {
+		 this.add("-message", "The power from the Moluganion cured the status!");
+		 pokemon.cureStatus();
+		 pokemon.removeVolatile("confusion");
+	  }
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.status || pokemon.volatiles["confusion"]) {
+		 if (pokemon.baseSpecies.baseSpecies === "Noxilium") {
+			this.add("-message", "The power from the Moluganion cured the status!");
+			pokemon.cureStatus();
+			pokemon.removeVolatile("confusion");
+		 } else {
+			this.add("-message", "The holder is unable to comprehend the Moluganion!");
+			pokemon.addVolatile("confusion");
+		 }
+	  }
+	},
+	itemUser: ["Noxilium"],
+	isNonstandard: "Future",
+ },
+ skub: {
+	name: "Skub",
+	spritenum: 752,
+	fling: {
+	  basePower: 20
+	},
+	onModifyDefPriority: 1,
+	onModifyDef(def, pokemon) {
+	  if (["Skubmarine", "Skuba"].includes(pokemon.species.name)) {
+		 return this.chainModify(1.5);
+	  }
+	},
+	onModifySpDPriority: 1,
+	onModifySpD(spd, pokemon) {
+	  if (["Skubmarine", "Skuba"].includes(pokemon.species.name)) {
+		 return this.chainModify(1.5);
+	  }
+	},
+	onModifyAtkPriority: 1,
+	onModifyAtk(atk, pokemon) {
+	  if (["Skubmarine-Anti", "Skuba-Anti"].includes(pokemon.species.name)) {
+		 return this.chainModify(1.5);
+	  }
+	},
+	onModifySpAPriority: 1,
+	onModifySpA(spa, pokemon) {
+	  if (["Skubmarine-Anti", "Skuba-Anti"].includes(pokemon.species.name)) {
+		 return this.chainModify(1.5);
+	  }
+	},
+	itemUser: ["Skubmarine", "Skubmarine-Anti", "Skuba", "Skuba-Anti"],
+	isNonstandard: "Future",
+ },
+ rustedcrown: {
+	name: "Rusted Crown",
+	spritenum: 236,
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.name === "Blobbos-Galar" || pokemon.baseSpecies.name === "Blobbos-Galar-Crowned") {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Blobbos-Galar-Crowned",
+	itemUser: ["Blobbos-Galar-Crowned"],
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ nullgem: {
+	name: "Null Gem",
+	spritenum: 750,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  if (target === source || move.category === "Status")
+		 return;
+	  if (move.type === "???" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 562,
+	gen: 5,
+	isNonstandard: "Past",
+ },
+ crimsonlens: {
+	name: "Crimson Lens",
+	spritenum: 93,
+	fling: {
+	  basePower: 30
+	},
+	onModifySpAPriority: 2,
+	onModifySpA(spa, pokemon) {
+	  if (pokemon.baseSpecies.name === "Winkhulu") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Winkhulu"],
+	isNonstandard: "Past",
+ },
+ cursedfang: {
+	name: "Cursed Fang",
+	spritenum: 94,
+	fling: {
+	  basePower: 90
+	},
+	onModifyAtkPriority: 1,
+	onModifyAtk(atk, pokemon) {
+	  if (pokemon.baseSpecies.name === "Winkhulu") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Winkhulu"],
+	isNonstandard: "Past",
+ },
+ /* Clover CAP Mega Stones */
+ ooganite: {
+	name: "Ooganite",
+	spritenum: 577,
+	megaStone: "Oogabuga-Mega",
+	megaEvolves: "Oogabuga",
+	itemUser: ["Oogabuga"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ wifeminite: {
+	name: "Wifeminite",
+	spritenum: 577,
+	megaStone: "Wifemin-Mega",
+	megaEvolves: "Wifemin",
+	itemUser: ["Wifemin"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ bitekinite: {
+	name: "Bitekinite",
+	spritenum: 577,
+	megaStone: "Biteki-Mega",
+	megaEvolves: "Biteki",
+	itemUser: ["Biteki"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ fonduppite: {
+	name: "Fonduppite",
+	spritenum: 577,
+	megaStone: "Fondupple-Mega",
+	megaEvolves: "Fondupple",
+	itemUser: ["Fondupple"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ ebolabite: {
+	name: "Ebolabite",
+	spritenum: 577,
+	megaStone: "Ebolable-Mega",
+	megaEvolves: "Ebolable",
+	itemUser: ["Ebolable"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ somboludite: {
+	name: "Somboludite",
+	spritenum: 577,
+	megaStone: "Somboludo-Mega",
+	megaEvolves: "Somboludo",
+	itemUser: ["Somboludo"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ floriousite: {
+	name: "Floriousite",
+	spritenum: 577,
+	megaStone: "Florious-Mega",
+	megaEvolves: "Florious",
+	itemUser: ["Florious"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ illumatrixite: {
+	name: "Illumatrixite",
+	spritenum: 577,
+	megaStone: "Illumatrix-Mega",
+	megaEvolves: "Illumatrix",
+	itemUser: ["Illumatrix"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ grimdakite: {
+	name: "Grimdakite",
+	spritenum: 577,
+	megaStone: "Grimdak-Mega",
+	megaEvolves: "Grimdak",
+	itemUser: ["Grimdak"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ hazmatite: {
+	name: "Hazmatite",
+	spritenum: 577,
+	megaStone: "Hazmate-Mega",
+	megaEvolves: "Hazmate",
+	itemUser: ["Hazmate"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ krokizonite: {
+	name: "Krokizonite",
+	spritenum: 577,
+	megaStone: "Krokizon-Mega",
+	megaEvolves: "Krokizon",
+	itemUser: ["Krokizon"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ spookzillite: {
+	name: "Spookzillite",
+	spritenum: 577,
+	megaStone: "Spookzilla-Mega",
+	megaEvolves: "Spookzilla",
+	itemUser: ["Spookzilla"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ lizakbarite: {
+	name: "Lizakbarite",
+	spritenum: 577,
+	megaStone: "Lizakbar-Mega",
+	megaEvolves: "Lizakbar",
+	itemUser: ["Lizakbar"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ rectreemite: {
+	name: "Rectreemite",
+	spritenum: 577,
+	megaStone: "Rectreem-Mega",
+	megaEvolves: "Rectreem",
+	itemUser: ["Rectreem"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ unjoyite: {
+	name: "Unjoyite",
+	spritenum: 577,
+	megaStone: "Unjoy-Mega",
+	megaEvolves: "Unjoy",
+	itemUser: ["Unjoy"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ emplyinite: {
+	name: "Emplyinite",
+	spritenum: 577,
+	megaStone: "Emplyin-Mega",
+	megaEvolves: "Emplyin",
+	itemUser: ["Emplyin"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ upbeddite: {
+	name: "Upbeddite",
+	spritenum: 577,
+	megaStone: "Upbeddit-Mega",
+	megaEvolves: "Upbeddit",
+	itemUser: ["Upbeddit"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ smelloxite: {
+	name: "Smelloxite",
+	spritenum: 577,
+	megaStone: "Smellox-Mega",
+	megaEvolves: "Smellox",
+	itemUser: ["Smellox"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ pigusonite: {
+	name: "Pigusonite",
+	spritenum: 577,
+	megaStone: "Piguson-Mega",
+	megaEvolves: "Piguson",
+	itemUser: ["Piguson"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ condoomite: {
+	name: "Condoomite",
+	spritenum: 577,
+	megaStone: "Condoom-Mega",
+	megaEvolves: "Condoom",
+	itemUser: ["Condoom"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ hohohomite: {
+	name: "Hohohomite",
+	spritenum: 577,
+	megaStone: "Hohohoming-Mega",
+	megaEvolves: "Hohohoming",
+	itemUser: ["Hohohoming"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ faptite: {
+	name: "Faptite",
+	spritenum: 577,
+	megaStone: "Faptime-Mega",
+	megaEvolves: "Faptime",
+	itemUser: ["Faptime"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ jerklite: {
+	name: "Jerklite",
+	spritenum: 577,
+	megaStone: "Jerkle-Mega",
+	megaEvolves: "Jerkle",
+	itemUser: ["Jerkle"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ dowsterite: {
+	name: "Dowsterite",
+	spritenum: 577,
+	megaStone: "Dowster-Mega",
+	megaEvolves: "Dowster",
+	itemUser: ["Dowster"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ reptrillite: {
+	name: "Reptrillite",
+	spritenum: 577,
+	megaStone: "Reptrill-Mega",
+	megaEvolves: "Reptrill",
+	itemUser: ["Reptrill"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ kuklanite: {
+	name: "Kuklanite",
+	spritenum: 577,
+	megaStone: "Kuklan-Mega",
+	megaEvolves: "Kuklan",
+	itemUser: ["Kuklan"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ ricosuavite: {
+	name: "Ricosuavite",
+	spritenum: 577,
+	megaStone: "Ricosuave-Mega",
+	megaEvolves: "Ricosuave",
+	itemUser: ["Ricosuave"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ vandashite: {
+	name: "Vandashite",
+	spritenum: 577,
+	megaStone: "Vandash-Mega",
+	megaEvolves: "Vandash",
+	itemUser: ["Vandash"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ chasumite: {
+	name: "Chasumite",
+	spritenum: 577,
+	megaStone: "Chasumo-Mega",
+	megaEvolves: "Chasumo",
+	itemUser: ["Chasumo"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ goryannusite: {
+	name: "Goryannusite",
+	spritenum: 577,
+	megaStone: "Goryannus-Mega",
+	megaEvolves: "Goryannus",
+	itemUser: ["Goryannus"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ spookscarite: {
+	name: "Spookscarite",
+	spritenum: 577,
+	megaStone: "Spookscare-Mega",
+	megaEvolves: "Spookscare",
+	itemUser: ["Spookscare"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ honradite: {
+	name: "Honradite",
+	spritenum: 577,
+	megaStone: "Honrade-Mega",
+	megaEvolves: "Honrade",
+	itemUser: ["Honrade"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ fusjite: {
+	name: "Fusjite",
+	spritenum: 577,
+	megaStone: "Fusjahl-Mega",
+	megaEvolves: "Fusjahl",
+	itemUser: ["Fusjahl"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ ultrablobbosiumz: {
+	name: "Ultrablobbosium Z",
+	spritenum: 686,
+	onTakeItem: false,
+	zMove: "Slepp That Blobs the Sky",
+	zMoveFrom: "Blobby Bop",
+	itemUser: ["Blobbos-Ultra"],
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ ointmiteite: {
+	name: "Ointmiteite",
+	spritenum: 599,
+	megaStone: "Ointmite-Mega",
+	megaEvolves: "Ointmite",
+	itemUser: ["Ointmite"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ sableviumz: {
+	name: "Sablevium Z",
+	spritenum: 636,
+	onTakeItem: false,
+	zMove: "Twin Tower Tumbling Terror",
+	zMoveFrom: "Freeze-Dry",
+	itemUser: ["Blobbos-Rembered", "Sableven"],
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ kalosite: {
+	name: "Kalosite",
+	spritenum: 599,
+	megaStone: "Blobbos-Kalos-Mega",
+	megaEvolves: "Blobbos-Kalos",
+	itemUser: ["Blobbos-Kalos"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ blobbosite: {
+	name: "Blobbosite",
+	spritenum: 630,
+	megaStone: "Blobbos-Mega",
+	megaEvolves: "Blobbos",
+	itemUser: ["Blobbos"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ reversite: {
+	name: "Reversite",
+	spritenum: 625,
+	megaStone: "Blobbos-Reverse-Mega",
+	megaEvolves: "Blobbos-Reverse",
+	itemUser: ["Blobbos-Reverse"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ sexitey: {
+	name: "Sexite Y",
+	spritenum: 587,
+	megaStone: "Blobbos-Sexy-Mega-Y",
+	megaEvolves: "Blobbos-Sexy",
+	itemUser: ["Blobbos-Sexy"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ sexitex: {
+	name: "Sexite X",
+	spritenum: 577,
+	megaStone: "Blobbos-Sexy-Mega-X",
+	megaEvolves: "Blobbos-Sexy",
+	itemUser: ["Blobbos-Sexy"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ negite: {
+	name: "Negite",
+	spritenum: 628,
+	megaStone: "Blobbos-Nega-Mega",
+	megaEvolves: "Blobbos-Nega",
+	itemUser: ["Blobbos-Nega"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ dustite: {
+	name: "Dustite",
+	spritenum: 623,
+	megaStone: "Blobbos-Dust-Mega",
+	megaEvolves: "Blobbos-Dust",
+	itemUser: ["Blobbos-Dust"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ blobbosmikiumz: {
+	name: "Blobbosmikium Z",
+	spritenum: 686,
+	onTakeItem: false,
+	zMove: "Let's Slepp Forever",
+	zMoveFrom: "Flash Freeze",
+	itemUser: ["Blobbos-Mimikyu", "Blobbos-Mimikyu-Busted"],
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ wackite: {
+	name: "Wackite",
+	spritenum: 589,
+	megaStone: "Blobbos-Wack-Mega",
+	megaEvolves: "Blobbos-Wack",
+	itemUser: ["Blobbos-Wack"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ zeroite: {
+	name: "Zeroite",
+	spritenum: 616,
+	megaStone: "Blobbos-Zero-Mega",
+	megaEvolves: "Blobbos-Zero",
+	itemUser: ["Blobbos-Zero"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ plasticgem: {
+	name: "Plastic Gem",
+	spritenum: 53,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  if (target === source || move.category === "Status")
+		 return;
+	  if (move.type === "Plastic" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 558,
+	gen: 5,
+	isNonstandard: "Future",
+ },
+ glassgem: {
+	name: "Glass Gem",
+	spritenum: 53,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  if (target === source || move.category === "Status")
+		 return;
+	  if (move.type === "Glass" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 558,
+	gen: 5,
+	isNonstandard: "Future",
+ },
+ piratesbooty: {
+	name: "Pirate's Booty",
+	spritenum: 745,
+	fling: {
+	  basePower: 80
+	},
+	onModifySpDPriority: 2,
+	onModifySpD(spd, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Pirate") {
+		 return this.chainModify(2);
+	  }
+	},
+	onModifyDefPriority: 2,
+	onModifyDef(def, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Pirate") {
+		 return this.chainModify(2);
+	  }
+	},
+	num: 640,
+	gen: 8,
+	itemUser: ["Blobbos-Pirate"],
+	isNonstandard: "Future",
+ },
+ masamune: {
+	name: "Masamune",
+	spritenum: 743,
+	fling: {
+	  basePower: 80
+	},
+	onModifySpDPriority: 2,
+	onModifySpA(spa, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Ninja") {
+		 return this.chainModify(2);
+	  }
+	},
+	onModifyDefPriority: 2,
+	onModifyAtk(atk, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Ninja") {
+		 return this.chainModify(2);
+	  }
+	},
+	num: 640,
+	gen: 8,
+	itemUser: ["Blobbos-Ninja"],
+	isNonstandard: "Future",
+ },
+ kerosenehose: {
+	name: "Kerosene Hose",
+	spritenum: 574,
+	fling: {
+	  basePower: 80
+	},
+	onModifySpePriority: 2,
+	onModifySpe(spe, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Firefighter") {
+		 return this.chainModify(1.5);
+	  }
+	},
+	num: 640,
+	gen: 8,
+	itemUser: ["Blobbos-Firefighter"],
+	isNonstandard: "Future",
+ },
+ baitite: {
+	name: "Baitite",
+	spritenum: 585,
+	megaStone: "Blobbos-Bait-Mega",
+	megaEvolves: "Blobbos-Bait",
+	itemUser: ["Blobbos-Bait"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ phylactery: {
+	name: "Phylactery",
+	isNonstandard: "Future",
+	onResidual(pokemon) {
+	  if (["blobboslich", "blobboslichmortal"].includes(pokemon.species.id))
+		 return;
+	  const mortals = pokemon.side.pokemon.filter((ally) => ally.ability === "mortal");
+	  for (const mortal of mortals) {
+		 mortal.abilityState.recovered = true;
+	  }
+	  if (mortals.length) {
+		 this.add("-activate", pokemon, "item: Phylactery");
+	  }
+	},
+ },
+ toxanite: {
+	name: "Toxanite",
+	spritenum: 577,
+	megaStone: "Toxanine-Mega",
+	megaEvolves: "Toxanine",
+	itemUser: ["Toxanine"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ fusjiniumz: {
+	name: "Fusjinium Z",
+	spritenum: 686,
+	onTakeItem: false,
+	zMove: "Gigasubferno Strike",
+	zMoveFrom: "Tri-Punch",
+	itemUser: ["Fusjahl"],
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ charger: {
+	name: "Charger",
+	spritenum: 60,
+	onHit(target, source, move) {
+	  if (move.type === "Electric" || move.id.includes("energy")) {
+		 target.addVolatile("charge");
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ blackmagiumz: {
+	name: "Blackmagium Z	",
+	spritenum: 648,
+	onTakeItem: false,
+	zMove: "Ultima",
+	zMoveFrom: "Meteor",
+	itemUser: ["Blobbos-Black Mage"],
+	num: 1836,
+	isNonstandard: "Future",
+ },
+ terrainboard: {
+	name: "Terrain Board",
+	spritenum: 730,
+	onModifySpePriority: 1,
+	onModifySpe(spe, pokemon) {
+	  if (this.field.terrain && pokemon.species.name === "Blobbos-Surfer") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Blobbos-Surfer"],
+	isNonstandard: "Future",
+ },
+ curlykrill: {
+	name: "Curly Krill",
+	spritenum: 730,
+	onAfterMove(pokemon, target, move) {
+	  if (move.id === "orderup") {
+		 this.boost({ atk: 1 });
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ droopykrill: {
+	name: "Droopy Krill",
+	spritenum: 730,
+	onAfterMove(pokemon, target, move) {
+	  if (move.id === "orderup") {
+		 this.boost({ def: 1 });
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ stretchykrill: {
+	name: "Stretchy Krill",
+	spritenum: 730,
+	onAfterMove(pokemon, target, move) {
+	  if (move.id === "orderup") {
+		 this.boost({ spe: 1 });
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ earmuffs: {
+	name: "Earmuffs",
+	spritenum: 367,
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.flags["sound"]) {
+		 this.debug("Earmuffs weaken");
+		 return this.chainModify(0.5);
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ paraorb: {
+	name: "Para Orb",
+	spritenum: 251,
+	fling: {
+	  basePower: 30,
+	  status: "par"
+	},
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.trySetStatus("par", pokemon);
+	},
+	num: 2512,
+	isNonstandard: "Future",
+ },
+ usbdrive: {
+	name: "USB Drive",
+	spritenum: 103,
+	fling: {
+	  basePower: 42
+	},
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onSwitchIn(pokemon) {
+	  if (pokemon.hasType("Steel")) {
+		 pokemon.useItem();
+	  }
+	},
+	boosts: {
+	  atk: 1,
+	  spa: 1
+	},
+	num: 2512,
+	isNonstandard: "Future",
+ },
+ royalcrown: {
+	name: "Royal Crown",
+	spritenum: 236,
+	fling: {
+	  basePower: 80
+	},
+	onModifySpePriority: 2,
+	onModifySpe(spe, pokemon) {
+	  if (pokemon.species.name === "Blobbos-King") {
+		 return this.chainModify(2);
+	  }
+	},
+	num: 640,
+	gen: 8,
+	itemUser: ["Blobbos-King"],
+	isNonstandard: "Future",
+ },
+ starrod: {
+	name: "Star Rod",
+	spritenum: 343,
+	fling: {
+	  basePower: 30
+	},
+	onModifyAtkPriority: 1,
+	onModifyAtk(atk, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Kirby") {
+		 return this.chainModify(1.3);
+	  }
+	},
+	onModifySpAPriority: 1,
+	onModifySpA(spa, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Kirby") {
+		 return this.chainModify(1.3);
+	  }
+	},
+	itemUser: ["Blobbos-Kirby"],
+	isNonstandard: "Future",
+ },
+ glock: {
+	name: "Glock",
+	spritenum: 343,
+	fling: {
+	  basePower: 30
+	},
+	onModifySpAPriority: 1,
+	onModifySpA(spa, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Unova") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Blobbos-Unova"],
+	isNonstandard: "Future",
+ },
+ loadeddisk: {
+	name: "Loaded Disk",
+	spritenum: 730,
+	onModifyDefPriority: 2,
+	onModifyDef(def, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Spamton") {
+		 return this.chainModify(1.5);
+	  }
+	},
+	itemUser: ["Blobbos-Spamton"],
+	isNonstandard: "Future",
+ },
+ propellerhat: {
+	name: "Propeller Hat",
+	spritenum: 417,
+	fling: {
+	  basePower: 80
+	},
+	onModifySpePriority: 2,
+	onModifySpe(spe, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Keks") {
+		 return this.chainModify(1.5);
+	  }
+	},
+	onDisableMove(pokemon) {
+	  for (const moveSlot of pokemon.moveSlots) {
+		 if (this.dex.moves.get(moveSlot.move).category === "Status") {
+			pokemon.disableMove(moveSlot.id);
+		 }
+	  }
+	},
+	itemUser: ["Blobbos-Keks"],
+	isNonstandard: "Future",
+ },
+ choiceshield: {
+	name: "Choice Shield",
+	spritenum: 699,
+	fling: {
+	  basePower: 10
+	},
+	onStart(pokemon) {
+	  if (pokemon.volatiles["choicelock"]) {
+		 this.debug("removing choicelock: " + pokemon.volatiles["choicelock"]);
+	  }
+	  pokemon.removeVolatile("choicelock");
+	},
+	onModifyMove(move, pokemon) {
+	  pokemon.addVolatile("choicelock");
+	},
+	onModifyDef(def, pokemon) {
+	  if (pokemon.volatiles["dynamax"])
+		 return;
+	  return this.chainModify(1.5);
+	},
+	isChoice: true,
+	isNonstandard: "Future",
+ },
+ choicevest: {
+	name: "Choice Vest",
+	spritenum: 581,
+	fling: {
+	  basePower: 10
+	},
+	onStart(pokemon) {
+	  if (pokemon.volatiles["choicelock"]) {
+		 this.debug("removing choicelock: " + pokemon.volatiles["choicelock"]);
+	  }
+	  pokemon.removeVolatile("choicelock");
+	},
+	onModifyMove(move, pokemon) {
+	  pokemon.addVolatile("choicelock");
+	},
+	onModifySpD(spd, pokemon) {
+	  if (pokemon.volatiles["dynamax"])
+		 return;
+	  return this.chainModify(1.5);
+	},
+	isChoice: true,
+	isNonstandard: "Future",
+ },
+ licensetosellhotdogs: {
+	name: "License to Sell Hotdogs",
+	spritenum: 609,
+	fling: {
+	  basePower: 5185550170
+	},
+	itemUser: ["Blobbos-Snek", "Blobbos-Angel"],
+	isNonstandard: "Future",
+ },
+ ancientitem: {
+	name: "Ancient Item",
+	isNonstandard: "Future",
+	onDamagePriority: -40,
+	onDamage(damage, target, source, effect) {
+	  if (target.species.id !== "blobbosduelist")
+		 return;
+	  if (target.hp === target.maxhp && damage >= target.hp && effect && effect.effectType === "Move") {
+		 if (target.useItem()) {
+			target.formeChange("blobbosduelistdark", this.effect, true);
+			return target.hp - 1;
+		 }
+	  }
+	},
+	itemUser: ["Blobbos-Duelist", "Blobbos-Duelist-Dark"],
+ },
+ pizzaite: {
+	name: "Pizzaite",
+	spritenum: 587,
+	megaStone: "Blobbos-Pizza-Mega",
+	megaEvolves: "Blobbos-Pizza",
+	itemUser: ["Blobbos-Pizza"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ marxite: {
+	name: "Marxite",
+	spritenum: 616,
+	megaStone: "Blobbos-Marx-Mega",
+	megaEvolves: "Blobbos-Marx",
+	itemUser: ["Blobbos-Marx"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ beeite: {
+	name: "Beeite",
+	spritenum: 628,
+	megaStone: "Blobbos-Bee-Mega",
+	megaEvolves: "Blobbos-Bee",
+	itemUser: ["Blobbos-Bee"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ partnerspendant: {
+	name: "Partner's Pendant",
+	spritenum: 300,
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onStart(pokemon) {
+	  if (pokemon.species.name !== "Blobbos-Partner")
+		 return;
+	  this.boost({
+		 atk: 1,
+		 def: 1,
+		 spa: 1,
+		 spd: 1,
+		 spe: 1,
+		 evasion: 1,
+		 accuracy: 1
+	  });
+	},
+	num: 2512,
+	isNonstandard: "Future",
+ },
+ ultrafuckiumz: {
+	name: "Ultrafuckium Z",
+	spritenum: 687,
+	onTakeItem: false,
+	zMove: "Move That Fucks Yourself",
+	zMoveFrom: "Rocket Punch",
+	itemUser: ["Fucker-Ultra"],
+	isNonstandard: "Future",
+ },
+ stunfiskiteC: {
+	name: "StunfiskiteC",
+	spritenum: 628,
+	megaStone: "Stunfisk-MegaC",
+	megaEvolves: "Stunfisk",
+	itemUser: ["Stunfisk"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	num: -1,
+	gen: 8,
+	isNonstandard: "Future",
+ },
+ focusspecs: {
+	name: "Focus Specs",
+	spritenum: 70,
+	onStart() {
+	  this.effectState.forme = this.sample(["focus", "specs", "nothing", "nothing", "nothing"]);
+	},
+	onResidual() {
+	  this.effectState.forme = this.sample(["focus", "specs", "nothing", "nothing", "nothing"]);
+	},
+	onModifySpAPriority: 1,
+	onModifySpA(spa, pokemon) {
+	  if (!pokemon.species.tags.includes("Weedlekind"))
+		 return;
+	  if (this.effectState.forme !== "specs")
+		 return;
+	  return this.chainModify(1.5);
+	},
+	onDamagePriority: -40,
+	onDamage(damage, target, source, effect) {
+	  if (!target.species.tags.includes("Weedlekind"))
+		 return;
+	  if (this.effectState.forme !== "focus")
+		 return;
+	  if (this.randomChance(1, 10) && damage >= target.hp && effect && effect.effectType === "Move") {
+		 this.add("-activate", target, "item: Focus Specs");
+		 return target.hp - 1;
+	  }
+	},
+	isNonstandard: "Future",
+ },
+ krack: {
+	name: "Krack",
+	isNonstandard: "Future",
+	spritenum: 305,
+	onResidual(pokemon) {
+	  if (!pokemon.species.tags.includes("Krackokind"))
+		 return;
+	  this.boost({
+		 atk: -1,
+		 def: -1,
+		 spa: -1,
+		 spd: -1,
+		 spe: 1
+	  }, pokemon);
+	},
+ },
+ mirrorclaw: {
+	name: "Mirror Claw",
+	spritenum: 373,
+	isNonstandard: "Future",
+	onModifyMove(move) {
+	  if (move.category === "Status")
+		 return;
+	  if (move.multihit)
+		 return;
+	  if (this.randomChance(1, 20)) {
+		 move.multihit = 2;
+	  }
+	},
+ },
+ rope: {
+	name: "Rope",
+	isNonstandard: "Future",
+	onResidual(pokemon) {
+	  const isSuicidal = pokemon.hasType("Fairy") && pokemon.hp / pokemon.baseMaxhp < 0.41 || pokemon.hp / pokemon.baseMaxhp < 0.33;
+	  if (isSuicidal) {
+		 for (const foe of pokemon.foes()) {
+			foe.addVolatile("curse", pokemon, this.effect);
+		 }
+		 pokemon.faint(pokemon, this.effect);
+	  }
+	},
+ },
+ midnightsnack: {
+	name: "Midnight Snack",
+	spritenum: 242,
+	isNonstandard: "Future",
+	onResidual(pokemon) {
+	  if (pokemon.status !== "slp")
+		 return;
+	  this.heal(pokemon.baseMaxhp / 8);
+	},
+ },
+ squirtgun: {
+	name: "Squirt Gun",
+	isNonstandard: "Future",
+	onAfterMoveSecondarySelf(source, target, move) {
+	  if (!move || !target)
+		 return;
+	  if (move.target !== "normal")
+		 return;
+	  if (source.useItem()) {
+		 this.actions.useMove("watergun", source, target);
+	  }
+	},
+ },
+ grimseeds: {
+	name: "Grim Seeds",
+	isNonstandard: "Future",
+	onFaint(pokemon) {
+	  if (!pokemon.hasType("grass"))
+		 return;
+	  const target = this.sample(pokemon.foes().filter((foe) => !foe.fainted));
+	  if (!target)
+		 return;
+	  target.addVolatile("leechseeds");
+	},
+ },
+ kikeousorb: {
+	name: "Kikeous Orb",
+	spritenum: 180,
+	fling: {
+	  basePower: 60
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (user.baseSpecies.num === 6969248 && (move.type === "Normal" || move.type === "Bug")) {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	itemUser: ["Jewipede"],
+	num: 69112,
+	isNonstandard: "Future",
+ },
+ queensrock: {
+	name: "Queen's Rock",
+	spritenum: 236,
+	fling: {
+	  basePower: 30,
+	  volatileStatus: "attract"
+	},
+	onModifyMovePriority: -1,
+	onModifyMove(move) {
+	  if (move.category !== "Status") {
+		 if (!move.secondaries)
+			move.secondaries = [];
+		 for (const secondary of move.secondaries) {
+			if (secondary.volatileStatus === "attract")
+			  return;
+		 }
+		 move.secondaries.push({
+			chance: 10,
+			volatileStatus: "attract"
+		 });
+	  }
+	},
+	num: -69420221,
+	isNonstandard: "Future",
+	gen: 8,
+ },
+ alcohol: {
+	name: "Alcohol",
+	spritenum: 22,
+	itemUser: ["Tsuchinoko", "Sanickel", "Skoxious"],
+	isNonstandard: "Future",
+	fling: {
+	  basePower: 1,
+	  status: "slp"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.hp < pokemon.maxhp) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  const random = this.random(4);
+	  const drunken = this.random(6);
+	  if (pokemon.species.name === "Tsuchinoko" || pokemon.species.name === "Sanickel" || pokemon.species.name === "Skoxious" && !pokemon.transformed) {
+		 if (random === 0) {
+			this.damage(pokemon.baseMaxhp / 4);
+		 }
+		 if (random === 1) {
+			this.heal(pokemon.baseMaxhp / 2);
+		 }
+		 if (random === 2) {
+			this.heal(pokemon.baseMaxhp);
+		 }
+		 if (drunken === 0) {
+			pokemon.trySetStatus("slp", pokemon);
+		 }
+		 if (drunken === 1) {
+			pokemon.addVolatile("confusion");
+		 }
+		 if (drunken === 2) {
+			pokemon.addVolatile("stockpile");
+		 }
+		 if (drunken === 3) {
+			pokemon.addVolatile("flinch");
+		 }
+		 if (drunken === 4) {
+			pokemon.addVolatile("aquaring");
+		 }
+		 if (drunken === 5) {
+			pokemon.addVolatile("focusenergy");
+		 }
+	  } else {
+		 if (random === 0) {
+			this.damage(pokemon.baseMaxhp / 3);
+		 }
+		 if (random === 1) {
+			this.damage(pokemon.baseMaxhp / 2);
+		 }
+		 if (random === 2) {
+			this.damage(pokemon.baseMaxhp / 4);
+		 }
+		 if (drunken === 0) {
+			pokemon.trySetStatus("lockedmove", pokemon);
+			pokemon.addVolatile("confusion");
+		 }
+		 if (drunken === 1) {
+			pokemon.trySetStatus("slp", pokemon);
+		 }
+		 if (drunken === 2) {
+			pokemon.addVolatile("confusion");
+		 }
+		 if (drunken === 3) {
+			pokemon.addVolatile("confusion");
+			pokemon.addVolatile("taunt");
+			pokemon.addVolatile("torment");
+			pokemon.addVolatile("lockedmove");
+		 }
+		 if (drunken === 4) {
+			pokemon.addVolatile("yawn");
+			pokemon.addVolatile("confusion");
+			pokemon.addVolatile("taunt");
+			pokemon.addVolatile("torment");
+		 }
+		 if (drunken === 5) {
+			pokemon.trySetStatus("slp", pokemon);
+			pokemon.addVolatile("nightmare");
+		 }
+		 if (drunken === 6) {
+			pokemon.trySetStatus("slp", pokemon);
+			pokemon.addVolatile("confusion");
+			pokemon.addVolatile("nightmare");
+		 }
+	  }
+	},
+ },
+ servicerendered: {
+	name: "Service Rendered",
+	isNonstandard: "Future",
+	onResidual(pokemon) {
+	  if (pokemon.volatiles["commanding"] || pokemon.volatiles["commanded"])
+		 return;
+	  if (!pokemon.moveThisTurn || !pokemon.moveThisTurnResult || typeof pokemon.moveThisTurn === "boolean")
+		 return;
+	  const buffMoves = ["maplewarrior", "combatorders", "haste", "sharpeyes"];
+	  if (buffMoves.includes(pokemon.moveThisTurn) && pokemon.useItem()) {
+		 pokemon.switchFlag = true;
+	  }
+	},
+ },
+ autobuffskill: {
+	name: "Auto Buff Skill",
+	isNonstandard: "Future",
+	onAfterMoveSecondarySelf(source, target, move) {
+	  const buffMoves = ["maplewarrior", "combatorders", "haste", "sharpeyes"];
+	  if (!buffMoves.includes(move.id))
+		 return;
+	  if (source.useItem()) {
+		 const movesToUse = source.moveSlots.filter((moveSlot) => buffMoves.includes(moveSlot.id) && moveSlot.id !== move.id);
+		 movesToUse.forEach((moveToUse) => {
+			this.actions.useMove(moveToUse.id, source, target);
+		 });
+	  }
+	},
+ },
+ choicechoice: {
+	name: "Choice Choice",
+	spritenum: 69,
+	fling: {
+	  basePower: 10
+	},
+	onStart(pokemon) {
+	  if (pokemon.volatiles["choicelock"]) {
+		 this.debug("removing choicelock: " + pokemon.volatiles["choicelock"]);
+	  }
+	  pokemon.removeVolatile("choicelock");
+	},
+	onModifyMove(move, pokemon) {
+	  pokemon.addVolatile("choicelock");
+	},
+	onModifyAtkPriority: 1,
+	onModifyAtk(atk, pokemon) {
+	  if (this.effectState.mode !== "atk")
+		 return;
+	  if (pokemon.volatiles["dynamax"])
+		 return;
+	  this.effectState.mode = "atk";
+	  return this.chainModify(1.5);
+	},
+	onModifySpAPriority: 1,
+	onModifySpA(spa, pokemon) {
+	  if (this.effectState.mode !== "spa")
+		 return;
+	  if (pokemon.volatiles["dynamax"])
+		 return;
+	  this.effectState.mode = "spa";
+	  return this.chainModify(1.5);
+	},
+	isChoice: true,
+	isNonstandard: "Future"
+ },
+ mesosack: {
+	name: "Meso Sack",
+	isNonstandard: "Future",
+ },
+ radishorb: {
+	name: "Radish Orb",
+	spritenum: 530,
+	fling: {
+	  basePower: 30,
+	  status: "radish"
+	},
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.trySetStatus("radish", pokemon);
+	},
+	isNonstandard: "Future",
+ },
+ missingvoirite: {
+	name: "Missingvoirite",
+	spritenum: 587,
+	megaStone: "Missingvoir-Mega",
+	megaEvolves: "Missingvoir",
+	itemUser: ["Missingvoir"],
+	onTakeItem(item, source) {
+	  if (item.megaEvolves === source.baseSpecies.baseSpecies)
+		 return false;
+	  return true;
+	},
+	isNonstandard: "Future",
+ },
+ splashsword: {
+	name: "Splash Sword",
+	spritenum: 698,
+	onTakeItem(item, pokemon, source) {
+	  if (pokemon.species.name === "Blobbos-Mech") {
+		 return false;
+	  }
+	  return true;
+	},
+	onDrive: "Water",
+	forcedForme: "Blobbos-Mech-Water",
+	itemUser: ["Blobbos-Mech-Water"],
+	num: 116,
+	isNonstandard: "Future",
+ },
+ flamesword: {
+	name: "Flame Sword",
+	spritenum: 698,
+	onTakeItem(item, pokemon, source) {
+	  if (pokemon.species.name === "Blobbos-Mech") {
+		 return false;
+	  }
+	  return true;
+	},
+	onDrive: "Fire",
+	forcedForme: "Blobbos-Mech-Fire",
+	itemUser: ["Blobbos-Mech-Fire"],
+	num: 116,
+	isNonstandard: "Future",
+ },
+ frostsword: {
+	name: "Frost Sword",
+	spritenum: 698,
+	onTakeItem(item, pokemon, source) {
+	  if (pokemon.species.name === "Blobbos-Mech") {
+		 return false;
+	  }
+	  return true;
+	},
+	onDrive: "Ice",
+	forcedForme: "Blobbos-Mech-Ice",
+	itemUser: ["Blobbos-Mech-Ice"],
+	num: 116,
+	isNonstandard: "Future",
+ },
+ sparksword: {
+	name: "Spark Sword",
+	spritenum: 698,
+	onTakeItem(item, pokemon, source) {
+	  if (pokemon.species.name === "Blobbos-Mech") {
+		 return false;
+	  }
+	  return true;
+	},
+	onDrive: "Electric",
+	forcedForme: "Blobbos-Mech-Electric",
+	itemUser: ["Blobbos-Mech-Electric"],
+	num: 116,
+	isNonstandard: "Future",
+ },
+ powerrush: {
+	name: "Power Rush",
+	onModifyAtkPriority: 5,
+	onModifyAtk(atk, pokemon) {
+	  if (pokemon.species.id !== "blobbospaper")
+		 return;
+	  if (pokemon.hp <= pokemon.maxhp / 4) {
+		 return this.chainModify(2);
+	  }
+	},
+	onModifySpAPriority: 5,
+	onModifySpA(spa, pokemon) {
+	  if (pokemon.species.id !== "blobbospaper")
+		 return;
+	  if (pokemon.hp <= pokemon.maxhp / 4) {
+		 return this.chainModify(2);
+	  }
+	},
+	onTakeItem(item, source) {
+	  return source.species.id !== "blobbospaper";
+	},
+	isNonstandard: "Future",
+	itemUser: ["Blobbos-Paper"],
+ },
+ tumultuoustibia: {
+	name: "Tumultuous Tibia",
+	spritenum: 379,
+	fling: {
+	  basePower: 50,
+	  volatileStatus: "curse"
+	},
+	onModifyAtkPriority: 1,
+	onModifyAtk(atk, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Skeleton") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Blobbos-Skeleton"],
+	isNonstandard: "Future",
+ },
+ mascotsorb: {
+	name: "Mascot's Orb",
+	spritenum: 251,
+	onModifyAtkPriority: 1,
+	onModifyAtk(atk, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Pika") {
+		 return this.chainModify(2);
+	  }
+	},
+	onModifySpAPriority: 1,
+	onModifySpA(spa, pokemon) {
+	  if (pokemon.species.name === "Blobbos-Pika") {
+		 return this.chainModify(2);
+	  }
+	},
+	itemUser: ["Blobbos-Pika"],
+	num: 236,
+	isNonstandard: "Future",
+ },
+ kapala: {
+	onModifyMove(move) {
+	  if (!move?.flags["contact"] || move.target === "self")
+		 return;
+	},
+	onAfterMoveSecondarySelfPriority: -1,
+	onAfterMoveSecondarySelf(pokemon, target, move) {
+	  if (pokemon.species.id !== "blobbosspelunky")
+		 return;
+	  if (move.totalDamage) {
+		 this.heal(move.totalDamage / 2, pokemon);
+	  }
+	},
+	itemUser: ["Blobbos-Spelunky"],
+	name: "Kapala",
+	isNonstandard: "Future"
+ },
+ glalite: {
+	name: "Glalite",
+	spritenum: 0,
+	num: 66661,
+	isNonstandard: "Future",
+ },
+ avalugite: {
+	name: "Avalugite",
+	spritenum: 0,
+	num: 66662,
+	isNonstandard: "Future",
+ },
+ butterfrite: {
+	name: "Butterfrite",
+	spritenum: 0,
+	num: 66663,
+	isNonstandard: "Future",
+ },
+ rubberflite: {
+	name: "Rubberflite",
+	spritenum: 0,
+	num: 66664,
+	isNonstandard: "Future",
+ },
+ haicawite: {
+	name: "Haicawite",
+	spritenum: 0,
+	num: 66665,
+	isNonstandard: "Future",
+ },
+ shattaratite: {
+	name: "Shattaratite",
+	spritenum: 0,
+	num: 66666,
+	isNonstandard: "Future",
+ },
+ grasstaclite: {
+	name: "Grasstaclite",
+	spritenum: 0,
+	num: 66667,
+	isNonstandard: "Future",
+ },
+ chillzite: {
+	name: "Chillzite",
+	spritenum: 0,
+	num: 66668,
+	isNonstandard: "Future",
+ },
+ lunightonite: {
+	name: "Lunightonite",
+	spritenum: 0,
+	num: 66669,
+	isNonstandard: "Future",
+ },
+ vanilluxite: {
+	name: "Vanilluxite",
+	spritenum: 0,
+	num: 66670,
+	isNonstandard: "Future",
+ },
+ blizzlamite: {
+	name: "Blizzlamite",
+	spritenum: 0,
+	num: 66671,
+	isNonstandard: "Future",
+ },
+ synthitite: {
+	name: "Synthitite",
+	spritenum: 0,
+	num: 66672,
+	isNonstandard: "Future",
+ },
+ chokolite: {
+	name: "Chokolite",
+	spritenum: 0,
+	num: 66673,
+	isNonstandard: "Future",
+ },
+ mouseeite: {
+	name: "Mouseeite",
+	spritenum: 0,
+	num: 66674,
+	isNonstandard: "Future",
+ },
+ hoverite: {
+	name: "Hoverite",
+	spritenum: 0,
+	num: 66675,
+	isNonstandard: "Future",
+ },
+ naminite: {
+	name: "Naminite",
+	spritenum: 0,
+	num: 66676,
+	isNonstandard: "Future",
+ },
+ solaiossite: {
+	name: "Solaiossite",
+	spritenum: 0,
+	num: 66677,
+	isNonstandard: "Future",
+ },
+ goralite: {
+	name: "Goralite",
+	spritenum: 0,
+	num: 66678,
+	isNonstandard: "Future",
+ },
+ neutralite: {
+	name: "Neutralite",
+	spritenum: 0,
+	num: 66679,
+	isNonstandard: "Future",
+ },
+ drumgite: {
+	name: "Drumgite",
+	spritenum: 0,
+	num: 66680,
+	isNonstandard: "Future",
+ },
+ godzillusite: {
+	name: "Godzillusite",
+	spritenum: 0,
+	num: 66681,
+	isNonstandard: "Future",
+ },
+ muchoshotite: {
+	name: "Muchoshotite",
+	spritenum: 0,
+	num: 66682,
+	isNonstandard: "Future",
+ },
+ miracactite: {
+	name: "Miracactite",
+	spritenum: 0,
+	num: 66683,
+	isNonstandard: "Future",
+ },
+ hitmonite: {
+	name: "Hitmonite",
+	spritenum: 0,
+	num: 66684,
+	isNonstandard: "Future",
+ },
+ snowfistnite: {
+	name: "Snowfistnite",
+	spritenum: 0,
+	num: 66685,
+	isNonstandard: "Future",
+ },
+ capsilite: {
+	name: "Capsilite",
+	spritenum: 0,
+	num: 66686,
+	isNonstandard: "Future",
+ },
+ torkoalite: {
+	name: "Torkoalite",
+	spritenum: 0,
+	num: 66692,
+	isNonstandard: "Future",
+ },
+ comistorite: {
+	name: "Comistorite",
+	spritenum: 0,
+	num: 66694,
+	isNonstandard: "Future",
+ },
+ heruptite: {
+	name: "Heruptite",
+	spritenum: 0,
+	num: 66695,
+	isNonstandard: "Future",
+ },
+ otyashite: {
+	name: "Otyashite",
+	spritenum: 0,
+	num: 66696,
+	isNonstandard: "Future",
+ },
+ buglitchite: {
+	name: "Buglitchite",
+	spritenum: 0,
+	num: 66697,
+	isNonstandard: "Future",
+ },
+ bauminite: {
+	name: "Bauminite",
+	spritenum: 0,
+	num: 66698,
+	isNonstandard: "Future",
+ },
+ log: {
+	name: "Log",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Wood") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66704,
+	isNonstandard: "Future",
+ },
+ steamer: {
+	name: "Steamer",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Steam") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66705,
+	isNonstandard: "Future",
+ },
+ mysticmagma: {
+	name: "Mystic Magma",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Magma") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66706,
+	isNonstandard: "Future",
+ },
+ gear: {
+	name: "Gear",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Tech") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66707,
+	isNonstandard: "Future",
+ },
+ ancientorb: {
+	name: "Ancient Orb",
+	spritenum: 0,
+	num: 66708,
+	isNonstandard: "Future",
+ },
+ kite: {
+	name: "Kite",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Wind") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66709,
+	isNonstandard: "Future",
+ },
+ magicwand: {
+	name: "Magic Wand",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Magic") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66710,
+	isNonstandard: "Future",
+ },
+ prism: {
+	name: "Prism",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Light") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66711,
+	isNonstandard: "Future",
+ },
+ fluffycoat: {
+	name: "Fluffy Coat",
+	spritenum: 0,
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move && move.type === "Ice") {
+		 this.debug("Fluffycoat weaken");
+		 return this.chainModify(0.65);
+	  }
+	},
+	num: 66712,
+	isNonstandard: "Future",
+ },
+ ancienthelm: {
+	name: "Ancient Helm",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && (user.baseSpecies.baseSpecies === "Bushin" || user.baseSpecies.baseSpecies === "Bushidon") && (move.type === "Zombie" || move.type === "Steel" || move.type === "Fighting")) {
+		 this.debug("Ancient Helm boost");
+		 return this.chainModify([5324, 4096]);
+	  }
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move && (target.baseSpecies.baseSpecies === "Bushin" || target.baseSpecies.baseSpecies === "Bushidon") && (move.type === "Zombie" || move.type === "Steel" || move.type === "Fighting")) {
+		 this.debug("Ancient Helm weaken");
+		 return this.chainModify(0.5);
+	  }
+	},
+	itemUser: ["Bushin", "Bushidon"],
+	num: 66713,
+	isNonstandard: "Future",
+ },
+ seaweed: {
+	name: "Seaweed",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && (user.baseSpecies.baseSpecies === "Sushish" || user.baseSpecies.baseSpecies === "Sashumish" || user.baseSpecies.baseSpecies === "Onigi" || user.baseSpecies.baseSpecies === "Onigirice") && (move.type === "Food" || move.type === "Water" || move.type === "Grass")) {
+		 this.debug("Seaweed boost");
+		 return this.chainModify([5324, 4096]);
+	  }
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move && (target.baseSpecies.baseSpecies === "Sushish" || target.baseSpecies.baseSpecies === "Sashumish" || target.baseSpecies.baseSpecies === "Onigi" || target.baseSpecies.baseSpecies === "Onigirice") && (move.type === "Food" || move.type === "Water" || move.type === "Grass")) {
+		 this.debug("Seaweed weaken");
+		 return this.chainModify(0.5);
+	  }
+	},
+	itemUser: ["Sushish", "Sashumish", "Onigi", "Onigirice"],
+	num: 66714,
+	isNonstandard: "Future",
+ },
+ drubberite: {
+	name: "Drubberite",
+	spritenum: 0,
+	num: 66715,
+	isNonstandard: "Future",
+ },
+ neonazite: {
+	name: "Neonazite",
+	spritenum: 0,
+	num: 66716,
+	isNonstandard: "Future",
+ },
+ chairite: {
+	name: "Chairite",
+	spritenum: 0,
+	num: 66717,
+	isNonstandard: "Future",
+ },
+ pikachite: {
+	name: "Pikachite",
+	spritenum: 0,
+	num: 66718,
+	isNonstandard: "Future",
+ },
+ socialite: {
+	name: "Socialite",
+	spritenum: 0,
+	num: 66719,
+	isNonstandard: "Future",
+ },
+ arbroodite: {
+	name: "Arbroodite",
+	spritenum: 0,
+	num: 66720,
+	isNonstandard: "Future",
+ },
+ steamboatite: {
+	name: "Steamboatite",
+	spritenum: 0,
+	num: 66721,
+	isNonstandard: "Future",
+ },
+ lavagunite: {
+	name: "Lavagunite",
+	spritenum: 0,
+	num: 66722,
+	isNonstandard: "Future",
+ },
+ gachambite: {
+	name: "Gachambite",
+	spritenum: 0,
+	num: 66723,
+	isNonstandard: "Future",
+ },
+ gummite: {
+	name: "Gummite",
+	spritenum: 0,
+	num: 66724,
+	isNonstandard: "Future",
+ },
+ houndoomite: {
+	name: "Houndoomite",
+	spritenum: 0,
+	num: 66725,
+	isNonstandard: "Future",
+ },
+ gigasvyrite: {
+	name: "Gigasvyrite",
+	spritenum: 0,
+	num: 66726,
+	isNonstandard: "Future",
+ },
+ corruptorb: {
+	name: "Corrupt Orb",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	onStart(pokemon) {
+	  if (!pokemon.ignoringItem()) {
+		 pokemon.useItem();
+	  }
+	},
+	boosts: {
+	  atk: 1,
+	  spa: 1,
+	  def: 1,
+	  spd: 1,
+	  spe: 1
+	},
+	num: 66727,
+	isNonstandard: "Future",
+ },
+ cummunculite: {
+	name: "Cummunculite",
+	spritenum: 0,
+	num: 66728,
+	isNonstandard: "Future",
+ },
+ mladite: {
+	name: "Mladite",
+	spritenum: 0,
+	num: 66741,
+	isNonstandard: "Future",
+ },
+ pinnistite: {
+	name: "Pinnistite",
+	spritenum: 0,
+	num: 66742,
+	isNonstandard: "Future",
+ },
+ rootspookite: {
+	name: "Rootspookite",
+	spritenum: 0,
+	num: 66743,
+	isNonstandard: "Future",
+ },
+ malwormite: {
+	name: "Malwormite",
+	spritenum: 0,
+	num: 66744,
+	isNonstandard: "Future",
+ },
+ delite: {
+	name: "Delite",
+	spritenum: 0,
+	num: 66745,
+	isNonstandard: "Future",
+ },
+ panthannonite: {
+	name: "Panthannonite",
+	spritenum: 0,
+	num: 66748,
+	isNonstandard: "Future",
+ },
+ gourgeistite: {
+	name: "Gourgeistite",
+	spritenum: 0,
+	num: 66768,
+	isNonstandard: "Future",
+ },
+ lavaplate: {
+	name: "Lava Plate",
+	spritenum: 0,
+	onPlate: "Magma",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Magma") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Magma",
+	num: 66773,
+	isNonstandard: "Future",
+ },
+ vaporplate: {
+	name: "Vapor Plate",
+	spritenum: 0,
+	onPlate: "Steam",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Steam") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Steam",
+	num: 66774,
+	isNonstandard: "Future",
+ },
+ lumberplate: {
+	name: "Lumber Plate",
+	spritenum: 0,
+	onPlate: "Wood",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Wood") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Wood",
+	num: 66775,
+	isNonstandard: "Future",
+ },
+ angelplate: {
+	name: "Angel Plate",
+	spritenum: 0,
+	onPlate: "Divine",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Divine") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Divine",
+	num: 66776,
+	isNonstandard: "Future",
+ },
+ demonicplate: {
+	name: "Demonic Plate",
+	spritenum: 0,
+	onPlate: "Chaos",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Chaos") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Chaos",
+	num: 66777,
+	isNonstandard: "Future",
+ },
+ paperplate: {
+	name: "Paper Plate",
+	spritenum: 0,
+	onPlate: "Paper",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Paper") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Paper",
+	num: 66778,
+	isNonstandard: "Future",
+ },
+ lusterplate: {
+	name: "Luster Plate",
+	spritenum: 0,
+	onPlate: "Light",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Light") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Light",
+	num: 66779,
+	isNonstandard: "Future",
+ },
+ tornadoplate: {
+	name: "Tornado Plate",
+	spritenum: 0,
+	onPlate: "Wind",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Wind") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Wind",
+	num: 66780,
+	isNonstandard: "Future",
+ },
+ arcaneplate: {
+	name: "Arcane Plate",
+	spritenum: 0,
+	onPlate: "Magic",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Magic") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Magic",
+	num: 66781,
+	isNonstandard: "Future",
+ },
+ machineplate: {
+	name: "Machine Plate",
+	spritenum: 0,
+	onPlate: "Tech",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Tech") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Tech",
+	num: 66782,
+	isNonstandard: "Future",
+ },
+ elasticplate: {
+	name: "Elastic Plate",
+	spritenum: 0,
+	onPlate: "Rubber",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Rubber") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Rubber",
+	num: 66783,
+	isNonstandard: "Future",
+ },
+ phobiaplate: {
+	name: "Phobia Plate",
+	spritenum: 0,
+	onPlate: "Fear",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Fear") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Fear",
+	num: 66784,
+	isNonstandard: "Future",
+ },
+ spaceplate: {
+	name: "Space Plate",
+	spritenum: 0,
+	onPlate: "Cosmic",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Cosmic") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Cosmic",
+	num: 66785,
+	isNonstandard: "Future",
+ },
+ sonarplate: {
+	name: "Sonarplate",
+	spritenum: 0,
+	onPlate: "Sound",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Sound") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Sound",
+	num: 66786,
+	isNonstandard: "Future",
+ },
+ gourmetplate: {
+	name: "Gourmetplate",
+	spritenum: 0,
+	onPlate: "Food",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Food") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Food",
+	num: 66787,
+	isNonstandard: "Future",
+ },
+ undeadplate: {
+	name: "Undead Plate",
+	spritenum: 0,
+	onPlate: "Zombie",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Zombie") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Zombie",
+	num: 66788,
+	isNonstandard: "Future",
+ },
+ radiationplate: {
+	name: "Radiation Plate",
+	spritenum: 0,
+	onPlate: "Nuclear",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Nuclear") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Nuclear",
+	num: 66789,
+	isNonstandard: "Future",
+ },
+ infectionplate: {
+	name: "Infection Plate",
+	spritenum: 0,
+	onPlate: "Virus",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Virus") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Virus",
+	num: 66790,
+	isNonstandard: "Future",
+ },
+ digitalplate: {
+	name: "Digital Plate",
+	spritenum: 0,
+	onPlate: "Cyber",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Cyber") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Cyber",
+	num: 66791,
+	isNonstandard: "Future",
+ },
+ glassplate: {
+	name: "Glass Plate",
+	spritenum: 0,
+	onPlate: "Glass",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Glass") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Glass",
+	num: 66792,
+	isNonstandard: "Future",
+ },
+ plasticplate: {
+	name: "Plastic Plate",
+	spritenum: 0,
+	onPlate: "Plastic",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Plastic") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Plastic",
+	num: 66793,
+	isNonstandard: "Future",
+ },
+ carpetplate: {
+	name: "Carpetplate",
+	spritenum: 0,
+	onPlate: "Fabric",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Fabric") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Fabric",
+	num: 66794,
+	isNonstandard: "Future",
+ },
+ agesplate: {
+	name: "Ages Plate",
+	spritenum: 0,
+	onPlate: "Time",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Time") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Time",
+	num: 66795,
+	isNonstandard: "Future",
+ },
+ artplate: {
+	name: "Art Plate",
+	spritenum: 0,
+	onPlate: "Paint",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Paint") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Paint",
+	num: 66796,
+	isNonstandard: "Future",
+ },
+ crystalplate: {
+	name: "Crystal Plate",
+	spritenum: 0,
+	onPlate: "Crystal",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Crystal") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Crystal",
+	num: 66797,
+	isNonstandard: "Future",
+ },
+ infoplate: {
+	name: "Info Plate",
+	spritenum: 0,
+	onPlate: "Meme",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Meme") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Meme",
+	num: 66798,
+	isNonstandard: "Future",
+ },
+ ichorplate: {
+	name: "Ichor Plate",
+	spritenum: 0,
+	onPlate: "Blood",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Blood") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Blood",
+	num: 66799,
+	isNonstandard: "Future",
+ },
+ fatplate: {
+	name: "Fat Plate",
+	spritenum: 0,
+	onPlate: "Greasy",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Greasy") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Greasy",
+	num: 66800,
+	isNonstandard: "Future",
+ },
+ emotionplate: {
+	name: "Emotion Plate",
+	spritenum: 0,
+	onPlate: "Heart",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Heart") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Heart",
+	num: 66801,
+	isNonstandard: "Future",
+ },
+ page: {
+	name: "Page",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Paper") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66806,
+	isNonstandard: "Future",
+ },
+ rubberglove: {
+	name: "Rubber Glove",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Rubber") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66807,
+	isNonstandard: "Future",
+ },
+ spookymask: {
+	name: "Spooky Mask",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Fear") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66808,
+	isNonstandard: "Future",
+ },
+ telescope: {
+	name: "Telescope",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Cosmic") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66809,
+	isNonstandard: "Future",
+ },
+ speaker: {
+	name: "Speaker",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Sound") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66810,
+	isNonstandard: "Future",
+ },
+ sauce: {
+	name: "Sauce",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Food") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66811,
+	isNonstandard: "Future",
+ },
+ brains: {
+	name: "Brains",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Zombie") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66812,
+	isNonstandard: "Future",
+ },
+ uranium: {
+	name: "Uranium",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Nuclear") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66813,
+	isNonstandard: "Future",
+ },
+ motherboard: {
+	name: "Motherboard",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Cyber") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66814,
+	isNonstandard: "Future",
+ },
+ optimizerpro: {
+	name: "Optimizer Pro",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Virus") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66815,
+	isNonstandard: "Future",
+ },
+ glasspiece: {
+	name: "Glass Piece",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Glass") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66816,
+	isNonstandard: "Future",
+ },
+ plasticpiece: {
+	name: "Plastic Piece",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Plastic") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66817,
+	isNonstandard: "Future",
+ },
+ carpet: {
+	name: "Carpet",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Fabric") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66818,
+	isNonstandard: "Future",
+ },
+ holycross: {
+	name: "Holy Cross",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Divine") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66819,
+	isNonstandard: "Future",
+ },
+ stopwatch: {
+	name: "Stopwatch",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Time") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 66820,
+	isNonstandard: "Future",
+ },
+ primeapite: {
+	name: "Primeapite",
+	spritenum: 0,
+	num: 66822,
+	isNonstandard: "Future",
+ },
+ teskarite: {
+	name: "Teskarite",
+	spritenum: 0,
+	num: 66823,
+	isNonstandard: "Future",
+ },
+ hypnite: {
+	name: "Hypnite",
+	spritenum: 0,
+	num: 66824,
+	isNonstandard: "Future",
+ },
+ onionplate: {
+	name: "Onion Plate",
+	spritenum: 0,
+	onPlate: "Ogre",
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Ogre") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onTakeItem(item, pokemon, source) {
+	  if (source && source.baseSpecies.num === 493 || pokemon.baseSpecies.num === 493) {
+		 return false;
+	  }
+	  return true;
+	},
+	forcedForme: "Arceus-Ogre",
+	num: 66831,
+	isNonstandard: "Future",
+ },
+ facarvite: {
+	name: "Facarvite",
+	spritenum: 0,
+	num: 66832,
+	isNonstandard: "Future",
+ },
+ saplomite: {
+	name: "Saplomite",
+	spritenum: 0,
+	num: 66833,
+	isNonstandard: "Future",
+ },
+ absorspongite: {
+	name: "Absorspongite",
+	spritenum: 0,
+	num: 66834,
+	isNonstandard: "Future",
+ },
+ serperiorite: {
+	name: "Serperiorite",
+	spritenum: 0,
+	num: 66837,
+	isNonstandard: "Future",
+ },
+ emboarite: {
+	name: "Emboarite",
+	spritenum: 0,
+	num: 66838,
+	isNonstandard: "Future",
+ },
+ samurottite: {
+	name: "Samurottite",
+	spritenum: 0,
+	num: 66839,
+	isNonstandard: "Future",
+ },
+ empoleonite: {
+	name: "Empoleonite",
+	spritenum: 0,
+	num: 66865,
+	isNonstandard: "Future",
+ },
+ infernapite: {
+	name: "Infernapite",
+	spritenum: 0,
+	num: 66866,
+	isNonstandard: "Future",
+ },
+ torterrite: {
+	name: "Torterrite",
+	spritenum: 0,
+	num: 66867,
+	isNonstandard: "Future",
+ },
+ dominatrixoutfit: {
+	name: "Dominatrix Outfit",
+	spritenum: 0,
+	onModifyCritRatio(critRatio, source, target) {
+	  if (source.gender && target.gender && !target.volatiles["attract"]) {
+		 if (source.gender !== target.gender) {
+			this.debug("Dominatrix Outfit boost");
+			return critRatio + 2;
+		 }
+	  }
+	},
+	num: 66869,
+	isNonstandard: "Future",
+ },
+ frillydress: {
+	// TODO: Add Full Moon interaction
+	name: "Frilly Dress",
+	spritenum: 0,
+	onStart(source) {
+	  if (source.baseSpecies.baseSpecies === "Kawaidesha") {
+		 this.field.setWeather("Midnight");
+	  }
+	},
+	itemUser: ["Kawaidesha"],
+	num: 66870,
+	isNonstandard: "Future",
+ },
+ bouncectarmor: {
+	/* TODO introduce Mega interaction **/
+	name: "Bouncect Armor",
+	spritenum: 0,
+	onModifyMove(move, pokemon, target) {
+	  delete move.flags["contact"];
+	  if (move.secondaries) {
+		 delete move.secondaries;
+		 delete move.self;
+		 if (move.id === "clangoroussoulblaze")
+			delete move.selfBoost;
+	  }
+	},
+	num: 66871,
+	isNonstandard: "Future",
+ },
+ frankenspookite: {
+	name: "Frankenspookite",
+	spritenum: 0,
+	num: 66873,
+	isNonstandard: "Future",
+ },
+ zangoosite: {
+	name: "Zangoosite",
+	spritenum: 0,
+	num: 66874,
+	isNonstandard: "Future",
+ },
+ virivite: {
+	name: "Virivite",
+	spritenum: 0,
+	num: 66875,
+	isNonstandard: "Future",
+ },
+ rubberite: {
+	name: "Rubberite",
+	spritenum: 0,
+	num: 66876,
+	isNonstandard: "Future",
+ },
+ bottleodrakite: {
+	name: "Bottleodrakite",
+	spritenum: 0,
+	num: 66877,
+	isNonstandard: "Future",
+ },
+ dargouite: {
+	name: "Dargouite",
+	spritenum: 0,
+	num: 66878,
+	isNonstandard: "Future",
+ },
+ sonotite: {
+	name: "Sonotite",
+	spritenum: 0,
+	num: 66879,
+	isNonstandard: "Future",
+ },
+ arbokite: {
+	name: "Arbokite",
+	spritenum: 0,
+	num: 66880,
+	isNonstandard: "Future",
+ },
+ shedinjite: {
+	name: "Shedinjite",
+	spritenum: 0,
+	num: 66889,
+	isNonstandard: "Future",
+ },
+ lynchite: {
+	name: "Lynchite",
+	spritenum: 0,
+	num: 66892,
+	isNonstandard: "Future",
+ },
+ sevipite: {
+	name: "Sevipite",
+	spritenum: 0,
+	num: 66893,
+	isNonstandard: "Future",
+ },
+ volcaronite: {
+	name: "Volcaronite",
+	spritenum: 0,
+	num: 66896,
+	isNonstandard: "Future",
+ },
+ charizarditez: {
+	name: "Charizardite Z",
+	spritenum: 0,
+	num: 66900,
+	isNonstandard: "Future",
+ },
+ johnspleenite: {
+	name: "Johnspleenite",
+	spritenum: 0,
+	num: 66901,
+	isNonstandard: "Future",
+ },
+ primalorb: {
+	name: "Primal Orb",
+	spritenum: 0,
+	num: 66902,
+	isNonstandard: "Future",
+ },
+ behemistite: {
+	name: "Behemistite",
+	spritenum: 0,
+	num: 66903,
+	isNonstandard: "Future",
+ },
+ luminite: {
+	name: "Luminite",
+	spritenum: 0,
+	num: 66904,
+	isNonstandard: "Future",
+ },
+ bersergutsite: {
+	name: "Bersergutsite",
+	spritenum: 0,
+	num: 66905,
+	isNonstandard: "Future",
+ },
+ wendigite: {
+	name: "Wendigite",
+	spritenum: 0,
+	num: 66906,
+	isNonstandard: "Future",
+ },
+ delphoxite: {
+	name: "Delphoxite",
+	spritenum: 0,
+	num: 66908,
+	isNonstandard: "Future",
+ },
+ greninjite: {
+	name: "Greninjite",
+	spritenum: 0,
+	num: 66909,
+	isNonstandard: "Future",
+ },
+ chesnaughtite: {
+	name: "Chesnaughtite",
+	spritenum: 0,
+	num: 66910,
+	isNonstandard: "Future",
+ },
+ angelpowder: {
+	name: "Angel Powder",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  this.heal(pokemon.baseMaxhp / 13);
+	},
+	num: 66915,
+	isNonstandard: "Future",
+ },
+ apexorb: {
+	name: "Apex Orb",
+	spritenum: 0,
+	onSourceModifyAccuracyPriority: -2,
+	onSourceModifyAccuracy(accuracy, target) {
+	  if (typeof accuracy === "number" && !this.queue.willMove(target)) {
+		 this.debug("Apex Orb boosting accuracy");
+		 return this.chainModify([4505, 4096]);
+	  }
+	},
+	onModifyAccuracyPriority: -2,
+	onModifyAccuracy(accuracy) {
+	  if (typeof accuracy !== "number")
+		 return;
+	  this.debug("Apex Orb decreasing accuracy");
+	  return this.chainModify([3686, 4096]);
+	},
+	onModifyCritRatio(critRatio) {
+	  return critRatio + 1;
+	},
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  this.heal(pokemon.baseMaxhp / 16);
+	},
+	num: 66916,
+	isNonstandard: "Future",
+ },
+ sloggerothite: {
+	name: "Sloggerothite",
+	spritenum: 0,
+	num: 66917,
+	isNonstandard: "Future",
+ },
+ archangite: {
+	name: "Archangite",
+	spritenum: 0,
+	num: 66919,
+	isNonstandard: "Future",
+ },
+ ledevilainite: {
+	name: "Ledevilainite",
+	spritenum: 0,
+	num: 66920,
+	isNonstandard: "Future",
+ },
+ satelite: {
+	name: "Satelite",
+	spritenum: 0,
+	num: 66921,
+	isNonstandard: "Future",
+ },
+ sphinxiantite: {
+	name: "Sphinxiantite",
+	spritenum: 0,
+	num: 66922,
+	isNonstandard: "Future",
+ },
+ clefablite: {
+	name: "Clefablite",
+	spritenum: 0,
+	num: 66924,
+	isNonstandard: "Future",
+ },
+ eeveeite: {
+	name: "Eeveeite",
+	spritenum: 0,
+	num: 66925,
+	isNonstandard: "Future",
+ },
+ fonightonite: {
+	name: "Fonightonite",
+	spritenum: 0,
+	num: 66926,
+	isNonstandard: "Future",
+ },
+ brickorite: {
+	name: "Brickorite",
+	spritenum: 0,
+	num: 66932,
+	isNonstandard: "Future",
+ },
+ frostearite: {
+	name: "Frostearite",
+	spritenum: 0,
+	num: 66933,
+	isNonstandard: "Future",
+ },
+ stantlerite: {
+	name: "Stantlerite",
+	spritenum: 0,
+	num: 66934,
+	isNonstandard: "Future",
+ },
+ melonvilite: {
+	name: "Melonvilite",
+	spritenum: 0,
+	num: 66935,
+	isNonstandard: "Future",
+ },
+ delcattite: {
+	name: "Delcattite",
+	spritenum: 0,
+	num: 66936,
+	isNonstandard: "Future",
+ },
+ electrodite: {
+	name: "Electrodite",
+	spritenum: 0,
+	num: 66942,
+	isNonstandard: "Future",
+ },
+ tantalberry: {
+	name: "Tantal Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Chaos"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Chaos" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 66943,
+	isNonstandard: "Future",
+ },
+ holyward: {
+	name: "Holy Ward",
+	spritenum: 0,
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Chaos" && target.getMoveHitData(move).typeMod > 0) {
+		 this.debug("-50% Holy Ward reduction");
+		 return this.chainModify(0.5);
+	  }
+	},
+	num: 66944,
+	isNonstandard: "Future",
+ },
+ blessorb: {
+	name: "Bless Orb",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Chaos" && target.getMoveHitData(move).typeMod > 0) {
+		 this.debug("-20% Bless Orb reduction");
+		 return this.chainModify(0.8);
+	  }
+	},
+	onDamagingHit(damage, target, source, move) {
+	  if (move.type === "Chaos") {
+		 target.useItem();
+	  }
+	},
+	boosts: {
+	  spe: 1
+	},
+	num: 66945,
+	isNonstandard: "Future",
+ },
+ octillerite: {
+	name: "Octillerite",
+	spritenum: 0,
+	num: 66946,
+	isNonstandard: "Future",
+ },
+ jetcraftite: {
+	name: "Jetcraftite",
+	spritenum: 0,
+	num: 66947,
+	isNonstandard: "Future",
+ },
+ crobatite: {
+	name: "Crobatite",
+	spritenum: 0,
+	num: 66948,
+	isNonstandard: "Future",
+ },
+ cradilite: {
+	name: "Cradilite",
+	spritenum: 0,
+	num: 66949,
+	isNonstandard: "Future",
+ },
+ martianorb: {
+	name: "Martian Orb",
+	spritenum: 0,
+	onDamage(damage, target, source, effect) {
+	  if (effect.effectType === "Move" && !effect.multihit && (!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility("sheerforce")))) {
+		 this.effectState.checkedBerserk = false;
+	  } else {
+		 this.effectState.checkedBerserk = true;
+	  }
+	},
+	onTryEatItem(item) {
+	  const healingItems = [
+		 "aguavberry",
+		 "enigmaberry",
+		 "figyberry",
+		 "iapapaberry",
+		 "magoberry",
+		 "sitrusberry",
+		 "wikiberry",
+		 "oranberry",
+		 "berryjuice"
+	  ];
+	  if (healingItems.includes(item.id)) {
+		 return this.effectState.checkedBerserk;
+	  }
+	  return true;
+	},
+	onAfterMoveSecondary(target, source, move) {
+	  this.effectState.checkedBerserk = true;
+	  if (!source || source === target || !target.hp || !move.totalDamage)
+		 return;
+	  const lastAttackedBy = target.getLastAttackedBy();
+	  if (!lastAttackedBy)
+		 return;
+	  const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+	  if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+		 this.add("-activate", target, "item: Martian Orb");
+		 this.boost({ atk: 1 }, target, target);
+	  }
+	},
+	num: 66951,
+	isNonstandard: "Future",
+ },
+ venusorb: {
+	name: "Venus Orb",
+	spritenum: 0,
+	onDamage(damage, target, source, effect) {
+	  if (effect.effectType === "Move" && !effect.multihit && (!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility("sheerforce")))) {
+		 this.effectState.checkedBerserk = false;
+	  } else {
+		 this.effectState.checkedBerserk = true;
+	  }
+	},
+	onTryEatItem(item) {
+	  const healingItems = [
+		 "aguavberry",
+		 "enigmaberry",
+		 "figyberry",
+		 "iapapaberry",
+		 "magoberry",
+		 "sitrusberry",
+		 "wikiberry",
+		 "oranberry",
+		 "berryjuice"
+	  ];
+	  if (healingItems.includes(item.id)) {
+		 return this.effectState.checkedBerserk;
+	  }
+	  return true;
+	},
+	onAfterMoveSecondary(target, source, move) {
+	  this.effectState.checkedBerserk = true;
+	  if (!source || source === target || !target.hp || !move.totalDamage)
+		 return;
+	  const lastAttackedBy = target.getLastAttackedBy();
+	  if (!lastAttackedBy)
+		 return;
+	  const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+	  if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+		 this.add("-activate", target, "item: Venus Orb");
+		 this.boost({ spd: 1 }, target, target);
+	  }
+	},
+	num: 66952,
+	isNonstandard: "Future",
+ },
+ mercuryorb: {
+	name: "Mercury Orb",
+	spritenum: 0,
+	onDamage(damage, target, source, effect) {
+	  if (effect.effectType === "Move" && !effect.multihit && (!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility("sheerforce")))) {
+		 this.effectState.checkedBerserk = false;
+	  } else {
+		 this.effectState.checkedBerserk = true;
+	  }
+	},
+	onTryEatItem(item) {
+	  const healingItems = [
+		 "aguavberry",
+		 "enigmaberry",
+		 "figyberry",
+		 "iapapaberry",
+		 "magoberry",
+		 "sitrusberry",
+		 "wikiberry",
+		 "oranberry",
+		 "berryjuice"
+	  ];
+	  if (healingItems.includes(item.id)) {
+		 return this.effectState.checkedBerserk;
+	  }
+	  return true;
+	},
+	onAfterMoveSecondary(target, source, move) {
+	  this.effectState.checkedBerserk = true;
+	  if (!source || source === target || !target.hp || !move.totalDamage)
+		 return;
+	  const lastAttackedBy = target.getLastAttackedBy();
+	  if (!lastAttackedBy)
+		 return;
+	  const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+	  if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+		 this.add("-activate", target, "item: Mercury Orb");
+		 this.boost({ spe: 1 }, target, target);
+	  }
+	},
+	num: 66953,
+	isNonstandard: "Future",
+ },
+ chipoloberry: {
+	name: "Chipolo Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Wood"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Wood" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 66955,
+	isNonstandard: "Future",
+ },
+ haridoberry: {
+	name: "Harido Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Magma"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Magma" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 66956,
+	isNonstandard: "Future",
+ },
+ bakyuuberry: {
+	name: "Bakyuu Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Steam"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Steam" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 66957,
+	isNonstandard: "Future",
+ },
+ darayberry: {
+	name: "Daray Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Wind"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Wind" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 66958,
+	isNonstandard: "Future",
+ },
+ loispberry: {
+	name: "Loisp Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Food"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Food" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 66959,
+	isNonstandard: "Future",
+ },
+ orptekberry: {
+	name: "Orptek Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Virus"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Virus" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 66960,
+	isNonstandard: "Future",
+ },
+ oligalberry: {
+	name: "Oligal Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Magic"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Magic" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 66961,
+	isNonstandard: "Future",
+ },
+ ampireberry: {
+	name: "Ampire Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Blood"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Blood" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 66962,
+	isNonstandard: "Future",
+ },
+ goldstandarrow: {
+	name: "Gold Stand Arrow",
+	spritenum: 0,
+	num: 66963,
+	isNonstandard: "Future",
+ },
+ goldenfiddle: {
+	name: "Golden Fiddle",
+	spritenum: 0,
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Divine" || move.type === "Chaos") {
+		 this.debug("Golden Fiddle weaken");
+		 return this.chainModify(0.4);
+	  }
+	},
+	num: 66964,
+	isNonstandard: "Future",
+ },
+ novaisite: {
+	name: "Novaisite",
+	spritenum: 0,
+	num: 66965,
+	isNonstandard: "Future",
+ },
+ darkolite: {
+	name: "Darkolite",
+	spritenum: 0,
+	num: 66966,
+	isNonstandard: "Future",
+ },
+ vivillonite: {
+	name: "Vivillonite",
+	spritenum: 0,
+	num: 66972,
+	isNonstandard: "Future",
+ },
+ jokercard: {
+	name: "Joker Card",
+	spritenum: 0,
+	num: 66973,
+	isNonstandard: "Future",
+ },
+ ariadosite: {
+	name: "Ariadosite",
+	spritenum: 0,
+	num: 66974,
+	isNonstandard: "Future",
+ },
+ gettertomahawk: {
+	name: "Getter Tomahawk",
+	spritenum: 0,
+	num: 66975,
+	isNonstandard: "Future",
+ },
+ getterdrill: {
+	name: "Getter Drill",
+	spritenum: 0,
+	num: 66976,
+	isNonstandard: "Future",
+ },
+ gettermissile: {
+	name: "Getter Missile",
+	spritenum: 0,
+	num: 66977,
+	isNonstandard: "Future",
+ },
+ mozartite: {
+	name: "Mozartite",
+	spritenum: 0,
+	num: 66978,
+	isNonstandard: "Future",
+ },
+ icyseed: {
+	/* TODO when icy terrain is introduced **/
+	name: "Icy Seed",
+	spritenum: 0,
+	num: 66979,
+	isNonstandard: "Future",
+ },
+ dongorillite: {
+	name: "DONGORILLITE",
+	spritenum: 0,
+	num: 66980,
+	isNonstandard: "Future",
+ },
+ helioliskite: {
+	name: "Helioliskite",
+	spritenum: 0,
+	num: 66981,
+	isNonstandard: "Future",
+ },
+ narwharite: {
+	name: "Narwharite",
+	spritenum: 0,
+	num: 66982,
+	isNonstandard: "Future",
+ },
+ suwiseglasses: {
+	name: "Suwise Glasses",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	onBasePowerPriority: 16,
+	onBasePower(basePower, user, target, move) {
+	  if (move.category === "Special") {
+		 return this.chainModify(2);
+	  }
+	},
+	num: 66983,
+	isNonstandard: "Future",
+ },
+ plasbulite: {
+	name: "Plasbulite",
+	spritenum: 0,
+	num: 66984,
+	isNonstandard: "Future",
+ },
+ lightulbite: {
+	name: "Lightulbite",
+	spritenum: 0,
+	num: 66985,
+	isNonstandard: "Future",
+ },
+ rodactylite: {
+	name: "Rodactylite",
+	spritenum: 0,
+	num: 66986,
+	isNonstandard: "Future",
+ },
+ pressureorb: {
+	name: "Pressure Orb",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onModifyDamage(damage, source, target, move) {
+	  return this.chainModify([5324, 4096]);
+	},
+	onTryMove(pokemon, target, move) {
+	  const moveData = pokemon.getMoveData(move.id);
+	  if (!moveData || moveData.pp < 1)
+		 return;
+	  moveData.pp -= 1;
+	},
+	num: 66987,
+	isNonstandard: "Future",
+ },
+ earplugs: {
+	name: "Ear Plugs",
+	spritenum: 0,
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Sound") {
+		 this.debug("Ear Plugs weaken");
+		 return this.chainModify(0.65);
+	  }
+	},
+	num: 66988,
+	isNonstandard: "Future",
+ },
+ reactioxite: {
+	name: "Reactioxite",
+	spritenum: 0,
+	num: 66989,
+	isNonstandard: "Future",
+ },
+ jynxite: {
+	name: "Jynxite",
+	spritenum: 0,
+	num: 66991,
+	isNonstandard: "Future",
+ },
+ charizardites: {
+	name: "Charizardite S",
+	spritenum: 0,
+	num: 66992,
+	isNonstandard: "Future",
+ },
+ farfetchditen: {
+	name: "Farfetchdite N",
+	spritenum: 0,
+	num: 66993,
+	isNonstandard: "Future",
+ },
+ gigantamax: {
+	name: "Gigantamax",
+	spritenum: 0,
+	num: 66994,
+	isNonstandard: "Future",
+ },
+ dragonitite: {
+	name: "Dragonitite",
+	spritenum: 0,
+	num: 66995,
+	isNonstandard: "Future",
+ },
+ carnivinite: {
+	name: "Carnivinite",
+	spritenum: 0,
+	num: 66996,
+	isNonstandard: "Future",
+ },
+ cultulzite: {
+	name: "Cultulzite",
+	spritenum: 0,
+	num: 66997,
+	isNonstandard: "Future",
+ },
+ gorebyssite: {
+	name: "Gorebyssite",
+	spritenum: 0,
+	num: 66998,
+	isNonstandard: "Future",
+ },
+ huntailite: {
+	name: "Huntailite",
+	spritenum: 0,
+	num: 66999,
+	isNonstandard: "Future",
+ },
+ garbodorite: {
+	name: "Garbodorite",
+	spritenum: 0,
+	num: 67001,
+	isNonstandard: "Future",
+ },
+ kecleonite: {
+	name: "Kecleonite",
+	spritenum: 0,
+	num: 67003,
+	isNonstandard: "Future",
+ },
+ cocaiturdite: {
+	name: "Cocaiturdite",
+	spritenum: 0,
+	num: 67004,
+	isNonstandard: "Future",
+ },
+ albinguinite: {
+	name: "Albinguinite",
+	spritenum: 0,
+	num: 67005,
+	isNonstandard: "Future",
+ },
+ undlouisite: {
+	name: "Undlouisite",
+	spritenum: 0,
+	num: 67006,
+	isNonstandard: "Future",
+ },
+ tropilightnite: {
+	name: "Tropilightnite",
+	spritenum: 0,
+	num: 67007,
+	isNonstandard: "Future",
+ },
+ nukreepite: {
+	name: "Nukreepite",
+	spritenum: 0,
+	num: 67008,
+	isNonstandard: "Future",
+ },
+ tutterflite: {
+	name: "Tutterflite",
+	spritenum: 0,
+	num: 67009,
+	isNonstandard: "Future",
+ },
+ swoobatite: {
+	name: "Swoobatite",
+	spritenum: 0,
+	num: 67010,
+	isNonstandard: "Future",
+ },
+ parasectite: {
+	name: "Parasectite",
+	spritenum: 0,
+	num: 67011,
+	isNonstandard: "Future",
+ },
+ smolstronite: {
+	name: "Smolstronite",
+	spritenum: 0,
+	num: 67014,
+	isNonstandard: "Future",
+ },
+ antiplebshield: {
+	name: "Antiplebshield",
+	spritenum: 0,
+	onModifySpe(spe, pokemon) {
+	  return this.chainModify(20);
+	},
+	onModifyAtkPriority: 1,
+	onModifyAtk(atk, pokemon) {
+	  return this.chainModify(20);
+	},
+	onModifySpAPriority: 1,
+	onModifySpA(spa, pokemon) {
+	  return this.chainModify(20);
+	},
+	onSourceModifyAccuracyPriority: -2,
+	onSourceModifyAccuracy(accuracy, target) {
+	  if (typeof accuracy === "number" && !this.queue.willMove(target)) {
+		 this.debug("Antiplebshield boosting accuracy");
+		 return this.chainModify(20);
+	  }
+	},
+	onModifyAccuracyPriority: -2,
+	onModifyAccuracy(accuracy) {
+	  if (typeof accuracy !== "number")
+		 return;
+	  this.debug("brightpowder - decreasing accuracy");
+	  return this.chainModify(0.05);
+	},
+	onModifyCritRatio(critRatio) {
+	  return critRatio + 2;
+	},
+	onModifyPriority(priority, pokemon, target, move) {
+	  return priority + 6;
+	},
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  this.heal(pokemon.baseMaxhp);
+	  if (pokemon.activeTurns) {
+		 this.boost({ atk: 1, spa: 1, def: 1, spd: 1, spe: 1 });
+	  }
+	  if (pokemon.hp && pokemon.status && this.randomChance(33, 100)) {
+		 this.debug("antiplebshield");
+		 this.add("-activate", pokemon, "item: Antiplebshield");
+		 pokemon.cureStatus();
+	  }
+	  if (!pokemon.hp)
+		 return;
+	  for (const target of pokemon.foes()) {
+		 if (target.status) {
+			this.damage(target.baseMaxhp, target, pokemon);
+		 }
+	  }
+	},
+	onDamagePriority: -40,
+	onDamage(damage, target, source, effect) {
+	  if (this.randomChance(1, 10) && damage >= target.hp && effect && effect.effectType === "Move") {
+		 this.add("-activate", target, "item: Antiplebshield");
+		 return target.hp - 1;
+	  }
+	},
+	onTryHit(target, source, move) {
+	  if (target !== source && (move.flags["bullet"] || move.flags["above"] || move.flags["contact"] || (move.type === "Divine" || move.type === "Virus" || move.type === "Fighting" || move.type === "Ghost" || move.type === "Dark" || move.type === "Poison" || move.type === "Chaos" || move.type === "Qmarks" || move.type === "Light" || move.type === "Normal"))) {
+		 this.add("-immune", target, "[from] item: Antiplebshield");
+		 return null;
+	  }
+	},
+	onAllyTryHitSide(target, source, move) {
+	  if (move.flags["bullet"] || move.flags["above"] || move.flags["contact"] || (move.type === "Divine" || move.type === "Virus" || move.type === "Fighting" || move.type === "Ghost" || move.type === "Dark" || move.type === "Poison" || move.type === "Chaos" || move.type === "Qmarks" || move.type === "Light" || move.type === "Normal")) {
+		 this.add("-immune", this.effectState.target, "[from] item: Antiplebshield");
+	  }
+	},
+	num: 67015,
+	isNonstandard: "Future",
+ },
+ paintipite: {
+	name: "Paintipite",
+	spritenum: 0,
+	num: 67016,
+	isNonstandard: "Future",
+ },
+ silverkey: {
+	name: "Silver Key",
+	spritenum: 0,
+	num: 67017,
+	isNonstandard: "Future",
+ },
+ horroruxite: {
+	name: "Horroruxite",
+	spritenum: 0,
+	num: 67021,
+	isNonstandard: "Future",
+ },
+ pyramidite: {
+	name: "Pyramidite",
+	spritenum: 0,
+	num: 67022,
+	isNonstandard: "Future",
+ },
+ warshinite: {
+	name: "Warshinite",
+	spritenum: 0,
+	num: 67023,
+	isNonstandard: "Future",
+ },
+ omastarite: {
+	name: "Omastarite",
+	spritenum: 0,
+	num: 67024,
+	isNonstandard: "Future",
+ },
+ kabutopsite: {
+	name: "Kabutopsite",
+	spritenum: 0,
+	num: 67025,
+	isNonstandard: "Future",
+ },
+ dolphottlite: {
+	name: "Dolphottlite",
+	spritenum: 0,
+	num: 67026,
+	isNonstandard: "Future",
+ },
+ corsolite: {
+	name: "Corsolite",
+	spritenum: 0,
+	num: 67027,
+	isNonstandard: "Future",
+ },
+ victreebelite: {
+	name: "Victreebelite",
+	spritenum: 0,
+	num: 67028,
+	isNonstandard: "Future",
+ },
+ relicanthite: {
+	name: "Relicanthite",
+	spritenum: 0,
+	num: 67030,
+	isNonstandard: "Future",
+ },
+ whiscashite: {
+	name: "Whiscashite",
+	spritenum: 0,
+	num: 67031,
+	isNonstandard: "Future",
+ },
+ tangrowthitex: {
+	name: "Tangrowthite X",
+	spritenum: 0,
+	num: 67032,
+	isNonstandard: "Future",
+ },
+ tangrowthitey: {
+	name: "Tangrowthite Y",
+	spritenum: 0,
+	num: 67033,
+	isNonstandard: "Future",
+ },
+ tangrowthitez: {
+	name: "Tangrowthite Z",
+	spritenum: 0,
+	num: 67034,
+	isNonstandard: "Future",
+ },
+ luvdiscitex: {
+	name: "Luvdiscite X",
+	spritenum: 0,
+	num: 67035,
+	isNonstandard: "Future",
+ },
+ luvdiscitey: {
+	name: "Luvdiscite Y",
+	spritenum: 0,
+	num: 67036,
+	isNonstandard: "Future",
+ },
+ jumpluffitex: {
+	name: "Jumpluffite X",
+	spritenum: 0,
+	num: 67037,
+	isNonstandard: "Future",
+ },
+ jumpluffitey: {
+	name: "Jumpluffite Y",
+	spritenum: 0,
+	num: 67038,
+	isNonstandard: "Future",
+ },
+ magcargite: {
+	name: "Magcargite",
+	spritenum: 0,
+	num: 67039,
+	isNonstandard: "Future",
+ },
+ rapidashitey: {
+	name: "Rapidashite Y",
+	spritenum: 0,
+	num: 67042,
+	isNonstandard: "Future",
+ },
+ rapidashitex: {
+	name: "Rapidashite X",
+	spritenum: 0,
+	num: 67043,
+	isNonstandard: "Future",
+ },
+ ninetalesite: {
+	name: "Ninetalesite",
+	spritenum: 0,
+	num: 67044,
+	isNonstandard: "Future",
+ },
+ heatmorite: {
+	name: "Heatmorite",
+	spritenum: 0,
+	num: 67045,
+	isNonstandard: "Future",
+ },
+ charizarditeg: {
+	name: "Charizardite G",
+	spritenum: 0,
+	num: 67046,
+	isNonstandard: "Future",
+ },
+ charizarditer: {
+	name: "Charizardite R",
+	spritenum: 0,
+	num: 67047,
+	isNonstandard: "Future",
+ },
+ arcaninite: {
+	name: "Arcaninite",
+	spritenum: 0,
+	num: 67048,
+	isNonstandard: "Future",
+ },
+ magmortarite: {
+	name: "Magmortarite",
+	spritenum: 0,
+	num: 67049,
+	isNonstandard: "Future",
+ },
+ snorlaxite: {
+	name: "Snorlaxite",
+	spritenum: 0,
+	num: 67050,
+	isNonstandard: "Future",
+ },
+ spindite: {
+	name: "Spindite",
+	spritenum: 0,
+	num: 67051,
+	isNonstandard: "Future",
+ },
+ pyroarite: {
+	name: "Pyroarite",
+	spritenum: 0,
+	num: 67052,
+	isNonstandard: "Future",
+ },
+ slakingite: {
+	name: "Slakingite",
+	spritenum: 0,
+	num: 67053,
+	isNonstandard: "Future",
+ },
+ steamistite: {
+	name: "Steamistite",
+	spritenum: 0,
+	num: 67054,
+	isNonstandard: "Future",
+ },
+ stweamsite: {
+	name: "Stweamsite",
+	spritenum: 0,
+	num: 67055,
+	isNonstandard: "Future",
+ },
+ steamnite: {
+	name: "Steamnite",
+	spritenum: 0,
+	num: 67056,
+	isNonstandard: "Future",
+ },
+ thorncrown: {
+	name: "Thorn Crown",
+	spritenum: 0,
+	onModifyMove(move, pokemon, target) {
+	  if (move.type === "Blood") {
+		 move.type = "Divine";
+	  }
+	},
+	num: 67057,
+	isNonstandard: "Future",
+ },
+ pricklythorns: {
+	name: "Prickly Thorns",
+	spritenum: 0,
+	onModifySpe(spe, pokemon) {
+	  return this.chainModify(0.9);
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (target.hasType("Grass")) {
+		 if (move && (move.type === "Bug" || move.type === "Flying")) {
+			this.debug("Prickly Thorns weaken");
+			return this.chainModify(0.6);
+		 }
+	  }
+	},
+	num: 67058,
+	isNonstandard: "Future",
+ },
+ pressuredgem: {
+	name: "Pressured Gem",
+	spritenum: 0,
+	onModifySpe(spe, pokemon) {
+	  return this.chainModify(0.9);
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (target.hasType("Rock")) {
+		 if (move && (move.type === "Water" || move.type === "Grass")) {
+			this.debug("Pressured Gem weaken");
+			return this.chainModify(0.6);
+		 }
+	  }
+	},
+	num: 67059,
+	isNonstandard: "Future",
+ },
+ pizzaurexitex: {
+	name: "Pizzaurexite X",
+	spritenum: 0,
+	num: 67062,
+	isNonstandard: "Future",
+ },
+ tenablerusite: {
+	name: "Tenablerusite",
+	spritenum: 0,
+	num: 67063,
+	isNonstandard: "Future",
+ },
+ canyouite: {
+	name: "Canyouite",
+	spritenum: 0,
+	num: 67068,
+	isNonstandard: "Future",
+ },
+ charizarditei: {
+	name: "Charizardite I",
+	spritenum: 0,
+	num: 67069,
+	isNonstandard: "Future",
+ },
+ magmocketite: {
+	name: "Magmocketite",
+	spritenum: 0,
+	num: 67070,
+	isNonstandard: "Future",
+ },
+ charizarditew: {
+	name: "Charizardite W",
+	spritenum: 0,
+	num: 67071,
+	isNonstandard: "Future",
+ },
+ charizarditef: {
+	name: "Charizardite F",
+	spritenum: 0,
+	num: 67072,
+	isNonstandard: "Future",
+ },
+ ludicolite: {
+	name: "Ludicolite",
+	spritenum: 0,
+	num: 67073,
+	isNonstandard: "Future",
+ },
+ shiftryite: {
+	name: "Shiftryite",
+	spritenum: 0,
+	num: 67074,
+	isNonstandard: "Future",
+ },
+ persianite: {
+	name: "Persianite",
+	spritenum: 0,
+	num: 67075,
+	isNonstandard: "Future",
+ },
+ golemite: {
+	name: "Golemite",
+	spritenum: 0,
+	num: 67076,
+	isNonstandard: "Future",
+ },
+ tsareenite: {
+	name: "Tsareenite",
+	spritenum: 0,
+	num: 67077,
+	isNonstandard: "Future",
+ },
+ pizzaurexitey: {
+	name: "Pizzaurexite Y",
+	spritenum: 0,
+	num: 67078,
+	isNonstandard: "Future",
+ },
+ pelipperite: {
+	name: "Pelipperite",
+	spritenum: 0,
+	num: 67079,
+	isNonstandard: "Future",
+ },
+ armaldite: {
+	name: "Armaldite",
+	spritenum: 0,
+	num: 67081,
+	isNonstandard: "Future",
+ },
+ charizarditeb: {
+	name: "Charizardite B",
+	spritenum: 0,
+	num: 67083,
+	isNonstandard: "Future",
+ },
+ mismagiusite: {
+	name: "Mismagiusite",
+	spritenum: 0,
+	num: 67085,
+	isNonstandard: "Future",
+ },
+ snatanite: {
+	name: "Snatanite",
+	spritenum: 0,
+	num: 67086,
+	isNonstandard: "Future",
+ },
+ pagieite: {
+	name: "Pagieite",
+	spritenum: 0,
+	num: 67087,
+	isNonstandard: "Future",
+ },
+ booklyite: {
+	name: "Booklyite",
+	spritenum: 0,
+	num: 67088,
+	isNonstandard: "Future",
+ },
+ lusfairite: {
+	name: "Lusfairite",
+	spritenum: 0,
+	num: 67089,
+	isNonstandard: "Future",
+ },
+ boxoite: {
+	name: "Boxoite",
+	spritenum: 0,
+	num: 67090,
+	isNonstandard: "Future",
+ },
+ poweredfan: {
+	/* TODO when Tempest is introduced **/
+	name: "Powered Fan",
+	spritenum: 0,
+	num: 67091,
+	isNonstandard: "Future",
+ },
+ thickscarf: {
+	name: "Thick Scarf",
+	spritenum: 0,
+	onImmunity(type, pokemon) {
+	  if (type === "hail")
+		 return false;
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move && move.type === "Ice") {
+		 this.debug("Thick Scarf Gem weaken");
+		 return this.chainModify(0.85);
+	  }
+	},
+	num: 67092,
+	isNonstandard: "Future",
+ },
+ wheelchair: {
+	name: "Wheelchair",
+	spritenum: 0,
+	fling: {
+	  basePower: 100
+	},
+	onModifySpePriority: 5,
+	onModifySpe(spe, pokemon) {
+	  if (pokemon.status === "par") {
+		 return this.chainModify(2);
+	  } else {
+		 return this.chainModify(0.5);
+	  }
+	},
+	num: 67093,
+	isNonstandard: "Future",
+ },
+ shockorb: {
+	name: "Shock Orb",
+	spritenum: 0,
+	fling: {
+	  basePower: 30,
+	  status: "par"
+	},
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.trySetStatus("par", pokemon);
+	},
+	num: 67094,
+	isNonstandard: "Future",
+ },
+ frostorb: {
+	name: "Frost Orb",
+	spritenum: 0,
+	fling: {
+	  basePower: 30,
+	  status: "frz"
+	},
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.trySetStatus("frz", pokemon);
+	},
+	num: 67095,
+	isNonstandard: "Future",
+ },
+ naporb: {
+	name: "Nap Orb",
+	spritenum: 0,
+	fling: {
+	  basePower: 30,
+	  status: "slp"
+	},
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.trySetStatus("slp", pokemon);
+	},
+	num: 67096,
+	isNonstandard: "Future",
+ },
+ woodgem: {
+	name: "Wood Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Wood" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67097,
+	isNonstandard: "Future",
+ },
+ magmagem: {
+	name: "Magma Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Magma" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67098,
+	isNonstandard: "Future",
+ },
+ steamgem: {
+	name: "Steam Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Magma" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67099,
+	isNonstandard: "Future",
+ },
+ windgem: {
+	name: "Wind Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Wind" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67100,
+	isNonstandard: "Future",
+ },
+ papergem: {
+	name: "Paper Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Paper" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67101,
+	isNonstandard: "Future",
+ },
+ techgem: {
+	name: "Tech Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Tech" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67102,
+	isNonstandard: "Future",
+ },
+ magicgem: {
+	name: "Magicgem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Magic" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67103,
+	isNonstandard: "Future",
+ },
+ rubbergem: {
+	name: "Rubber Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Rubber" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67104,
+	isNonstandard: "Future",
+ },
+ feargem: {
+	name: "Fear Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Fear" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67105,
+	isNonstandard: "Future",
+ },
+ lightgem: {
+	name: "Light Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Light" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67106,
+	isNonstandard: "Future",
+ },
+ cosmicgem: {
+	name: "Cosmic Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Cosmic" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67107,
+	isNonstandard: "Future",
+ },
+ soundgem: {
+	name: "Sound Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Sound" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67108,
+	isNonstandard: "Future",
+ },
+ foodgem: {
+	name: "Food Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Food" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67109,
+	isNonstandard: "Future",
+ },
+ zombiegem: {
+	name: "Zombie Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Zombie" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67110,
+	isNonstandard: "Future",
+ },
+ nucleargem: {
+	name: "Nuclear Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Nuclear" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67111,
+	isNonstandard: "Future",
+ },
+ virusgem: {
+	name: "Virus Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Virus" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67112,
+	isNonstandard: "Future",
+ },
+ cybergem: {
+	name: "Cyber Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Cyber" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67113,
+	isNonstandard: "Future",
+ },
+ fabricgem: {
+	name: "Fabric Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Fabric" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67114,
+	isNonstandard: "Future",
+ },
+ chaosgem: {
+	name: "Chaos Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Chaos" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67115,
+	isNonstandard: "Future",
+ },
+ divinegem: {
+	name: "Divine Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Divine" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67116,
+	isNonstandard: "Future",
+ },
+ qmarksgem: {
+	name: "Qmarksgem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Qmarks" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67117,
+	isNonstandard: "Future",
+ },
+ timegem: {
+	name: "Time Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Time" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67118,
+	isNonstandard: "Future",
+ },
+ paintgem: {
+	name: "Paint Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Paint" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67119,
+	isNonstandard: "Future",
+ },
+ crystalgem: {
+	name: "Crystal Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Crystal" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67120,
+	isNonstandard: "Future",
+ },
+ memegem: {
+	name: "Meme Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Meme" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67121,
+	isNonstandard: "Future",
+ },
+ bloodgem: {
+	name: "Blood Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Blood" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67122,
+	isNonstandard: "Future",
+ },
+ greasygem: {
+	name: "Greasy Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Greasy" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67123,
+	isNonstandard: "Future",
+ },
+ heartgem: {
+	name: "Heart Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Heart" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67124,
+	isNonstandard: "Future",
+ },
+ ogregem: {
+	name: "Ogre Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Ogre" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67125,
+	isNonstandard: "Future",
+ },
+ shadowgem: {
+	name: "Shadow Gem",
+	spritenum: 0,
+	isGem: true,
+	onSourceTryPrimaryHit(target, source, move) {
+	  const pledges = ["firepledge", "grasspledge", "waterpledge"];
+	  if (target === source || move.category === "Status" || pledges.includes(move.id))
+		 return;
+	  if (move.type === "Shadow" && source.useItem()) {
+		 source.addVolatile("gem");
+	  }
+	},
+	num: 67126,
+	isNonstandard: "Future",
+ },
+ acidrock: {
+	name: "Acid Rock",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	num: 67127,
+	isNonstandard: "Future",
+ },
+ blackrock: {
+	name: "Black Rock",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	num: 67128,
+	isNonstandard: "Future",
+ },
+ hulklearite: {
+	name: "Hulklearite",
+	spritenum: 0,
+	num: 67129,
+	isNonstandard: "Future",
+ },
+ fearowite: {
+	name: "Fearowite",
+	spritenum: 0,
+	num: 67130,
+	isNonstandard: "Future",
+ },
+ skippingstone: {
+	name: "Skipping Stone",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  if (move.type === "Water") {
+		 target.useItem();
+	  }
+	},
+	boosts: {
+	  spe: 2
+	},
+	num: 67131,
+	isNonstandard: "Future",
+ },
+ arrowhead: {
+	name: "Arrowhead",
+	spritenum: 0,
+	onBeforeMovePriority: 6,
+	onBeforeMove(pokemon, target, move) {
+	  if (move.flags["arrow"]) {
+		 this.add("-activate", pokemon, "item: Arrow Head");
+		 this.boost({ accuracy: 1 }, pokemon, pokemon);
+	  }
+	},
+	num: 67132,
+	isNonstandard: "Future",
+ },
+ bootsofblindingspeed: {
+	name: "Bootsofblindingspeed",
+	spritenum: 0,
+	onModifySpe(spe, pokemon) {
+	  if (pokemon.hasAbility("noguard"))
+		 return;
+	  return this.chainModify(10.5);
+	},
+	onSourceModifyAccuracyPriority: -2,
+	onSourceModifyAccuracy(accuracy) {
+	  if (typeof accuracy === "number") {
+		 return this.chainModify(0.05);
+	  }
+	},
+	num: 67133,
+	isNonstandard: "Future",
+ },
+ minigalaxy: {
+	/* TODO when Starfield is introduced **/
+	name: "Mini Galaxy",
+	spritenum: 0,
+	num: 67134,
+	isNonstandard: "Future",
+ },
+ mienshaonite: {
+	name: "Mienshaonite",
+	spritenum: 0,
+	num: 67135,
+	isNonstandard: "Future",
+ },
+ lipstick: {
+	name: "Lipstick",
+	spritenum: 0,
+	onModifyDamage(damage, source, target, move) {
+	  if (move && move.flags["kiss"]) {
+		 return this.chainModify(2);
+	  }
+	},
+	num: 67136,
+	isNonstandard: "Future",
+ },
+ gascan: {
+	name: "Gas Can",
+	spritenum: 0,
+	fling: {
+	  basePower: 50
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move && move.type === "Fire") {
+		 return this.chainModify(1.65);
+	  }
+	},
+	num: 67137,
+	isNonstandard: "Future",
+ },
+ spices: {
+	name: "Spices",
+	spritenum: 0,
+	fling: {
+	  basePower: 50
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move && move.type === "Food") {
+		 return this.chainModify(1.65);
+	  }
+	},
+	num: 67138,
+	isNonstandard: "Future",
+ },
+ kettle: {
+	name: "Kettle",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onModifyMovePriority: -3,
+	onModifyMove(move) {
+	  if (move.secondaries && move.type === "Steam") {
+		 this.debug("doubling secondary chance");
+		 for (const secondary of move.secondaries) {
+			if (secondary.chance)
+			  secondary.chance *= 2;
+		 }
+	  }
+	  if (move.self?.chance)
+		 move.self.chance *= 2;
+	},
+	num: 67139,
+	isNonstandard: "Future",
+ },
+ magmapowder: {
+	name: "Magma Powder",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onModifyMovePriority: -3,
+	onModifyMove(move) {
+	  if (move.secondaries && move.type === "Magma") {
+		 this.debug("doubling secondary chance");
+		 for (const secondary of move.secondaries) {
+			if (secondary.chance)
+			  secondary.chance *= 2;
+		 }
+	  }
+	  if (move.self?.chance)
+		 move.self.chance *= 2;
+	},
+	num: 67140,
+	isNonstandard: "Future",
+ },
+ sapling: {
+	name: "Sapling",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onModifyMovePriority: -3,
+	onModifyMove(move) {
+	  if (move.secondaries && move.type === "Wood") {
+		 this.debug("doubling secondary chance");
+		 for (const secondary of move.secondaries) {
+			if (secondary.chance)
+			  secondary.chance *= 2;
+		 }
+	  }
+	  if (move.self?.chance)
+		 move.self.chance *= 2;
+	},
+	num: 67141,
+	isNonstandard: "Future",
+ },
+ fertilizer: {
+	name: "Fertilizer",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onModifyMovePriority: -3,
+	onModifyMove(move) {
+	  if (move.secondaries && move.type === "Grass") {
+		 this.debug("doubling secondary chance");
+		 for (const secondary of move.secondaries) {
+			if (secondary.chance)
+			  secondary.chance *= 2;
+		 }
+	  }
+	  if (move.self?.chance)
+		 move.self.chance *= 2;
+	},
+	num: 67142,
+	isNonstandard: "Future",
+ },
+ sturdypebbles: {
+	name: "Sturdy Pebbles",
+	onModifySpDPriority: 1,
+	onModifySpD(spd, pokemon) {
+	  if (pokemon.hasType("Ground") || pokemon.hasType("Rock")) {
+		 return this.chainModify(2);
+	  }
+	},
+	spritenum: 0,
+	num: 67143,
+	isNonstandard: "Future",
+ },
+ sandycapsule: {
+	name: "Sandy Capsule",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setWeather("sandstorm");
+	},
+	num: 67144,
+	isNonstandard: "Future",
+ },
+ rainycapsule: {
+	name: "Rainy Capsule",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setWeather("raindance");
+	},
+	num: 67145,
+	isNonstandard: "Future",
+ },
+ snowycapsule: {
+	name: "Snowy Capsule",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setWeather("hail");
+	},
+	num: 67146,
+	isNonstandard: "Future",
+ },
+ sunnycapsule: {
+	name: "Sunny Capsule",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setWeather("sunnyday");
+	},
+	num: 67147,
+	isNonstandard: "Future",
+ },
+ lamwerberry: {
+	name: "Lamwer Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Cyber"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Cyber" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67148,
+	isNonstandard: "Future",
+ },
+ prigtinberry: {
+	name: "Prigtin Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Paper"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Paper" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67149,
+	isNonstandard: "Future",
+ },
+ borcygberry: {
+	name: "Borcyg Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Tech"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Tech" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67150,
+	isNonstandard: "Future",
+ },
+ lascetberry: {
+	name: "Lascet Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Rubber"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Rubber" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67151,
+	isNonstandard: "Future",
+ },
+ yboogberry: {
+	name: "Yboog Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Fear"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Fear" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67152,
+	isNonstandard: "Future",
+ },
+ shieginberry: {
+	name: "Shiegin Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Light"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Light" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67153,
+	isNonstandard: "Future",
+ },
+ exretberry: {
+	name: "Exret Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Cosmic"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Cosmic" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67154,
+	isNonstandard: "Future",
+ },
+ cousactiberry: {
+	name: "Cousacti Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Sound"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Sound" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67155,
+	isNonstandard: "Future",
+ },
+ rottunberry: {
+	name: "Rottun Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Berry"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Berry" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67156,
+	isNonstandard: "Future",
+ },
+ niossifberry: {
+	name: "Niossif Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Nuclear"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Nuclear" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67157,
+	isNonstandard: "Future",
+ },
+ tahrestberry: {
+	name: "Tahrest Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Glass"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Glass" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67158,
+	isNonstandard: "Future",
+ },
+ ackegapberry: {
+	name: "Ackegap Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Plastic"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Plastic" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67159,
+	isNonstandard: "Future",
+ },
+ thiclonberry: {
+	name: "Thiclon Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Fabric"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Fabric" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67160,
+	isNonstandard: "Future",
+ },
+ naltereberry: {
+	name: "Naltere Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Time"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Time" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67161,
+	isNonstandard: "Future",
+ },
+ istartberry: {
+	name: "Istart Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Paint"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Paint" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67162,
+	isNonstandard: "Future",
+ },
+ stomegenberry: {
+	name: "Stomegen Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Crystal"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Crystal" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67163,
+	isNonstandard: "Future",
+ },
+ fohazamberry: {
+	name: "Fohazam Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Meme"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Meme" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67164,
+	isNonstandard: "Future",
+ },
+ lomeitberry: {
+	name: "Lomeit Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Heart"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Heart" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67165,
+	isNonstandard: "Future",
+ },
+ symgrieberry: {
+	name: "Symgrie Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Greasy"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Greasy" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67166,
+	isNonstandard: "Future",
+ },
+ murkycapsule: {
+	name: "Murky Capsule",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setWeather("midnight");
+	},
+	num: 67167,
+	isNonstandard: "Future",
+ },
+ acidycapsule: {
+	name: "Acidy Capsule",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setWeather("acidrain");
+	},
+	num: 67168,
+	isNonstandard: "Future",
+ },
+ blazingfeather: {
+	name: "Blazing Feather",
+	spritenum: 0,
+	fling: {
+	  basePower: 110
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (target.hasType("Fire") && target.hasType("Flying")) {
+		 if (move && (move.type === "Rock" || move.type === "Wind")) {
+			return this.chainModify(0.4);
+		 }
+	  }
+	},
+	num: 67169,
+	isNonstandard: "Future",
+ },
+ riotshield: {
+	name: "Riot Shield",
+	spritenum: 0,
+	fling: {
+	  basePower: 80
+	},
+	onModifyDefPriority: 1,
+	onModifyDef(def) {
+	  return this.chainModify(1.5);
+	},
+	onDisableMove(pokemon) {
+	  for (const moveSlot of pokemon.moveSlots) {
+		 if (this.dex.moves.get(moveSlot.move).category === "Status") {
+			pokemon.disableMove(moveSlot.id);
+		 }
+	  }
+	},
+	num: 67170,
+	isNonstandard: "Future",
+ },
+ falloutcapsule: {
+	/* TODO when Fallout is introduced **/
+	name: "Fallout Capsule",
+	spritenum: 0,
+	num: 67171,
+	isNonstandard: "Future",
+ },
+ grassycapsule: {
+	name: "Grassy Capsule",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setTerrain("grassyterrain");
+	},
+	num: 67172,
+	isNonstandard: "Future",
+ },
+ mistycapsule: {
+	name: "Misty Capsule",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setTerrain("mistyterrain");
+	},
+	num: 67173,
+	isNonstandard: "Future",
+ },
+ electriccapsule: {
+	name: "Electric Capsule",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setTerrain("electricterrain");
+	},
+	num: 67174,
+	isNonstandard: "Future",
+ },
+ psychiccapsule: {
+	name: "Psychic Capsule",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.setTerrain("psychicterrain");
+	},
+	num: 67175,
+	isNonstandard: "Future",
+ },
+ icycapsule: {
+	/* TODO when introduced **/
+	name: "Icy Capsule",
+	spritenum: 0,
+	num: 67176,
+	isNonstandard: "Future",
+ },
+ marshycapsule: {
+	/* TODO when introduced **/
+	name: "Marshy Capsule",
+	spritenum: 0,
+	num: 67177,
+	isNonstandard: "Future",
+ },
+ wizardcapsule: {
+	/* TODO when introduced **/
+	name: "Wizard Capsule",
+	spritenum: 0,
+	num: 67178,
+	isNonstandard: "Future",
+ },
+ volcaniccapsule: {
+	/* TODO when introduced **/
+	name: "Volcanic Capsule",
+	spritenum: 0,
+	num: 67179,
+	isNonstandard: "Future",
+ },
+ starfieldcapsule: {
+	/* TODO when introduced **/
+	name: "Starfield Capsule",
+	spritenum: 0,
+	num: 67180,
+	isNonstandard: "Future",
+ },
+ librarycapsule: {
+	/* TODO when introduced **/
+	name: "Library Capsule",
+	spritenum: 0,
+	num: 67181,
+	isNonstandard: "Future",
+ },
+ comfypillow: {
+	/* Used in data/mod/wack/condition.ts **/
+	name: "Comfy Pillow",
+	spritenum: 0,
+	num: 67182,
+	isNonstandard: "Future",
+ },
+ greencard: {
+	name: "Green Card",
+	spritenum: 0,
+	onTrapPokemon(pokemon) {
+	  pokemon.tryTrap();
+	},
+	onDragOut(pokemon) {
+	  this.add("-activate", pokemon, "item: Green Card");
+	  return null;
+	},
+	num: 67183,
+	isNonstandard: "Future",
+ },
+ holyshield: {
+	name: "Holy Shield",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onTryHit(target, source, move) {
+	  if (target !== source && move.type === "Chaos") {
+		 this.add("-activate", target, "item: Holy Shield");
+		 this.add("-immune", target, "[from] item: Holy Shield");
+		 return null;
+	  }
+	},
+	onBeforeMove(source, target, move) {
+	  if (move.category === "Physical" || move.category === "Special") {
+		 const item = source.takeItem();
+		 if (item) {
+			this.add("-enditem", source, item.name, "[from] item: Holy Shield", "[of] " + source);
+		 }
+	  }
+	},
+	num: 67184,
+	isNonstandard: "Future",
+ },
+ lavarock: {
+	name: "Lava Rock",
+	spritenum: 0,
+	fling: {
+	  basePower: 50
+	},
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  if (pokemon.hasType("Magma") || pokemon.hasType("Fire")) {
+		 this.heal(pokemon.baseMaxhp / 16);
+	  } else if (!pokemon.hasAbility("magmarmor")) {
+		 this.damage(pokemon.baseMaxhp / 8);
+	  }
+	},
+	num: 67186,
+	isNonstandard: "Future",
+ },
+ arhelmet: {
+	name: "Ar Helmet",
+	/* TODO: Rooms for Ar Helmet to be later defined in data/mod/wack/moves.ts **/
+	spritenum: 0,
+	fling: {
+	  basePower: 50
+	},
+	num: 67187,
+	isNonstandard: "Future",
+ },
+ vrheadset: {
+	/* TODO: Rooms for Vr Helmet to be later defined in data/mod/wack/moves.ts **/
+	name: "Vr Headset",
+	spritenum: 0,
+	fling: {
+	  basePower: 50
+	},
+	num: 67188,
+	isNonstandard: "Future",
+ },
+ boxinggloves: {
+	name: "Boxing Gloves",
+	spritenum: 0,
+	fling: {
+	  basePower: 80
+	},
+	onModifyDamage(damage, source, target, move) {
+	  if (move && move.flags["punch"]) {
+		 return this.chainModify(1.25);
+	  }
+	},
+	num: 67189,
+	isNonstandard: "Future",
+ },
+ spikedboots: {
+	name: "Spiked Boots",
+	spritenum: 0,
+	fling: {
+	  basePower: 80
+	},
+	onModifyDamage(damage, source, target, move) {
+	  if (move && move.flags["kick"]) {
+		 return this.chainModify(1.2);
+	  }
+	},
+	num: 67190,
+	isNonstandard: "Future",
+ },
+ shoepolish: {
+	name: "Shoe Polish",
+	spritenum: 0,
+	onAfterMoveSecondarySelf(target, source, move) {
+	  if (move.flags["kick"]) {
+		 this.add("-activate", target, "item: Shoe Polish");
+		 this.boost({ spe: 1 }, target, target);
+	  }
+	},
+	num: 67191,
+	isNonstandard: "Future",
+ },
+ trainingglove: {
+	name: "Training Glove",
+	spritenum: 0,
+	onAfterMoveSecondarySelf(target, source, move) {
+	  if (move.flags["punch"]) {
+		 this.add("-activate", target, "item: Training Glove");
+		 this.boost({ atk: 1 }, target, target);
+	  }
+	},
+	num: 67192,
+	isNonstandard: "Future",
+ },
+ sandals: {
+	name: "Sandals",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onModifySpe(spe, pokemon) {
+	  if (this.field.isWeather("sandstorm")) {
+		 return this.chainModify(1.25);
+	  }
+	},
+	num: 67193,
+	isNonstandard: "Future",
+ },
+ skis: {
+	name: "Skis",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onModifySpe(spe, pokemon) {
+	  if (this.field.isWeather("hail")) {
+		 return this.chainModify(1.25);
+	  }
+	},
+	num: 67194,
+	isNonstandard: "Future",
+ },
+ skates: {
+	/* TODO when Icy Terrain is introduced **/
+	name: "Skates",
+	spritenum: 0,
+	num: 67195,
+	isNonstandard: "Future",
+ },
+ snowshoes: {
+	/* TODO Add Icy Terrain condition **/
+	name: "Snowshoes",
+	spritenum: 0,
+	onTryBoost(boost, target, source, effect) {
+	  if (source && target === source)
+		 return;
+	  if (!this.field.isWeather("hail"))
+		 return;
+	  if (boost.spe && boost.spe < 0) {
+		 delete boost.spe;
+		 if (!effect.secondaries) {
+			this.add("-activate", target, "item: Snowshoes");
+			this.add("-fail", target, "unboost", "Speed", "[from] item: Snowshoes", "[of] " + target);
+		 }
+	  }
+	},
+	num: 67196,
+	isNonstandard: "Future",
+ },
+ hazmatsuit: {
+	/* TODO Add Fallout and other conditions **/
+	name: "Hazmat Suit",
+	spritenum: 0,
+	num: 67197,
+	isNonstandard: "Future",
+ },
+ librarycard: {
+	/* TODO when Library is introduced **/
+	name: "Library Card",
+	spritenum: 0,
+	num: 67198,
+	isNonstandard: "Future",
+ },
+ saunaheater: {
+	/* TODO when Sauna is introduced **/
+	name: "Sauna Heater",
+	spritenum: 0,
+	num: 67199,
+	isNonstandard: "Future",
+ },
+ foggysteamer: {
+	/* TODO when Sauna is introduced **/
+	name: "Foggy Steamer",
+	spritenum: 0,
+	num: 67200,
+	isNonstandard: "Future",
+ },
+ swimsuit: {
+	name: "Swim Suit",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onModifySpe(spe, pokemon) {
+	  if (this.field.isWeather("raindance")) {
+		 return this.chainModify(1.25);
+	  }
+	},
+	num: 67201,
+	isNonstandard: "Future",
+ },
+ volcanicseed: {
+	/* TODO when Volcano Terrain is introduced **/
+	name: "Volcanic Seed",
+	spritenum: 0,
+	num: 67202,
+	isNonstandard: "Future",
+ },
+ marshyseed: {
+	/* TODO when Marshy Terrain is introduced **/
+	name: "Marshy Seed",
+	spritenum: 0,
+	num: 67203,
+	isNonstandard: "Future",
+ },
+ tunlawberry: {
+	name: "Tunlaw Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Heart"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["attract"]) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  pokemon.removeVolatile("attract");
+	},
+	num: 67204,
+	isNonstandard: "Future",
+ },
+ excisberry: {
+	name: "Excis Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Divine"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["curse"]) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  pokemon.removeVolatile("curse");
+	},
+	num: 67205,
+	isNonstandard: "Future",
+ },
+ coagberry: {
+	/* TODO when Bleeding is introduced */
+	name: "Coag Berry",
+	spritenum: 0,
+	num: 67206,
+	isNonstandard: "Future",
+ },
+ ambrosaberry: {
+	name: "Ambrosa Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Divine"
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move.type === "Fabric" && target.getMoveHitData(move).typeMod > 0) {
+		 const hitSub = target.volatiles["substitute"] && !move.flags["bypasssub"] && !(move.infiltrates && this.gen >= 6);
+		 if (hitSub)
+			return;
+		 if (target.eatItem()) {
+			this.debug("-50% reduction");
+			this.add("-enditem", target, this.effect, "[weaken]");
+			return this.chainModify(0.5);
+		 }
+	  }
+	},
+	onEat() {
+	},
+	num: 67207,
+	isNonstandard: "Future",
+ },
+ wingrenberry: {
+	name: "Wingren Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Time"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["encore"]) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  pokemon.removeVolatile("encore");
+	},
+	num: 67208,
+	isNonstandard: "Future",
+ },
+ garsinberry: {
+	name: "Garsin Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Sound"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["taunt"]) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  pokemon.removeVolatile("taunt");
+	},
+	num: 67209,
+	isNonstandard: "Future",
+ },
+ yllohberry: {
+	name: "Ylloh Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Cyber"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["disable"]) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  pokemon.removeVolatile("disable");
+	},
+	num: 67210,
+	isNonstandard: "Future",
+ },
+ looffahberry: {
+	name: "Looffah Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Magic"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["torment"]) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  pokemon.removeVolatile("torment");
+	},
+	num: 67211,
+	isNonstandard: "Future",
+ },
+ bandaid: {
+	/* TODO when Bleeding is introduced **/
+	name: "Bandaid",
+	spritenum: 0,
+	num: 67212,
+	isNonstandard: "Future",
+ },
+ librarybinding: {
+	/* TODO when Library is introduced **/
+	name: "Library Binding",
+	spritenum: 0,
+	num: 67213,
+	isNonstandard: "Future",
+ },
+ cyberspacecapsule: {
+	/* TODO when Cyberspace is introduced **/
+	name: "Cyberspace Capsule",
+	spritenum: 0,
+	num: 67214,
+	isNonstandard: "Future",
+ },
+ gallerycapsule: {
+	/* TODO when Art Gallery is introduced **/
+	name: "Gallery Capsule",
+	spritenum: 0,
+	num: 67215,
+	isNonstandard: "Future",
+ },
+ choicejacket: {
+	name: "Choice Jacket",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	onStart(pokemon) {
+	  if (pokemon.volatiles["choicelock"]) {
+		 this.debug("removing choicelock: " + pokemon.volatiles["choicelock"]);
+	  }
+	  pokemon.removeVolatile("choicelock");
+	},
+	onModifyMove(move, pokemon) {
+	  pokemon.addVolatile("choicelock");
+	},
+	onModifyDefPriority: 1,
+	onModifyDef(def, pokemon) {
+	  if (pokemon.volatiles["dynamax"])
+		 return;
+	  return this.chainModify(1.5);
+	},
+	isChoice: true,
+	num: 67216,
+	isNonstandard: "Future",
+ },
+ choicecloak: {
+	name: "Choice Cloak",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	onStart(pokemon) {
+	  if (pokemon.volatiles["choicelock"]) {
+		 this.debug("removing choicelock: " + pokemon.volatiles["choicelock"]);
+	  }
+	  pokemon.removeVolatile("choicelock");
+	},
+	onModifyMove(move, pokemon) {
+	  pokemon.addVolatile("choicelock");
+	},
+	onModifySpDPriority: 1,
+	onModifySpD(spd, pokemon) {
+	  if (pokemon.volatiles["dynamax"])
+		 return;
+	  return this.chainModify(1.5);
+	},
+	isChoice: true,
+	num: 67217,
+	isNonstandard: "Future",
+ },
+ mettleberry: {
+	name: "Mettle Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Wood"
+	},
+	onTryAddVolatile(status, pokemon) {
+	  if (status.id === "flinch") {
+		 pokemon.eatItem();
+		 return null;
+	  }
+	},
+	onEat() {
+	},
+	num: 67218,
+	isNonstandard: "Future",
+ },
+ boisonberry: {
+	name: "Boison Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Virus"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 2) {
+		 pokemon.eatItem();
+	  }
+	},
+	onTryEatItem(item, pokemon) {
+	  if (!this.runEvent("TryHeal", pokemon))
+		 return false;
+	},
+	onEat(pokemon) {
+	  this.heal(pokemon.baseMaxhp / 2);
+	  pokemon.trySetStatus("psn", pokemon);
+	},
+	num: 67219,
+	isNonstandard: "Future",
+ },
+ perepberry: {
+	name: "Perep Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Magma"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 2) {
+		 pokemon.eatItem();
+	  }
+	},
+	onTryEatItem(item, pokemon) {
+	  if (!this.runEvent("TryHeal", pokemon))
+		 return false;
+	},
+	onEat(pokemon) {
+	  this.heal(pokemon.baseMaxhp / 2);
+	  pokemon.trySetStatus("brn", pokemon);
+	},
+	num: 67220,
+	isNonstandard: "Future",
+ },
+ dollberry: {
+	name: "Doll Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Tech"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 2) {
+		 pokemon.eatItem();
+	  }
+	},
+	onTryEatItem(item, pokemon) {
+	  if (!this.runEvent("TryHeal", pokemon))
+		 return false;
+	},
+	onEat(pokemon) {
+	  this.heal(pokemon.baseMaxhp / 2);
+	  pokemon.trySetStatus("par", pokemon);
+	},
+	num: 67221,
+	isNonstandard: "Future",
+ },
+ normaldust: {
+	name: "Normal Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Normal";
+	  }
+	},
+	num: 67222,
+	isNonstandard: "Future",
+ },
+ waterdust: {
+	name: "Water Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Water";
+	  }
+	},
+	num: 67223,
+	isNonstandard: "Future",
+ },
+ firedust: {
+	name: "Fire Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Fire";
+	  }
+	},
+	num: 67224,
+	isNonstandard: "Future",
+ },
+ grassdust: {
+	name: "Grass Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Grass";
+	  }
+	},
+	num: 67225,
+	isNonstandard: "Future",
+ },
+ fightingdust: {
+	name: "Fighting Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Fighting";
+	  }
+	},
+	num: 67226,
+	isNonstandard: "Future",
+ },
+ flyingdust: {
+	name: "Flying Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Flying";
+	  }
+	},
+	num: 67227,
+	isNonstandard: "Future",
+ },
+ poisondust: {
+	name: "Poison Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Poison";
+	  }
+	},
+	num: 67228,
+	isNonstandard: "Future",
+ },
+ grounddust: {
+	name: "Ground Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Ground";
+	  }
+	},
+	num: 67229,
+	isNonstandard: "Future",
+ },
+ rockdust: {
+	name: "Rock Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Rock";
+	  }
+	},
+	num: 67230,
+	isNonstandard: "Future",
+ },
+ bugdust: {
+	name: "Bug Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Bug";
+	  }
+	},
+	num: 67231,
+	isNonstandard: "Future",
+ },
+ ghostdust: {
+	name: "Ghost Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Ghost";
+	  }
+	},
+	num: 67232,
+	isNonstandard: "Future",
+ },
+ electricdust: {
+	name: "Electric Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Electric";
+	  }
+	},
+	num: 67233,
+	isNonstandard: "Future",
+ },
+ psychicdust: {
+	name: "Psychic Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Psychic";
+	  }
+	},
+	num: 67234,
+	isNonstandard: "Future",
+ },
+ icedust: {
+	name: "Ice Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Ice";
+	  }
+	},
+	num: 67235,
+	isNonstandard: "Future",
+ },
+ steeldust: {
+	name: "Steel Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Steel";
+	  }
+	},
+	num: 67236,
+	isNonstandard: "Future",
+ },
+ darkdust: {
+	name: "Dark Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Dark";
+	  }
+	},
+	num: 67237,
+	isNonstandard: "Future",
+ },
+ dragondust: {
+	name: "Dragon Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Dragon";
+	  }
+	},
+	num: 67238,
+	isNonstandard: "Future",
+ },
+ fairydust: {
+	name: "Fairy Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Fairy";
+	  }
+	},
+	num: 67239,
+	isNonstandard: "Future",
+ },
+ wooddust: {
+	name: "Wood Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Wood";
+	  }
+	},
+	num: 67240,
+	isNonstandard: "Future",
+ },
+ magmadust: {
+	name: "Magma Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Magma";
+	  }
+	},
+	num: 67241,
+	isNonstandard: "Future",
+ },
+ steamdust: {
+	name: "Steam Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Steam";
+	  }
+	},
+	num: 67242,
+	isNonstandard: "Future",
+ },
+ winddust: {
+	name: "Wind Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Wind";
+	  }
+	},
+	num: 67243,
+	isNonstandard: "Future",
+ },
+ paperdust: {
+	name: "Paper Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Paper";
+	  }
+	},
+	num: 67244,
+	isNonstandard: "Future",
+ },
+ techdust: {
+	name: "Tech Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Tech";
+	  }
+	},
+	num: 67245,
+	isNonstandard: "Future",
+ },
+ rubberdust: {
+	name: "Rubber Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Rubber";
+	  }
+	},
+	num: 67246,
+	isNonstandard: "Future",
+ },
+ feardust: {
+	name: "Fear Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Fear";
+	  }
+	},
+	num: 67247,
+	isNonstandard: "Future",
+ },
+ magicdust: {
+	name: "Magic Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Magic";
+	  }
+	},
+	num: 67248,
+	isNonstandard: "Future",
+ },
+ lightdust: {
+	name: "Light Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Light";
+	  }
+	},
+	num: 67249,
+	isNonstandard: "Future",
+ },
+ cosmicdust: {
+	name: "Cosmic Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Cosmic";
+	  }
+	},
+	num: 67250,
+	isNonstandard: "Future",
+ },
+ sounddust: {
+	name: "Sound Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Sound";
+	  }
+	},
+	num: 67251,
+	isNonstandard: "Future",
+ },
+ fooddust: {
+	name: "Food Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Food";
+	  }
+	},
+	num: 67252,
+	isNonstandard: "Future",
+ },
+ zombiedust: {
+	name: "Zombie Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Zombie";
+	  }
+	},
+	num: 67253,
+	isNonstandard: "Future",
+ },
+ nucleardust: {
+	name: "Nuclear Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Nuclear";
+	  }
+	},
+	num: 67254,
+	isNonstandard: "Future",
+ },
+ virusdust: {
+	name: "Virus Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Virus";
+	  }
+	},
+	num: 67255,
+	isNonstandard: "Future",
+ },
+ cyberdust: {
+	name: "Cyber Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Cyber";
+	  }
+	},
+	num: 67256,
+	isNonstandard: "Future",
+ },
+ glassdust: {
+	name: "Glass Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Glass";
+	  }
+	},
+	num: 67257,
+	isNonstandard: "Future",
+ },
+ plasticdust: {
+	name: "Plastic Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Plastic";
+	  }
+	},
+	num: 67258,
+	isNonstandard: "Future",
+ },
+ fabricdust: {
+	name: "Fabric Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Fabric";
+	  }
+	},
+	num: 67259,
+	isNonstandard: "Future",
+ },
+ chaosdust: {
+	name: "Chaos Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Chaos";
+	  }
+	},
+	num: 67260,
+	isNonstandard: "Future",
+ },
+ divinedust: {
+	name: "Divine Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Divine";
+	  }
+	},
+	num: 67261,
+	isNonstandard: "Future",
+ },
+ timedust: {
+	name: "Time Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Time";
+	  }
+	},
+	num: 67262,
+	isNonstandard: "Future",
+ },
+ paintdust: {
+	name: "Paint Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Paint";
+	  }
+	},
+	num: 67263,
+	isNonstandard: "Future",
+ },
+ crystaldust: {
+	name: "Crystal Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Crystal";
+	  }
+	},
+	num: 67264,
+	isNonstandard: "Future",
+ },
+ memedust: {
+	name: "Meme Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Meme";
+	  }
+	},
+	num: 67265,
+	isNonstandard: "Future",
+ },
+ blooddust: {
+	name: "Blood Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Blood";
+	  }
+	},
+	num: 67266,
+	isNonstandard: "Future",
+ },
+ greasydust: {
+	name: "Greasy Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Greasy";
+	  }
+	},
+	num: 67267,
+	isNonstandard: "Future",
+ },
+ heartdust: {
+	name: "Heart Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Heart";
+	  }
+	},
+	num: 67268,
+	isNonstandard: "Future",
+ },
+ ogredust: {
+	name: "Ogre Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Ogre";
+	  }
+	},
+	num: 67269,
+	isNonstandard: "Future",
+ },
+ qmarksdust: {
+	name: "Qmarksdust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Qmarks";
+	  }
+	},
+	num: 67270,
+	isNonstandard: "Future",
+ },
+ shadowdust: {
+	name: "Shadow Dust",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (!noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 pokemon.useItem();
+		 move.type = "Shadow";
+	  }
+	},
+	num: 67271,
+	isNonstandard: "Future",
+ },
+ icepack: {
+	name: "Icepack",
+	spritenum: 0,
+	fling: {
+	  basePower: 50
+	},
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (move.type === "Water" && !noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 move.type = "Ice";
+	  }
+	},
+	num: 67272,
+	isNonstandard: "Future",
+ },
+ novicebelt: {
+	name: "Novice Belt",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onModifyDamage(damage, source, target, move) {
+	  if (target.getMoveHitData(move).typeMod < 0) {
+		 this.debug("Novice Belt boost");
+		 return this.chainModify(1.2);
+	  }
+	},
+	num: 67273,
+	isNonstandard: "Future",
+ },
+ gravitymodule: {
+	/* Used in data/mod/wack/moves.ts **/
+	name: "Gravity Module",
+	spritenum: 0,
+	num: 67274,
+	isNonstandard: "Future",
+ },
+ rockcandy: {
+	name: "Rock Candy",
+	spritenum: 0,
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  if (pokemon.hasType("Rock")) {
+		 this.heal(pokemon.baseMaxhp / 16);
+	  } else {
+		 this.damage(pokemon.baseMaxhp / 8);
+	  }
+	},
+	num: 67275,
+	isNonstandard: "Future",
+ },
+ gubiberry: {
+	name: "Gubi Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Plastic"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["embargo"]) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  pokemon.removeVolatile("embargo");
+	},
+	num: 67276,
+	isNonstandard: "Future",
+ },
+ siberrberry: {
+	name: "Siberr Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Rubber"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["healblock"]) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  pokemon.removeVolatile("healblock");
+	},
+	num: 67277,
+	isNonstandard: "Future",
+ },
+ waterballoon: {
+	name: "Water Balloon",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.addPseudoWeather("watersport");
+	},
+	num: 67278,
+	isNonstandard: "Future",
+ },
+ mudballoon: {
+	name: "Mud Balloon",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  target.useItem();
+	  this.field.addPseudoWeather("mudsport");
+	},
+	num: 67279,
+	isNonstandard: "Future",
+ },
+ magmaballoon: {
+	name: "Magma Balloon",
+	spritenum: 0,
+	onStart(target) {
+	  if (!target.ignoringItem() && !this.field.getPseudoWeather("gravity")) {
+		 this.add("-item", target, "Magma Balloon");
+	  }
+	},
+	// airborneness implemented in sim/pokemon.js:Pokemon#isGrounded
+	onDamagingHit(damage, target, source, move) {
+	  this.add("-enditem", target, "Magma Balloon");
+	  target.item = "";
+	  target.itemState = { id: "", target };
+	  this.runEvent("AfterUseItem", target, null, null, this.dex.items.get("magmaballoon"));
+	},
+	onAfterSubDamage(damage, target, source, effect) {
+	  this.debug("effect: " + effect.id);
+	  if (effect.effectType === "Move") {
+		 this.add("-enditem", target, "Magma Balloon");
+		 target.item = "";
+		 target.itemState = { id: "", target };
+		 this.runEvent("AfterUseItem", target, null, null, this.dex.items.get("magmaballoon"));
+	  }
+	},
+	num: 67280,
+	isNonstandard: "Future",
+ },
+ steamballoon: {
+	/* TODO when Steam Sport is introduced **/
+	name: "Steam Balloon",
+	spritenum: 0,
+	num: 67281,
+	isNonstandard: "Future",
+ },
+ supressionstone: {
+	// Implemented in sim/pokemon.ts
+	name: "Supression Stone",
+	spritenum: 0,
+	num: 67282,
+	isNonstandard: "Future",
+ },
+ resistancepolicy: {
+	name: "Resistance Policy",
+	spritenum: 0,
+	fling: {
+	  basePower: 80
+	},
+	onDamagingHit(damage, target, source, move) {
+	  if (!move.damage && !move.damageCallback && target.getMoveHitData(move).typeMod < 0) {
+		 target.useItem();
+	  }
+	},
+	boosts: {
+	  def: 2,
+	  spd: 2
+	},
+	num: 67283,
+	isNonstandard: "Future",
+ },
+ chloroflower: {
+	name: "Chloro Flower",
+	spritenum: 0,
+	onModifySpe(spe, pokemon) {
+	  if (this.field.isWeather("sunnyday")) {
+		 return this.chainModify(1.25);
+	  }
+	},
+	num: 67284,
+	isNonstandard: "Future",
+ },
+ coconaberry: {
+	name: "Cocona Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Sound"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["meanlook"] || pokemon.volatiles["block"]) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  if (pokemon.volatiles["meanlook"])
+		 pokemon.removeVolatile("taunt");
+	  if (pokemon.volatiles["block"])
+		 pokemon.removeVolatile("block");
+	},
+	num: 67285,
+	isNonstandard: "Future",
+ },
+ gravityseed: {
+	name: "Gravity Seed",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	onStart(pokemon) {
+	  if (!pokemon.ignoringItem() && this.field.getPseudoWeather("gravity")) {
+		 pokemon.useItem();
+	  }
+	},
+	onAnyPseudoWeatherChange(pokemon) {
+	  if (this.field.getPseudoWeather("gravity")) {
+		 pokemon.useItem();
+	  }
+	},
+	boosts: {
+	  spd: 1
+	},
+	num: 67286,
+	isNonstandard: "Future",
+ },
+ sunglasses: {
+	name: "Sunglasses",
+	spritenum: 0,
+	fling: {
+	  basePower: 30
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Light") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	onSourceModifyAccuracyPriority: -2,
+	onSourceModifyAccuracy(accuracy, target) {
+	  if (typeof accuracy === "number" && !this.queue.willMove(target) && ["sunnyday", "desolateland"].includes(target.effectiveWeather())) {
+		 this.debug("Zoom Lens boosting accuracy");
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 67287,
+	isNonstandard: "Future",
+ },
+ gravitycore: {
+	name: "Gravity Core",
+	spritenum: 0,
+	onBasePowerPriority: 19,
+	onBasePower(basePower, attacker, defender, move) {
+	  if (this.field.getPseudoWeather("gravity") && move.type === "Cosmic") {
+		 return this.chainModify(1.75);
+	  }
+	},
+	num: 67288,
+	isNonstandard: "Future",
+ },
+ sandcastlekit: {
+	name: "Sandcastle Kit",
+	spritenum: 0,
+	onModifyDefPriority: 1,
+	onModifyDef(def, pokemon) {
+	  if (this.field.isWeather("sandstorm")) {
+		 return this.chainModify(1.3);
+	  }
+	},
+	num: 67289,
+	isNonstandard: "Future",
+ },
+ raincoat: {
+	name: "Raincoat",
+	spritenum: 0,
+	onModifySpDPriority: 1,
+	onModifySpD(def, pokemon) {
+	  if (this.field.isWeather("raindance")) {
+		 return this.chainModify(1.3);
+	  }
+	},
+	num: 67290,
+	isNonstandard: "Future",
+ },
+ ativumberry: {
+	name: "Ativum Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Light"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true && target?.hasType("Ghost")) {
+		 if (move.type !== "Fear") {
+			move.ignoreImmunity["Fighting"] = true;
+			move.ignoreImmunity["Normal"] = true;
+			move.ignoreImmunity["Blood"] = true;
+			pokemon.eatItem();
+		 } else if (!target?.hasType("Zombie") && move.type === "Fear") {
+			move.ignoreImmunity["Fear"] = true;
+			pokemon.eatItem();
+		 }
+	  }
+	},
+	onEat(pokemon) {
+	},
+	num: 67291,
+	isNonstandard: "Future",
+ },
+ igaradberry: {
+	name: "Igarad Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Steel"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Poison"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67292,
+	isNonstandard: "Future",
+ },
+ inshuberry: {
+	name: "Inshu Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Fabric"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true && !target?.hasType("Rubber")) {
+		 move.ignoreImmunity["Electric"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67293,
+	isNonstandard: "Future",
+ },
+ drakfruberry: {
+	name: "Drakfru Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Dragon"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Dragon"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67294,
+	isNonstandard: "Future",
+ },
+ pyscoberry: {
+	name: "Pysco Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Fairy"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Dark"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67295,
+	isNonstandard: "Future",
+ },
+ ogravberry: {
+	name: "Ograv Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Wind"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Flying"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67296,
+	isNonstandard: "Future",
+ },
+ poltraberry: {
+	name: "Poltra Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Normal"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Normal"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67297,
+	isNonstandard: "Future",
+ },
+ cowbell: {
+	name: "Cowbell",
+	spritenum: 0,
+	onModifyDefPriority: 2,
+	onModifyDef(def, pokemon) {
+	  if (pokemon.baseSpecies.baseSpecies === "Miltank") {
+		 return this.chainModify(1.25);
+	  }
+	},
+	onModifySpDPriority: 2,
+	onModifySpD(spd, pokemon) {
+	  if (pokemon.baseSpecies.baseSpecies === "Miltank") {
+		 return this.chainModify(1.25);
+	  }
+	},
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  if (pokemon.baseSpecies.baseSpecies === "Miltank") {
+		 this.heal(pokemon.baseMaxhp / 18);
+	  }
+	},
+	onDamage(damage, target, source, effect) {
+	  if (effect.effectType === "Move" && !effect.multihit && (!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility("sheerforce")))) {
+		 this.effectState.checkedBerserk = false;
+	  } else {
+		 this.effectState.checkedBerserk = true;
+	  }
+	},
+	onTryEatItem(item) {
+	  const healingItems = [
+		 "aguavberry",
+		 "enigmaberry",
+		 "figyberry",
+		 "iapapaberry",
+		 "magoberry",
+		 "sitrusberry",
+		 "wikiberry",
+		 "oranberry",
+		 "berryjuice"
+	  ];
+	  if (healingItems.includes(item.id)) {
+		 return this.effectState.checkedBerserk;
+	  }
+	  return true;
+	},
+	onAfterMoveSecondary(target, source, move) {
+	  this.effectState.checkedBerserk = true;
+	  if (!source || source === target || !target.hp || !move.totalDamage || !(target.baseSpecies.baseSpecies === "Miltank"))
+		 return;
+	  const lastAttackedBy = target.getLastAttackedBy();
+	  if (!lastAttackedBy)
+		 return;
+	  const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+	  if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2 && target.baseSpecies.baseSpecies) {
+		 this.add("-activate", target, "item: Cowbell");
+		 this.boost({ atk: 1, def: 1 }, target, target);
+	  }
+	},
+	itemUser: ["Miltank"],
+	num: 67298,
+	isNonstandard: "Future",
+ },
+ iaraytberry: {
+	name: "Iarayt Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Nuclear"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Bug"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67299,
+	isNonstandard: "Future",
+ },
+ zodziberry: {
+	name: "Zodzi Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Cosmic"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Psychic"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67300,
+	isNonstandard: "Future",
+ },
+ arcakberry: {
+	name: "Arcak Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Magic"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Dragon"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67301,
+	isNonstandard: "Future",
+ },
+ shurbberry: {
+	name: "Shurb Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Rubber"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Rubber"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67302,
+	isNonstandard: "Future",
+ },
+ vaccuberry: {
+	name: "Vaccu Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Cosmic"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Cosmic"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67303,
+	isNonstandard: "Future",
+ },
+ gluttberry: {
+	name: "Glutt Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Food"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Food"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67304,
+	isNonstandard: "Future",
+ },
+ tivomberry: {
+	name: "Tivom Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Zombie"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Fear"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67305,
+	isNonstandard: "Future",
+ },
+ srapyberry: {
+	name: "Srapy Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 100,
+	  type: "Glass"
+	},
+	onModifyMovePriority: -5,
+	onModifyMove(move, pokemon, target) {
+	  if (!move.ignoreImmunity)
+		 move.ignoreImmunity = {};
+	  if (move.ignoreImmunity !== true) {
+		 move.ignoreImmunity["Glass"] = true;
+		 pokemon.eatItem();
+	  }
+	},
+	num: 67306,
+	isNonstandard: "Future",
+ },
+ invertedrune: {
+	name: "Inverted Rune",
+	spritenum: 0,
+	onEffectivenessPriority: 1,
+	onEffectiveness(typeMod, target, type, move) {
+	  if (move && move.id === "freezedry" && type === "Water")
+		 return;
+	  if (move && move.id === "1000folds" && type === "Steel")
+		 return;
+	  if (move && move.id === "airshooter" && type === "Flying")
+		 return;
+	  if (move && !this.dex.getImmunity(move, type))
+		 return 1;
+	  return -typeMod;
+	},
+	num: 67307,
+	isNonstandard: "Future",
+ },
+ gouraberry: {
+	name: "Goura Berry",
+	spritenum: 0,
+	onCriticalHit(pokemon, source, move) {
+	  if (pokemon.hasItem("gouraberry")) {
+		 pokemon.eatItem();
+		 return false;
+	  }
+	  return;
+	},
+	onEat() {
+	},
+	num: 67308,
+	isNonstandard: "Future",
+ },
+ gravitycapsule: {
+	name: "Gravity Capsule",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  this.field.addPseudoWeather("gravity");
+	  target.useItem();
+	},
+	num: 67309,
+	isNonstandard: "Future",
+ },
+ chaosflute: {
+	name: "Chaos Flute",
+	spritenum: 0,
+	onFaint(target, source, effect) {
+	  source.addVolatile("confusion");
+	},
+	num: 67310,
+	isNonstandard: "Future",
+ },
+ flyingballoon: {
+	/* TODO when introduced **/
+	name: "Flying Balloon",
+	spritenum: 0,
+	num: 67311,
+	isNonstandard: "Future",
+ },
+ pandemiccapsule: {
+	/* TODO when introduced **/
+	name: "Pandemic Capsule",
+	spritenum: 0,
+	num: 67312,
+	isNonstandard: "Future",
+ },
+ aethercapsule: {
+	/* TODO when introduced **/
+	name: "Aether Capsule",
+	spritenum: 0,
+	num: 67313,
+	isNonstandard: "Future",
+ },
+ steamyrock: {
+	/* TODO when introduced **/
+	name: "Steamy Rock",
+	spritenum: 0,
+	num: 67314,
+	isNonstandard: "Future",
+ },
+ featherrock: {
+	/* TODO when introduced **/
+	name: "Feather Rock",
+	spritenum: 0,
+	num: 67315,
+	isNonstandard: "Future",
+ },
+ erodedrock: {
+	/* TODO when introduced **/
+	name: "Eroded Rock",
+	spritenum: 0,
+	num: 67316,
+	isNonstandard: "Future",
+ },
+ scalyrock: {
+	/* TODO when introduced **/
+	name: "Scaly Rock",
+	spritenum: 0,
+	num: 67317,
+	isNonstandard: "Future",
+ },
+ chargedrock: {
+	/* Implemented in data/mod/wack/moves.ts **/
+	name: "Charged Rock",
+	spritenum: 0,
+	num: 67318,
+	isNonstandard: "Future",
+ },
+ brightrock: {
+	/* TODO when introduced **/
+	name: "Bright Rock",
+	spritenum: 0,
+	num: 67319,
+	isNonstandard: "Future",
+ },
+ mossyrock: {
+	/* Implemented in data/mod/wack/moves.ts **/
+	name: "Mossy Rock",
+	spritenum: 0,
+	num: 67320,
+	isNonstandard: "Future",
+ },
+ weirdrock: {
+	/* Implemented in data/mod/wack/moves.ts **/
+	name: "Weird Rock",
+	spritenum: 0,
+	num: 67321,
+	isNonstandard: "Future",
+ },
+ virtualrock: {
+	/* TODO when introduced **/
+	name: "Virtual Rock",
+	spritenum: 0,
+	num: 67322,
+	isNonstandard: "Future",
+ },
+ reflectiverock: {
+	/* TODO when introduced **/
+	name: "Reflective Rock",
+	spritenum: 0,
+	num: 67323,
+	isNonstandard: "Future",
+ },
+ radioactiverock: {
+	/* TODO when introduced **/
+	name: "Radioactive Rock",
+	spritenum: 0,
+	num: 67324,
+	isNonstandard: "Future",
+ },
+ paperrock: {
+	/* TODO when introduced **/
+	name: "Paper Rock",
+	spritenum: 0,
+	num: 67325,
+	isNonstandard: "Future",
+ },
+ sweetrock: {
+	/* TODO when introduced **/
+	name: "Sweet Rock",
+	spritenum: 0,
+	num: 67326,
+	isNonstandard: "Future",
+ },
+ viralrock: {
+	/* TODO when introduced **/
+	name: "Viral Rock",
+	spritenum: 0,
+	num: 67327,
+	isNonstandard: "Future",
+ },
+ woodenrock: {
+	/* TODO when introduced **/
+	name: "Woodenrock",
+	spritenum: 0,
+	num: 67328,
+	isNonstandard: "Future",
+ },
+ echorock: {
+	/* TODO when introduced **/
+	name: "Echo Rock",
+	spritenum: 0,
+	num: 67329,
+	isNonstandard: "Future",
+ },
+ clasticrock: {
+	/* TODO when introduced **/
+	name: "Clastic Rock",
+	spritenum: 0,
+	num: 67330,
+	isNonstandard: "Future",
+ },
+ swarmedrock: {
+	/* TODO when introduced **/
+	name: "Swarmed Rock",
+	spritenum: 0,
+	num: 67331,
+	isNonstandard: "Future",
+ },
+ chromerock: {
+	/* TODO when introduced **/
+	name: "Chrome Rock",
+	spritenum: 0,
+	num: 67332,
+	isNonstandard: "Future",
+ },
+ plagueorb: {
+	name: "Plague Orb",
+	spritenum: 0,
+	fling: {
+	  basePower: 30,
+	  status: "tox"
+	},
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.trySetStatus("tox", pokemon);
+	},
+	num: 67334,
+	isNonstandard: "Future",
+ },
+ infernoorb: {
+	name: "Inferno Orb",
+	spritenum: 0,
+	fling: {
+	  basePower: 30,
+	  status: "brn"
+	},
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.trySetStatus("brn", pokemon);
+	},
+	num: 67335,
+	isNonstandard: "Future",
+ },
+ stormorb: {
+	name: "Storm Orb",
+	spritenum: 0,
+	fling: {
+	  basePower: 30,
+	  status: "par"
+	},
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.trySetStatus("par", pokemon);
+	},
+	num: 67336,
+	isNonstandard: "Future",
+ },
+ glassarmor: {
+	name: "Glass Armor",
+	spritenum: 0,
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (move && move.category === "Special") {
+		 return this.chainModify(0.5);
+	  } else if (move && move.category === "Physical") {
+		 return this.chainModify(2);
+	  }
+	},
+	num: 67337,
+	isNonstandard: "Future",
+ },
+ confoundorb: {
+	name: "Confound Orb",
+	spritenum: 0,
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.addVolatile("confusion");
+	},
+	num: 67338,
+	isNonstandard: "Future",
+ },
+ tormentorb: {
+	name: "Torment Orb",
+	spritenum: 0,
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.addVolatile("torment");
+	},
+	num: 67339,
+	isNonstandard: "Future",
+ },
+ tauntorb: {
+	name: "Taunt Orb",
+	spritenum: 0,
+	onResidualOrder: 28,
+	onResidualSubOrder: 3,
+	onResidual(pokemon) {
+	  pokemon.addVolatile("taunt");
+	},
+	num: 67340,
+	isNonstandard: "Future",
+ },
+ hotchocolate: {
+	name: "Hot Chocolate",
+	spritenum: 0,
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  if (pokemon.status === "frz") {
+		 this.heal(pokemon.baseMaxhp / 10);
+	  }
+	},
+	num: 67341,
+	isNonstandard: "Future",
+ },
+ icecream: {
+	name: "Ice Cream",
+	spritenum: 0,
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  if (pokemon.status === "brn") {
+		 this.heal(pokemon.baseMaxhp / 10);
+	  }
+	},
+	num: 67342,
+	isNonstandard: "Future",
+ },
+ yogurt: {
+	name: "Yogurt",
+	spritenum: 0,
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  if (pokemon.status === "par") {
+		 this.heal(pokemon.baseMaxhp / 10);
+	  }
+	},
+	num: 67343,
+	isNonstandard: "Future",
+ },
+ mixedmushrooms: {
+	name: "Mixed Mushrooms",
+	spritenum: 0,
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  if (pokemon.status === "psn" || pokemon.status === "tox") {
+		 this.heal(pokemon.baseMaxhp / 10);
+	  }
+	},
+	num: 67344,
+	isNonstandard: "Future",
+ },
+ carritberry: {
+	name: "Carrit Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 120,
+	  type: "Glass"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4 || pokemon.hp <= pokemon.maxhp / 2 && pokemon.hasAbility(["gluttony", "bountifulharvest"]) && pokemon.abilityState.gluttony) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  this.boost({ accuracy: 1 });
+	},
+	num: 67345,
+	isNonstandard: "Future",
+ },
+ ginsioberry: {
+	name: "Ginsio Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 120,
+	  type: "Steam"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4 || pokemon.hp <= pokemon.maxhp / 2 && pokemon.hasAbility(["gluttony", "bountifulharvest"]) && pokemon.abilityState.gluttony) {
+		 pokemon.eatItem();
+	  }
+	},
+	onEat(pokemon) {
+	  this.boost({ evasion: 1 });
+	},
+	num: 67346,
+	isNonstandard: "Future",
+ },
+ rottedrock: {
+	/* TODO when introduced **/
+	name: "Rotted Rock",
+	spritenum: 0,
+	num: 67347,
+	isNonstandard: "Future",
+ },
+ feastcapsule: {
+	/* TODO when introduced **/
+	name: "Feast Capsule",
+	spritenum: 0,
+	num: 67348,
+	isNonstandard: "Future",
+ },
+ mirrorcapsule: {
+	/* TODO when introduced **/
+	name: "Mirror Capsule",
+	spritenum: 0,
+	num: 67349,
+	isNonstandard: "Future",
+ },
+ plainrock: {
+	/* TODO when introduced **/
+	name: "Plain Rock",
+	spritenum: 0,
+	num: 67350,
+	isNonstandard: "Future",
+ },
+ graveyardcapsule: {
+	/* TODO when introduced **/
+	name: "Graveyard Capsule",
+	spritenum: 0,
+	num: 67351,
+	isNonstandard: "Future",
+ },
+ iceballoon: {
+	/* TODO when introduced **/
+	name: "Ice Balloon",
+	spritenum: 0,
+	num: 67352,
+	isNonstandard: "Future",
+ },
+ arboreumcapsule: {
+	/* TODO when introduced **/
+	name: "Arboreum Capsule",
+	spritenum: 0,
+	num: 67353,
+	isNonstandard: "Future",
+ },
+ saunacapsule: {
+	/* TODO when introduced **/
+	name: "Sauna Capsule",
+	spritenum: 0,
+	num: 67354,
+	isNonstandard: "Future",
+ },
+ sexyswimsuit: {
+	name: "Sexy Swimsuit",
+	spritenum: 0,
+	onResidualOrder: 28,
+	onResidualSubOrder: 2,
+	onResidual(target, source) {
+	  if (this.randomChance(4, 10) && this.field.isWeather("rain")) {
+		 source.addVolatile("attract", target);
+	  }
+	},
+	num: 67355,
+	isNonstandard: "Future",
+ },
+ rainbarrel: {
+	name: "Rain Barrel",
+	spritenum: 0,
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  if (this.field.isWeather("rain")) {
+		 this.heal(pokemon.baseMaxhp / 14);
+	  }
+	},
+	num: 67356,
+	isNonstandard: "Future",
+ },
+ blaringspeaker: {
+	/* TODO when introduced **/
+	name: "Blaring Speaker",
+	spritenum: 0,
+	num: 67357,
+	isNonstandard: "Future",
+ },
+ factorycapsule: {
+	/* TODO when introduced **/
+	name: "Factory Capsule",
+	spritenum: 0,
+	num: 67358,
+	isNonstandard: "Future",
+ },
+ recyclecapsule: {
+	/* TODO when introduced **/
+	name: "Recycle Capsule",
+	spritenum: 0,
+	num: 67359,
+	isNonstandard: "Future",
+ },
+ prankkit: {
+	name: "Prank Kit",
+	spritenum: 0,
+	onModifyPriority(priority, source, target, move) {
+	  if (move.category === "Status") {
+		 source.useItem();
+		 return priority + 1;
+	  }
+	},
+	num: 67360,
+	isNonstandard: "Future",
+ },
+ nightlight: {
+	name: "Nightlight",
+	spritenum: 0,
+	onModifyTypePriority: -1,
+	onModifyType(move, pokemon) {
+	  const noModifyType = [
+		 "judgment",
+		 "multiattack",
+		 "naturalgift",
+		 "revelationdance",
+		 "technoblast",
+		 "terrainpulse",
+		 "weatherball"
+	  ];
+	  if (move.type === "Dark" && !noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status") && !(move.name === "Tera Blast" && pokemon.terastallized)) {
+		 move.type = "Light";
+	  }
+	},
+	num: 67361,
+	isNonstandard: "Future",
+ },
+ plasticrock: {
+	/* TODO when introduced **/
+	name: "Plastic Rock",
+	spritenum: 0,
+	num: 67362,
+	isNonstandard: "Future",
+ },
+ bruxishite: {
+	name: "Bruxishite",
+	spritenum: 0,
+	num: 67363,
+	isNonstandard: "Future",
+ },
+ drampite: {
+	name: "Drampite",
+	spritenum: 0,
+	num: 67364,
+	isNonstandard: "Future",
+ },
+ youthincense: {
+	name: "Youth Incense",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Time") {
+		 return this.chainModify(1.25);
+	  }
+	},
+	num: 67365,
+	isNonstandard: "Future",
+ },
+ marshyincense: {
+	name: "Marshy Incense",
+	spritenum: 0,
+	fling: {
+	  basePower: 10
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move.type === "Ground" || move.type === "Water") {
+		 return this.chainModify(1.15);
+	  }
+	},
+	num: 67366,
+	isNonstandard: "Future",
+ },
+ teaincense: {
+	name: "Tea Incense",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.volatiles["torment"]) {
+		 pokemon.removeVolatile("torment");
+	  }
+	},
+	num: 67367,
+	isNonstandard: "Future",
+ },
+ trojorsite: {
+	name: "Trojorsite",
+	spritenum: 0,
+	num: 67368,
+	isNonstandard: "Future",
+ },
+ dusknoirite: {
+	name: "Dusknoirite",
+	spritenum: 0,
+	num: 67369,
+	isNonstandard: "Future",
+ },
+ manarock: {
+	/* TODO when Manaverse introduced **/
+	name: "Mana Rock",
+	spritenum: 0,
+	num: 67370,
+	isNonstandard: "Future",
+ },
+ gueriestite: {
+	name: "Gueriestite",
+	spritenum: 0,
+	num: 67371,
+	isNonstandard: "Future",
+ },
+ darkballoon: {
+	/* TODO when Dark Spot introduced **/
+	name: "Dark Balloon",
+	spritenum: 0,
+	num: 67372,
+	isNonstandard: "Future",
+ },
+ c4: {
+	name: "C4",
+	spritenum: 0,
+	onDamagingHitOrder: 1,
+	onDamagingHit(damage, target, source, move) {
+	  if (!target.hp) {
+		 target.useItem();
+		 this.damage(source.baseMaxhp / 4, source, target);
+	  }
+	},
+	num: 67373,
+	isNonstandard: "Future",
+ },
+ soupbowl: {
+	name: "Soup Bowl",
+	spritenum: 0,
+	onModifySpe(spe, pokemon) {
+	  if (pokemon.hasType("Food")) {
+		 return this.chainModify(0.5);
+	  }
+	},
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (source.hasType("Food")) {
+		 return this.chainModify(0.75);
+	  }
+	},
+	num: 67374,
+	isNonstandard: "Future",
+ },
+ toiletpaper: {
+	name: "Toilet Paper",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  if (move.type === "Ground" || move.type === "Poison") {
+		 target.useItem();
+	  }
+	},
+	boosts: {
+	  def: 2
+	},
+	num: 67375,
+	isNonstandard: "Future",
+ },
+ swarmcapsule: {
+	/* TODO When introduced **/
+	name: "Swarm Capsule",
+	spritenum: 0,
+	num: 67377,
+	isNonstandard: "Future",
+ },
+ prismolisite: {
+	name: "Prismolisite",
+	spritenum: 0,
+	num: 67378,
+	isNonstandard: "Future",
+ },
+ horrorizer: {
+	name: "Horrorizer",
+	spritenum: 0,
+	num: 67379,
+	isNonstandard: "Future",
+ },
+ steadywindcapsule: {
+	/* TODO When introduced **/
+	name: "Steadywind Capsule",
+	spritenum: 0,
+	num: 67380,
+	isNonstandard: "Future",
+ },
+ tempestcapsule: {
+	/* TODO When introduced **/
+	name: "Tempest Capsule",
+	spritenum: 0,
+	num: 67381,
+	isNonstandard: "Future",
+ },
+ invertedcapsule: {
+	/* TODO When introduced **/
+	name: "Inverted Capsule",
+	spritenum: 0,
+	num: 67382,
+	isNonstandard: "Future",
+ },
+ bouncycapsule: {
+	/* TODO When introduced **/
+	name: "Bouncy Capsule",
+	spritenum: 0,
+	num: 67383,
+	isNonstandard: "Future",
+ },
+ manaversecapsule: {
+	/* TODO When introduced **/
+	name: "Manaverse Capsule",
+	spritenum: 0,
+	num: 67384,
+	isNonstandard: "Future",
+ },
+ ultracloak: {
+	name: "Ultra Cloak",
+	spritenum: 0,
+	onModifyDefPriority: 1,
+	onModifyDef(def) {
+	  return this.chainModify(2.5);
+	},
+	onModifySpDPriority: 1,
+	onModifySpD(spd) {
+	  return this.chainModify(2.5);
+	},
+	num: 67385,
+	isNonstandard: "Future",
+ },
+ ultrascarf: {
+	name: "Ultra Scarf",
+	spritenum: 0,
+	onModifySpe(spe) {
+	  return this.chainModify(2.5);
+	},
+	num: 67386,
+	isNonstandard: "Future",
+ },
+ godsorb: {
+	name: "GODSORB",
+	spritenum: 0,
+	onSourceModifyAccuracyPriority: -2,
+	onSourceModifyAccuracy(accuracy, target) {
+	  if (typeof accuracy === "number" && !this.queue.willMove(target)) {
+		 this.debug("GODSORB boosting accuracy");
+		 return this.chainModify(1.8);
+	  }
+	},
+	onModifyAccuracyPriority: -2,
+	onModifyAccuracy(accuracy) {
+	  if (typeof accuracy !== "number")
+		 return;
+	  this.debug("GODSORB decreasing accuracy");
+	  return this.chainModify(0.8);
+	},
+	onModifyCritRatio(critRatio) {
+	  return critRatio + 2;
+	},
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  this.heal(pokemon.baseMaxhp / 10);
+	},
+	num: 67387,
+	isNonstandard: "Future",
+ },
+ probopassite: {
+	name: "Probopassite",
+	spritenum: 0,
+	num: 67391,
+	isNonstandard: "Future",
+ },
+ vampirefangs: {
+	name: "Vampire Fangs",
+	spritenum: 0,
+	onAfterMoveSecondarySelf(source, target, move) {
+	  if (target.hasAbility("liquidooze") && move && move.flags["bite"]) {
+		 this.damage(source.baseMaxhp / 8, source, target);
+	  } else if (source && source !== target && move && move.flags["bite"] && !source.forceSwitchFlag) {
+		 this.heal(source.baseMaxhp / 8, source, source);
+	  }
+	},
+	num: 67392,
+	isNonstandard: "Future",
+ },
+ eviolate: {
+	name: "Eviolate",
+	spritenum: 0,
+	fling: {
+	  basePower: 40
+	},
+	onModifyAtkPriority: 2,
+	onModifyAtk(def, pokemon) {
+	  if (pokemon.baseSpecies.nfe) {
+		 return this.chainModify(1.5);
+	  }
+	},
+	onModifySpAPriority: 2,
+	onModifySpA(spd, pokemon) {
+	  if (pokemon.baseSpecies.nfe) {
+		 return this.chainModify(1.5);
+	  }
+	},
+	num: 67393,
+	isNonstandard: "Future",
+ },
+ archersbow: {
+	name: "Archers Bow",
+	spritenum: 0,
+	onBasePowerPriority: 23,
+	onBasePower(basePower, attacker, defender, move) {
+	  if (move.flags["arrow"]) {
+		 this.debug("Archers Bow boost");
+		 return this.chainModify(1.25);
+	  }
+	},
+	num: 67394,
+	isNonstandard: "Future",
+ },
+ spiritbell: {
+	name: "Spirit Bell",
+	spritenum: 0,
+	onModifyMove(move, pokemon, target) {
+	  if (this.randomChance(2, 100)) {
+		 move.ohko = true;
+	  }
+	},
+	num: 67395,
+	isNonstandard: "Future",
+ },
+ battlewhip: {
+	/* Only exists in the PBS, not the game's code**/
+	name: "Battle Whip",
+	spritenum: 0,
+	num: 67396,
+	isNonstandard: "Future",
+ },
+ weakeningwhip: {
+	name: "Weakening Whip",
+	spritenum: 0,
+	onModifyMovePriority: -1,
+	onModifyMove(move) {
+	  if (move.category !== "Status") {
+		 if (!move.secondaries)
+			move.secondaries = [];
+		 move.secondaries.push({
+			chance: 40,
+			boosts: {
+			  atk: -1
+			}
+		 });
+	  }
+	},
+	num: 67397,
+	isNonstandard: "Future",
+ },
+ shatteringhammer: {
+	name: "Shattering Hammer",
+	spritenum: 0,
+	onModifyMovePriority: -1,
+	onModifyMove(move) {
+	  if (move.category !== "Status") {
+		 if (!move.secondaries)
+			move.secondaries = [];
+		 move.secondaries.push({
+			chance: 40,
+			boosts: {
+			  def: -1
+			}
+		 });
+	  }
+	},
+	num: 67398,
+	isNonstandard: "Future",
+ },
+ distracttrumpet: {
+	name: "Distract Trumpet",
+	spritenum: 0,
+	onModifyMovePriority: -1,
+	onModifyMove(move) {
+	  if (move.category !== "Status") {
+		 if (!move.secondaries)
+			move.secondaries = [];
+		 move.secondaries.push({
+			chance: 40,
+			boosts: {
+			  spa: -1
+			}
+		 });
+	  }
+	},
+	num: 67399,
+	isNonstandard: "Future",
+ },
+ enfeeblescepter: {
+	name: "Enfeeble Scepter",
+	spritenum: 0,
+	onModifyMovePriority: -1,
+	onModifyMove(move) {
+	  if (move.category !== "Status") {
+		 if (!move.secondaries)
+			move.secondaries = [];
+		 move.secondaries.push({
+			chance: 40,
+			boosts: {
+			  spd: -1
+			}
+		 });
+	  }
+	},
+	num: 67400,
+	isNonstandard: "Future",
+ },
+ gooeygloves: {
+	name: "Gooey Gloves",
+	spritenum: 0,
+	onModifyMovePriority: -1,
+	onModifyMove(move) {
+	  if (move.category !== "Status") {
+		 if (!move.secondaries)
+			move.secondaries = [];
+		 move.secondaries.push({
+			chance: 40,
+			boosts: {
+			  spe: -1
+			}
+		 });
+	  }
+	},
+	num: 67401,
+	isNonstandard: "Future",
+ },
+ blindingprism: {
+	name: "Blinding Prism",
+	spritenum: 0,
+	onModifyMovePriority: -1,
+	onModifyMove(move) {
+	  if (move.category !== "Status") {
+		 if (!move.secondaries)
+			move.secondaries = [];
+		 move.secondaries.push({
+			chance: 40,
+			boosts: {
+			  accuracy: -1
+			}
+		 });
+	  }
+	},
+	num: 67402,
+	isNonstandard: "Future",
+ },
+ alluringnectar: {
+	name: "Alluring Nectar",
+	spritenum: 0,
+	onModifyMovePriority: -1,
+	onModifyMove(move) {
+	  if (move.category !== "Status") {
+		 if (!move.secondaries)
+			move.secondaries = [];
+		 move.secondaries.push({
+			chance: 40,
+			boosts: {
+			  evasion: -1
+			}
+		 });
+	  }
+	},
+	num: 67403,
+	isNonstandard: "Future",
+ },
+ curseddoll: {
+	name: "Cursed Doll",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  if (source.volatiles["disable"])
+		 return;
+	  if (!move.isMax && !move.flags["futuremove"] && move.id !== "struggle") {
+		 if (this.randomChance(3, 10)) {
+			source.addVolatile("disable", this.effectState.target);
+		 }
+	  }
+	},
+	num: 67404,
+	isNonstandard: "Future",
+ },
+ gigadrill: {
+	/* Only exists in the PBS, not the game's code**/
+	name: "Giga Drill",
+	spritenum: 0,
+	num: 67405,
+	isNonstandard: "Future",
+ },
+ sheriffhat: {
+	name: "Sheriff Hat",
+	spritenum: 0,
+	onModifyPriority(priority, source, target, move) {
+	  if (source.activeMoveActions === 0) {
+		 return priority + 1;
+	  }
+	},
+	num: 67406,
+	isNonstandard: "Future",
+ },
+ sheriffbadge: {
+	name: "Sheriff Badge",
+	spritenum: 0,
+	onTryHitPriority: 4,
+	onTryHit(target, source, move) {
+	  if (move.priority <= 0.1)
+		 return;
+	  if (!move.flags["protect"]) {
+		 if (["gmaxoneblow", "gmaxrapidflow"].includes(move.id))
+			return;
+		 if (move.isZ || move.isMax)
+			target.getMoveHitData(move).zBrokeProtect = true;
+		 return;
+	  }
+	  this.add("-activate", target, "move: Quick Guard");
+	  const lockedmove = source.getVolatile("lockedmove");
+	  if (lockedmove) {
+		 if (source.volatiles["lockedmove"].duration === 2) {
+			delete source.volatiles["lockedmove"];
+		 }
+	  }
+	  return this.NOT_FAIL;
+	},
+	num: 67407,
+	isNonstandard: "Future",
+ },
+ wildwestcapsule: {
+	/* TODO when Wild West is introduced **/
+	name: "Wildwest Capsule",
+	spritenum: 0,
+	num: 67408,
+	isNonstandard: "Future",
+ },
+ safetyhelmet: {
+	name: "Safety Helmet",
+	onDamage(damage, target, source, effect) {
+	  if (effect.id === "recoil") {
+		 if (!this.activeMove)
+			throw new Error("Battle.activeMove is null");
+		 if (this.activeMove.id !== "struggle")
+			return null;
+	  }
+	},
+	spritenum: 0,
+	num: 67409,
+	isNonstandard: "Future",
+ },
+ pengemperorite: {
+	name: "Pengemperorite",
+	spritenum: 0,
+	num: 67410,
+	isNonstandard: "Future",
+ },
+ golurkite: {
+	name: "Golurkite",
+	spritenum: 0,
+	num: 67411,
+	isNonstandard: "Future",
+ },
+ nidoqueenite: {
+	name: "Nidoqueenite",
+	spritenum: 0,
+	num: 67412,
+	isNonstandard: "Future",
+ },
+ dontstopmenow: {
+	name: "Dontstopmenow",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4) {
+		 this.heal(pokemon.baseMaxhp / 5);
+	  }
+	},
+	num: 67413,
+	isNonstandard: "Future",
+ },
+ sanshoodie: {
+	name: "Sans Hoodie",
+	spritenum: 0,
+	onModifyAccuracyPriority: -2,
+	onModifyAccuracy(accuracy) {
+	  if (typeof accuracy !== "number")
+		 return;
+	  this.debug("Sans Hoodie decreasing accuracy");
+	  return this.chainModify(0.5);
+	},
+	num: 67415,
+	isNonstandard: "Future",
+ },
+ eviocicle: {
+	name: "Eviocicle",
+	spritenum: 0,
+	onModifySpe(spe, pokemon) {
+	  if (pokemon.baseSpecies.nfe) {
+		 return this.chainModify(1.5);
+	  }
+	},
+	num: 67422,
+	isNonstandard: "Future",
+ },
+ wackorb: {
+	name: "Wack Orb",
+	spritenum: 0,
+	num: 67423,
+	isNonstandard: "Future",
+ },
+ fancyapple: {
+	name: "Fancy Apple",
+	spritenum: 0,
+	onModifyDefPriority: 2,
+	onModifyDef(def, pokemon) {
+	  return this.chainModify(1.5);
+	},
+	onModifySpDPriority: 2,
+	onModifySpD(spd, pokemon) {
+	  return this.chainModify(0.5);
+	},
+	num: 67424,
+	isNonstandard: "Future",
+ },
+ fruitbunch: {
+	name: "Fruit Bunch",
+	spritenum: 0,
+	onModifyDefPriority: 2,
+	onModifyDef(def, pokemon) {
+	  return this.chainModify(0.5);
+	},
+	onModifySpDPriority: 2,
+	onModifySpD(spd, pokemon) {
+	  return this.chainModify(1.5);
+	},
+	num: 67425,
+	isNonstandard: "Future",
+ },
+ tinofbeans: {
+	name: "Tin Of Beans",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  if (!target.fainted && target.hp > 0 && target.hp <= target.maxhp / 4) {
+		 target.useItem();
+		 this.heal(target.baseMaxhp / 7);
+		 source.trySetStatus("psn", target, this.effect);
+	  }
+	},
+	num: 67426,
+	isNonstandard: "Future",
+ },
+ friedfood: {
+	name: "Fried Food",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4) {
+		 pokemon.eatItem();
+		 this.heal(pokemon.baseMaxhp / 6);
+		 pokemon.weighthg += 50;
+	  }
+	},
+	num: 67427,
+	isNonstandard: "Future",
+ },
+ spicemix: {
+	name: "Spice Mix",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  if (!target.fainted && target.hp > 0 && target.hp <= target.maxhp / 4) {
+		 target.useItem();
+		 this.heal(target.baseMaxhp / 7);
+		 source.trySetStatus("brn", target, this.effect);
+	  }
+	},
+	num: 67428,
+	isNonstandard: "Future",
+ },
+ saladmix: {
+	/* TODO when Grass-type Charge move is introduced **/
+	name: "Salad Mix",
+	spritenum: 0,
+	num: 67429,
+	isNonstandard: "Future",
+ },
+ magnezonite: {
+	name: "Magnezonite",
+	spritenum: 0,
+	num: 67430,
+	isNonstandard: "Future",
+ },
+ saturnorb: {
+	name: "Saturn Orb",
+	spritenum: 0,
+	onDamage(damage, target, source, effect) {
+	  if (effect.effectType === "Move" && !effect.multihit && (!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility("sheerforce")))) {
+		 this.effectState.checkedBerserk = false;
+	  } else {
+		 this.effectState.checkedBerserk = true;
+	  }
+	},
+	onTryEatItem(item) {
+	  const healingItems = [
+		 "aguavberry",
+		 "enigmaberry",
+		 "figyberry",
+		 "iapapaberry",
+		 "magoberry",
+		 "sitrusberry",
+		 "wikiberry",
+		 "oranberry",
+		 "berryjuice"
+	  ];
+	  if (healingItems.includes(item.id)) {
+		 return this.effectState.checkedBerserk;
+	  }
+	  return true;
+	},
+	onAfterMoveSecondary(target, source, move) {
+	  this.effectState.checkedBerserk = true;
+	  if (!source || source === target || !target.hp || !move.totalDamage)
+		 return;
+	  const lastAttackedBy = target.getLastAttackedBy();
+	  if (!lastAttackedBy)
+		 return;
+	  const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+	  if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+		 this.add("-activate", target, "item: Saturn Orb");
+		 this.boost({ def: 1 }, target, target);
+	  }
+	},
+	num: 67431,
+	isNonstandard: "Future",
+ },
+ jupiterorb: {
+	name: "Jupiter Orb",
+	spritenum: 0,
+	onDamage(damage, target, source, effect) {
+	  if (effect.effectType === "Move" && !effect.multihit && (!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility("sheerforce")))) {
+		 this.effectState.checkedBerserk = false;
+	  } else {
+		 this.effectState.checkedBerserk = true;
+	  }
+	},
+	onTryEatItem(item) {
+	  const healingItems = [
+		 "aguavberry",
+		 "enigmaberry",
+		 "figyberry",
+		 "iapapaberry",
+		 "magoberry",
+		 "sitrusberry",
+		 "wikiberry",
+		 "oranberry",
+		 "berryjuice"
+	  ];
+	  if (healingItems.includes(item.id)) {
+		 return this.effectState.checkedBerserk;
+	  }
+	  return true;
+	},
+	onAfterMoveSecondary(target, source, move) {
+	  this.effectState.checkedBerserk = true;
+	  if (!source || source === target || !target.hp || !move.totalDamage)
+		 return;
+	  const lastAttackedBy = target.getLastAttackedBy();
+	  if (!lastAttackedBy)
+		 return;
+	  const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+	  if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+		 this.add("-activate", target, "item: Jupiter Orb");
+		 this.boost({ spa: 1 }, target, target);
+	  }
+	},
+	num: 67432,
+	isNonstandard: "Future",
+ },
+ neptuneorb: {
+	name: "Neptune Orb",
+	spritenum: 0,
+	onDamage(damage, target, source, effect) {
+	  if (effect.effectType === "Move" && !effect.multihit && (!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility("sheerforce")))) {
+		 this.effectState.checkedBerserk = false;
+	  } else {
+		 this.effectState.checkedBerserk = true;
+	  }
+	},
+	onTryEatItem(item) {
+	  const healingItems = [
+		 "aguavberry",
+		 "enigmaberry",
+		 "figyberry",
+		 "iapapaberry",
+		 "magoberry",
+		 "sitrusberry",
+		 "wikiberry",
+		 "oranberry",
+		 "berryjuice"
+	  ];
+	  if (healingItems.includes(item.id)) {
+		 return this.effectState.checkedBerserk;
+	  }
+	  return true;
+	},
+	onAfterMoveSecondary(target, source, move) {
+	  this.effectState.checkedBerserk = true;
+	  if (!source || source === target || !target.hp || !move.totalDamage)
+		 return;
+	  const lastAttackedBy = target.getLastAttackedBy();
+	  if (!lastAttackedBy)
+		 return;
+	  const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+	  if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+		 this.add("-activate", target, "item: Neptune Orb");
+		 this.boost({ accuracy: 1 }, target, target);
+	  }
+	},
+	num: 67433,
+	isNonstandard: "Future",
+ },
+ uranusorb: {
+	name: "Uranus Orb",
+	spritenum: 0,
+	onDamage(damage, target, source, effect) {
+	  if (effect.effectType === "Move" && !effect.multihit && (!effect.negateSecondary && !(effect.hasSheerForce && source.hasAbility("sheerforce")))) {
+		 this.effectState.checkedBerserk = false;
+	  } else {
+		 this.effectState.checkedBerserk = true;
+	  }
+	},
+	onTryEatItem(item) {
+	  const healingItems = [
+		 "aguavberry",
+		 "enigmaberry",
+		 "figyberry",
+		 "iapapaberry",
+		 "magoberry",
+		 "sitrusberry",
+		 "wikiberry",
+		 "oranberry",
+		 "berryjuice"
+	  ];
+	  if (healingItems.includes(item.id)) {
+		 return this.effectState.checkedBerserk;
+	  }
+	  return true;
+	},
+	onAfterMoveSecondary(target, source, move) {
+	  this.effectState.checkedBerserk = true;
+	  if (!source || source === target || !target.hp || !move.totalDamage)
+		 return;
+	  const lastAttackedBy = target.getLastAttackedBy();
+	  if (!lastAttackedBy)
+		 return;
+	  const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+	  if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+		 this.add("-activate", target, "item: Uranus Orb");
+		 this.boost({ evasion: 1 }, target, target);
+	  }
+	},
+	num: 67434,
+	isNonstandard: "Future",
+ },
+ borderwall: {
+	name: "Border Wall",
+	spritenum: 0,
+	onStart(target) {
+	  target.side.addSideCondition("lightscreen");
+	  target.side.addSideCondition("reflect");
+	},
+	num: 67435,
+	isNonstandard: "Future",
+ },
+ brittlebones: {
+	name: "Brittle Bones",
+	spritenum: 0,
+	onSourceModifyDamage(damage, source, target, move) {
+	  return this.chainModify(1.2);
+	},
+	onModifySpe(spe, pokemon) {
+	  return this.chainModify(1.2);
+	},
+	num: 67436,
+	isNonstandard: "Future",
+ },
+ sodapowder: {
+	name: "Soda Powder",
+	spritenum: 0,
+	onDamagingHit(damage, target, source, move) {
+	  if ((move.type === "Magma" || move.type === "Fire") && target.hasType("Food")) {
+		 target.useItem();
+	  }
+	},
+	boosts: {
+	  def: 1,
+	  spd: 1
+	},
+	num: 67438,
+	isNonstandard: "Future",
+ },
+ supermalevitality: {
+	name: "Super Male Vitality",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4) {
+		 pokemon.useItem();
+	  }
+	},
+	boosts: {
+	  atk: 1,
+	  def: 1
+	},
+	num: 67440,
+	isNonstandard: "Future",
+ },
+ brainforce: {
+	name: "Brainforce",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4) {
+		 pokemon.useItem();
+	  }
+	},
+	boosts: {
+	  spa: 1,
+	  spd: 1
+	},
+	num: 67441,
+	isNonstandard: "Future",
+ },
+ angerorb: {
+	name: "Anger Orb",
+	spritenum: 0,
+	onHit(target, source, move) {
+	  if (!target.hp)
+		 return;
+	  if (move?.effectType === "Move" && target.getMoveHitData(move).crit) {
+		 target.setBoost({ atk: 6 });
+		 this.add("-setboost", target, "atk", 12, "[from] item: Anger Orb");
+	  }
+	},
+	num: 67445,
+	isNonstandard: "Future",
+ },
+ breakdownorb: {
+	name: "Breakdown Orb",
+	spritenum: 0,
+	onHit(target, source, move) {
+	  if (!target.hp)
+		 return;
+	  if (move?.effectType === "Move" && target.getMoveHitData(move).crit) {
+		 target.setBoost({ spa: 6 });
+		 this.add("-setboost", target, "spa", 12, "[from] item: Breakdown Orb");
+	  }
+	},
+	num: 67446,
+	isNonstandard: "Future",
+ },
+ charizarditec: {
+	name: "Charizardite C",
+	spritenum: 0,
+	num: 67461,
+	isNonstandard: "Future",
+ },
+ pitchsludge: {
+	name: "Pitch Sludge",
+	spritenum: 0,
+	onResidualOrder: 5,
+	onResidualSubOrder: 4,
+	onResidual(pokemon) {
+	  if (pokemon.hasType("Poison")) {
+		 this.heal(pokemon.baseMaxhp / 4);
+	  } else {
+		 this.damage(pokemon.baseMaxhp / 2);
+	  }
+	},
+	num: 67462,
+	isNonstandard: "Future",
+ },
+ craggyhelmet: {
+	name: "Craggy Helmet",
+	spritenum: 0,
+	onDamagingHitOrder: 2,
+	onDamagingHit(damage, target, source, move) {
+	  if (this.checkMoveMakesContact(move, source, target)) {
+		 this.damage(source.baseMaxhp / 2, source, target);
+	  }
+	},
+	num: 67463,
+	isNonstandard: "Future",
+ },
+ fangclaw: {
+	name: "Fangclaw",
+	spritenum: 0,
+	onModifyMovePriority: -1,
+	onModifyMove(move) {
+	  if (move.category !== "Status") {
+		 if (!move.secondaries)
+			move.secondaries = [];
+		 for (const secondary of move.secondaries) {
+			if (secondary.volatileStatus === "flinch")
+			  return;
+		 }
+		 move.secondaries.push({
+			chance: 10,
+			volatileStatus: "flinch"
+		 });
+	  }
+	},
+	onModifyCritRatio(critRatio, user) {
+	  return critRatio + 3;
+	},
+	num: 67464,
+	isNonstandard: "Future",
+ },
+ theberry: {
+	name: "The Berry",
+	spritenum: 0,
+	isBerry: true,
+	naturalGift: {
+	  basePower: 80,
+	  type: "Psychic"
+	},
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 2) {
+		 pokemon.eatItem();
+	  }
+	},
+	onTryEatItem(item, pokemon) {
+	  if (!this.runEvent("TryHeal", pokemon))
+		 return false;
+	},
+	onEat(pokemon) {
+	  this.heal(pokemon.baseMaxhp / 4);
+	},
+	num: 67465,
+	isNonstandard: "Future",
+ },
+ banhammer: {
+	name: "Banhammer",
+	spritenum: 0,
+	onAfterMoveSecondary(target, source, move) {
+	  if (this.randomChance(4, 10) && move.type === "Cyber") {
+		 source.addVolatile("volatile", target, this.effect);
+	  }
+	},
+	num: 67466,
+	isNonstandard: "Future",
+ },
+ firewallarmor: {
+	name: "Firewall Armor",
+	spritenum: 0,
+	onSourceModifyDamage(damage, source, target, move) {
+	  if (target.hasType("Cosmic")) {
+		 return this.chainModify(0.8);
+	  }
+	},
+	onModifySpe(spe, pokemon) {
+	  if (pokemon.hasType("Cosmic")) {
+		 return this.chainModify(0.8);
+	  }
+	},
+	num: 67467,
+	isNonstandard: "Future",
+ },
+ virusbuster: {
+	/* TODO when Anti-Virus is included **/
+	name: "Virus Buster",
+	spritenum: 0,
+	num: 67468,
+	isNonstandard: "Future",
+ },
+ necronomicon: {
+	/* TODO when Graveyard is included **/
+	name: "Necronomicon",
+	spritenum: 0,
+	num: 67469,
+	isNonstandard: "Future",
+ },
+ superpaper: {
+	name: "Super Paper",
+	spritenum: 0,
+	onModifyAtkPriority: 5,
+	onModifyAtk(atk, source) {
+	  if (source.baseSpecies.baseSpecies === "Pagie") {
+		 return this.chainModify(2);
+	  }
+	},
+	onModifySpAPriority: 5,
+	onModifySpA(spa, source) {
+	  if (source.baseSpecies.baseSpecies === "Pagie") {
+		 return this.chainModify(2);
+	  }
+	},
+	onModifySpe(spe, source) {
+	  if (source.baseSpecies.baseSpecies === "Pagie") {
+		 return this.chainModify(2);
+	  }
+	},
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Paper" && user.baseSpecies.baseSpecies === "Pagie") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	itemUser: ["Pagie"],
+	num: 67470,
+	isNonstandard: "Future",
+ },
+ balletoutfit: {
+	name: "Ballet Outfit",
+	spritenum: 0,
+	onModifyMovePriority: -2,
+	onModifyMove(move) {
+	  if (move.secondaries) {
+		 this.debug("doubling secondary chance");
+		 for (const secondary of move.secondaries) {
+			if (secondary.chance)
+			  secondary.chance *= 2;
+		 }
+	  }
+	  if (move.self?.chance)
+		 move.self.chance *= 2;
+	},
+	num: 67471,
+	isNonstandard: "Future",
+ },
+ kaleidoscope: {
+	name: "Kaleido Scope",
+	spritenum: 0,
+	onModifyMovePriority: -2,
+	onModifyMove(move) {
+	  if (move.secondaries) {
+		 this.debug("doubling secondary chance");
+		 for (const secondary of move.secondaries) {
+			if (secondary.chance)
+			  secondary.chance *= 3;
+		 }
+	  }
+	  if (move.self?.chance)
+		 move.self.chance *= 3;
+	},
+	onSourceModifyAccuracyPriority: -2,
+	onSourceModifyAccuracy(accuracy) {
+	  if (typeof accuracy === "number") {
+		 return this.chainModify(0.8);
+	  }
+	},
+	num: 67472,
+	isNonstandard: "Future",
+ },
+ limbershoes: {
+	/* Used in data/mod/wack/condition.ts **/
+	name: "Limber Shoes",
+	spritenum: 0,
+	num: 67473,
+	isNonstandard: "Future",
+ },
+ coldpack: {
+	/* Used in sim/battle-actions.ts **/
+	name: "Cold Pack",
+	spritenum: 0,
+	num: 67474,
+	isNonstandard: "Future",
+ },
+ skyrimse: {
+	name: "Skyrimse",
+	spritenum: 0,
+	onStart(pokemon) {
+	  pokemon.addVolatile("metronome");
+	},
+	condition: {
+	  onStart(pokemon) {
+		 this.effectState.lastMove = "";
+		 this.effectState.numConsecutive = 0;
+	  },
+	  onTryMovePriority: -2,
+	  onTryMove(pokemon, target, move) {
+		 if (!pokemon.hasItem("skyrimse")) {
+			pokemon.removeVolatile("metronome");
+			return;
+		 }
+		 if (this.effectState.lastMove === move.id && pokemon.moveLastTurnResult) {
+			this.effectState.numConsecutive++;
+		 } else if (pokemon.volatiles["twoturnmove"]) {
+			if (this.effectState.lastMove !== move.id) {
+			  this.effectState.numConsecutive = 1;
+			} else {
+			  this.effectState.numConsecutive++;
+			}
+		 } else {
+			this.effectState.numConsecutive = 0;
+		 }
+		 this.effectState.lastMove = move.id;
+	  },
+	  onModifyDamage(damage, source, target, move) {
+		 const dmgMod = [4096, 4915, 5734, 6553, 7372, 8192];
+		 const numConsecutive = this.effectState.numConsecutive > 5 ? 5 : this.effectState.numConsecutive;
+		 this.debug(`Current Skyrimse boost: ${dmgMod[numConsecutive]}/4096`);
+		 return this.chainModify([dmgMod[numConsecutive], 4096]);
+	  }
+	},
+	num: 67476,
+	isNonstandard: "Future",
+ },
+ weddingdress: {
+	name: "Wedding Dress",
+	spritenum: 0,
+	onBasePowerPriority: 15,
+	onBasePower(basePower, user, target, move) {
+	  if (move && move.type === "Heart") {
+		 return this.chainModify([4915, 4096]);
+	  }
+	},
+	num: 67477,
+	isNonstandard: "Future",
+ },
+ bunnysuit: {
+	/* TODO when move effect is introduced **/
+	name: "Bunny Suit",
+	spritenum: 0,
+	num: 67478,
+	isNonstandard: "Future",
+ },
+ catears: {
+	/* TODO when move effect is introduced **/
+	name: "Cat Ears",
+	spritenum: 0,
+	num: 67479,
+	isNonstandard: "Future",
+ },
+ instantnoodles: {
+	name: "Instant Noodles",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4 || pokemon.hp <= pokemon.maxhp / 2 && pokemon.hasAbility(["gluttony", "bountifulharvest"]) && pokemon.abilityState.gluttony) {
+		 pokemon.eatItem();
+	  }
+	},
+	onTryEatItem(item, pokemon) {
+	  if (!this.runEvent("TryHeal", pokemon))
+		 return false;
+	},
+	onEat(pokemon) {
+	  this.boost({ spe: 1 });
+	  this.heal(pokemon.baseMaxhp / 10);
+	},
+	num: 67480,
+	isNonstandard: "Future",
+ },
+ sausages: {
+	name: "Sausages",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4 || pokemon.hp <= pokemon.maxhp / 2 && pokemon.hasAbility(["gluttony", "bountifulharvest"]) && pokemon.abilityState.gluttony) {
+		 pokemon.eatItem();
+	  }
+	},
+	onTryEatItem(item, pokemon) {
+	  if (!this.runEvent("TryHeal", pokemon))
+		 return false;
+	},
+	onEat(pokemon) {
+	  this.boost({ atk: 1 });
+	  this.heal(pokemon.baseMaxhp / 10);
+	},
+	num: 67480,
+	isNonstandard: "Future",
+ },
+ packagedcurry: {
+	name: "Packaged Curry",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4 || pokemon.hp <= pokemon.maxhp / 2 && pokemon.hasAbility(["gluttony", "bountifulharvest"]) && pokemon.abilityState.gluttony) {
+		 pokemon.eatItem();
+	  }
+	},
+	onTryEatItem(item, pokemon) {
+	  if (!this.runEvent("TryHeal", pokemon))
+		 return false;
+	},
+	onEat(pokemon) {
+	  this.boost({ spa: 1 });
+	  this.heal(pokemon.baseMaxhp / 10);
+	},
+	num: 67480,
+	isNonstandard: "Future",
+ },
+ precookedburger: {
+	name: "Precooked Burger",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4 || pokemon.hp <= pokemon.maxhp / 2 && pokemon.hasAbility(["gluttony", "bountifulharvest"]) && pokemon.abilityState.gluttony) {
+		 pokemon.eatItem();
+	  }
+	},
+	onTryEatItem(item, pokemon) {
+	  if (!this.runEvent("TryHeal", pokemon))
+		 return false;
+	},
+	onEat(pokemon) {
+	  this.boost({ def: 1 });
+	  this.heal(pokemon.baseMaxhp / 10);
+	},
+	num: 67480,
+	isNonstandard: "Future",
+ },
+ freshcream: {
+	name: "Fresh Cream",
+	spritenum: 0,
+	onUpdate(pokemon) {
+	  if (pokemon.hp <= pokemon.maxhp / 4 || pokemon.hp <= pokemon.maxhp / 2 && pokemon.hasAbility(["gluttony", "bountifulharvest"]) && pokemon.abilityState.gluttony) {
+		 pokemon.eatItem();
+	  }
+	},
+	onTryEatItem(item, pokemon) {
+	  if (!this.runEvent("TryHeal", pokemon))
+		 return false;
+	},
+	onEat(pokemon) {
+	  this.boost({ spd: 1 });
+	  this.heal(pokemon.baseMaxhp / 10);
+	},
+	num: 67480,
+	isNonstandard: "Future",
+ },
+ paintedrock: {
+	name: "Painted Rock",
+	spritenum: 0,
+	num: 67482,
+	isNonstandard: "Future",
+ },
+ bloodyrock: {
+	name: "Bloody Rock",
+	spritenum: 0,
+	num: 67483,
+	isNonstandard: "Future",
+ }
 };
+

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../data/mods/clovertest/formats-data.ts"],
-  "sourcesContent": ["export const FormatsData: { [k: string]: ModdedSpeciesFormatsData } = {\n\tchromox: {\n\t\tinherit: true,\n\t\ttier: \"OU\",\n\t},\n\tacufronts: {\n\t\tinherit: true,\n\t\ttier: \"OU\",\n\t},\n};\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,MAAM,cAAyD;AAAA,EACrE,SAAS;AAAA,IACR,SAAS;AAAA,IACT,MAAM;AAAA,EACP;AAAA,EACA,WAAW;AAAA,IACV,SAAS;AAAA,IACT,MAAM;AAAA,EACP;AACD;",
-  "names": []
-}

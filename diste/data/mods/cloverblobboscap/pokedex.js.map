@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../data/mods/cloverblobboscap/pokedex.ts"],
-  "sourcesContent": ["export const Pokedex: {[k: string]: ModdedSpeciesData} = {\n\tblobbosforbidden: {\n\t\tinherit: true,\n\t\tbaseStats: {\n\t\t\thp: 89,\n\t\t\tatk: 131,\n\t\t\tdef: 90,\n\t\t\tspa: 133,\n\t\t\tspd: 80,\n\t\t\tspe: 142,\n\t\t},\n\t\tabilities: {\n\t\t\t0: \"Competitive\",\n\t\t\t1: \"Intimidate\",\n\t\t\tH: \"Good as Gold\",\n\t\t\tS: \"Cursed Body\",\n\t\t},\n\t},\n};\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,MAAM,UAA4C;AAAA,EACxD,kBAAkB;AAAA,IACjB,SAAS;AAAA,IACT,WAAW;AAAA,MACV,IAAI;AAAA,MACJ,KAAK;AAAA,MACL,KAAK;AAAA,MACL,KAAK;AAAA,MACL,KAAK;AAAA,MACL,KAAK;AAAA,IACN;AAAA,IACA,WAAW;AAAA,MACV,GAAG;AAAA,MACH,GAAG;AAAA,MACH,GAAG;AAAA,MACH,GAAG;AAAA,IACJ;AAAA,EACD;AACD;",
-  "names": []
-}
