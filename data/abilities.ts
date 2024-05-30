@@ -4864,26 +4864,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 32,
 	},
-	shadowcall: {
-		onModifyAtkPriority: 5,
-		onModifyAtk(atk, attacker, defender, move) {
-			if (move.type === 'Dark' && attacker.hp <= attacker.maxhp / 3) {
-				this.debug('Shadow Call boost');
-				return this.chainModify(1.5);
-			}
-		},
-		onModifySpAPriority: 5,
-		onModifySpA(atk, attacker, defender, move) {
-			if (move.type === 'Dark' && attacker.hp <= attacker.maxhp / 3) {
-				this.debug('Shadow Call boost');
-				return this.chainModify(1.5);
-			}
-		},
-		name: "Shadow Call",
-		gen: 6,
-		rating: 2,
-		num: 33,
-	},
 	shadowdance: {
 		onModifySpe(spe, pokemon) {
 			if (this.field.isWeather('newmoon')) {
@@ -8559,19 +8539,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		isNonstandard: "Future"
 	},
-	vampiric: {
-		onModifyAtk(atk, pokemon, target, move) {
-		if (move?.flags["heal"])
-			return this.chainModify(1.5);
-		},
-		onModifySpA(atk, pokemon, target, move) {
-		if (move?.flags["heal"])
-			return this.chainModify(1.5);
-		},
-		name: "Vampiric",
-		rating: 3.5,
-		isNonstandard: "Future"
-	},
 	hewillbedragon: {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
@@ -10312,33 +10279,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Artist",
 		rating: 0,
 		num: 16,
-		isNonstandard: "Future"
-	},
-	intoxicate: {
-		onModifyTypePriority: -1,
-		onModifyType(move, pokemon) {
-		const noModifyType = [
-			"judgment",
-			"multiattack",
-			"naturalgift",
-			"revelationdance",
-			"technoblast",
-			"terrainpulse",
-			"weatherball"
-		];
-		if (move.type === "Normal" && !noModifyType.includes(move.id) && !(move.isZ && move.category !== "Status")) {
-			move.type = "Poison";
-			move.typeChangerBoosted = this.effect;
-		}
-		},
-		onBasePowerPriority: 23,
-		onBasePower(basePower, pokemon, target, move) {
-		if (move.typeChangerBoosted === this.effect)
-			return this.chainModify([4915, 4096]);
-		},
-		name: "Intoxicate",
-		rating: 4,
-		num: 182,
 		isNonstandard: "Future"
 	},
 	drenchedbulb: {
@@ -14251,26 +14191,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		source.addVolatile("curse", this.effectState.target);
 		},
 		rating: 2,
-		isNonstandard: "Future"
-	},
-	amplifier: {
-		onBasePowerPriority: 7,
-		onBasePower(basePower, attacker, defender, move) {
-		if (move.flags["sound"]) {
-			this.debug("Amplifier boost");
-			return this.chainModify(2);
-		}
-		},
-		onSourceModifyDamage(damage, source, target, move) {
-		if (move.flags["sound"]) {
-			this.debug("Amplifier weaken");
-			return this.chainModify(0.5);
-		}
-		},
-		isBreakable: true,
-		name: "Amplifier",
-		rating: 3.5,
-		num: 244,
 		isNonstandard: "Future"
 	},
 	feelthefoliage: {

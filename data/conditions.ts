@@ -1146,7 +1146,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		  this.singleEvent("End", pokemon.getAbility(), pokemon.abilityState, pokemon, pokemon, "retro");
 		},
 		onCopy(pokemon) {
-		  if (pokemon.getAbility().isPermanent)
+		  if (pokemon.getAbility())
 			 pokemon.removeVolatile("retro");
 		}
 	 },
@@ -1424,4 +1424,3 @@ export const Conditions: {[k: string]: ConditionData} = {
 		}
 	 }
   };
-};

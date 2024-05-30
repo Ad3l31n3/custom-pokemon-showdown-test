@@ -1459,28 +1459,6 @@ export const Moves: { [k: string]: ModdedMoveData } = {
 		inherit: true,
 		isNonstandard: null,
 	},
-	ivycudgel: {
-		num: 904,
-		accuracy: 100,
-		basePower: 100,
-		category: "Physical",
-		name: "Ivy Cudgel",
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		critRatio: 2,
-		onModifyType(move, pokemon) {
-			let type = pokemon.getTypes()[0];
-			if (type === "Bird") type = "???";
-			move.type = type;
-		},
-		secondary: null,
-		target: "normal",
-		type: "Normal",
-		contestType: "Beautiful",
-		desc: "Uses the users Primary typing for the typing of this move. High crit ratio.",
-		shortDesc: "Type varies based on user's primary type. +2 Crit Ratio.",
-	},
 	ominouswind: {
 		num: 466,
 		accuracy: 100,
@@ -1865,33 +1843,6 @@ export const Moves: { [k: string]: ModdedMoveData } = {
 	needlepulse: {
 		inherit: true,
 		isNonstandard: null,
-	},
-	ragingbull: {
-		num: 873,
-		accuracy: 100,
-		basePower: 90,
-		category: "Physical",
-		name: "Raging Bull",
-		pp: 10,
-		priority: 0,
-		flags: {protect: 1, mirror: 1, contact: 1},
-		onModifyType(move, pokemon) {
-			let type = pokemon.getTypes()[0];
-			if (type === "Bird") type = "???";
-			move.type = type;
-		},
-		onTryHit(pokemon) {
-			// will shatter screens through sub, before you hit
-			pokemon.side.removeSideCondition('reflect');
-			pokemon.side.removeSideCondition('lightscreen');
-			pokemon.side.removeSideCondition('auroraveil');
-			pokemon.side.removeSideCondition('mirageveil');
-		},
-		secondary: null,
-		target: "normal",
-		type: "Normal",
-		desc: "Uses the users Primary typing for the typing of this move. Destroys Reflect, Light Screen and Aurora Veil.",
-		shortDesc: "Type varies based on user's primary type. Destroys screens.",
 	},
 	toxic: {
 		num: 92,
